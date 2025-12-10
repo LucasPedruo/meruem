@@ -1,0 +1,41 @@
+@if (isOpen) {
+  <div class="modal__backdrop" (click)="onBackdropClick()"></div>
+}
+
+@if (isOpen) {
+  <div class="modal" [ngClass]="'modal-' + size">
+    <!-- Cabeçalho do Modal -->
+    @if (showHeader) {
+      <div class="modal__header">
+        <ng-content select="[slot=head]"></ng-content>
+        @if (title) {
+          <h2 class="modal__title">{{ title }}</h2>
+        }
+        <button class="modal__close-btn" (click)="onClose()" type="button">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+
+    <!-- Banner do Modal (se habilitado) -->
+    @if (showBanner && bannerText) {
+      <div class="modal__banner">
+        <ng-content select="[slot=banner]"></ng-content>
+        {{ bannerText }}
+      </div>
+    }
+
+    <!-- Corpo do Modal -->
+    <div class="modal__body">
+      <ng-content select="[slot=body]"></ng-content>
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Rodapé do Modal (se habilitado) -->
+<!--     @if (showFooter) {
+      <div class="modal__footer">
+        <ng-content select="[slot=footer]"></ng-content>
+      </div>
+    } -->
+  </div>
+}

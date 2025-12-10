@@ -1,0 +1,42 @@
+@keyframes subirFade {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 500px) {
+    .container-principal {
+        max-width: 400px;
+        padding: 0 20px;
+        overflow: hidden;
+        width: 100%;
+
+        .tool-bar,
+        .profile,
+        .menus,
+        .principal-projeto,
+        .first-content,
+        a,
+        .item {
+            width: 100% !important;
+
+            .categorys {
+                align-items: flex-start !important;
+
+                img {
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        .social-medias {
+            display: none;
+        }
+    }
+}

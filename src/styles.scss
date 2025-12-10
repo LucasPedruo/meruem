@@ -1,0 +1,230 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+@import 'animation.scss';
+
+html {
+  @include mat.theme((color: (primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+}
+
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --font-base: 'Inter', sans-serif;
+  --light-gray: #BABABA;
+  --medium-dark: #4C4C4C;
+  --dark-gray: #1C1C1C;
+  --black: #0D0D0D;
+  --red: #B22D00;
+  --orange: #D77E00;
+  --text-color-primary: #FFFFFF;
+  --text-color-secondary: #8B949E;
+  --text-color-third: #9198A1;
+
+  --font-size-capition: 12px;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-xl: 24px;
+  --font-size-large: 32px;
+}
+
+body {
+  max-width: 1024px;
+  font-family: var(--font-base);
+  color: var(--text-color-secondary);
+  background-color: var(--black);
+  font-size: var(--font-size-medium);
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__content {
+    font-size: var(--font-size-capition);
+    color: #989898;
+    padding: 1.334em;
+    border: 1px solid var(--medium-dark);
+    border-radius: 0.667em;
+    margin-bottom: 10.62em;
+
+    &__section-title {
+      font-size: var(--font-size-capition);
+      font-weight: 400;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    &__list {
+      margin: 0;
+      padding: 0 1.5em;
+    }
+
+  }
+
+  &-about__history__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+
+      font-size: 16px;
+
+    }
+  }
+
+  >div {
+    padding: 0 1.25em;
+    color: var(--text-color-primary);
+  }
+
+  &__title {
+    margin: 1em 0 0.5em;
+    font-size: var(--font-size-large);
+    font-weight: 400;
+    line-height: 100%;
+
+  }
+
+}
+
+.section-social-media {
+  display: flex;
+  gap: 0.5em;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.mat-mdc-form-field-infix {
+  padding: 0.63em 0 !important;
+
+}
+
+.mat-mdc-select-min-line,
+.mat-mdc-option.mdc-list-item {
+  font-size: var(--font-size-small);
+  color: #696969;
+  font-family: var(--font-base);
+}
+
+.custom-select .mdc-text-field--filled:not(.mdc-text-field--disabled),
+div.mat-mdc-select-panel {
+  background-color: var(--light-gray) !important;
+}
+
+.mat-mdc-select-arrow {
+  display: none;
+  /* esconde a seta */
+}
+
+.mat-mdc-option:focus.mdc-list-item,
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+  background-color: var(--text-color-third) !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border-radius: 0;
+}
+
+.mdc-checkbox__background {
+  width: 16px !important;
+  height: 16px !important;
+  background-color: #C8C9CB !important;
+  border-radius: 0.29em !important;
+  border: 1px solid #717478 !important;
+  padding: 0 !important;
+}
+
+.mdc-label {
+  color: #EDEEEE !important;
+  font-family: var(--font-base) !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+}
+
+.mat-mdc-input-element input .mat-mdc-form-field-input-control .mdc-text-field__input .cdk-text-field-autofill-monitored {
+  margin: 0 !important;
+}
+
+.mat-mdc-form-field-infix {
+  padding: 0.5rem 0 !important;
+  height: 44px !important;
+  box-sizing: border-box;
+  color: #696969 !important;
+}
+
+.mat-mdc-text-field-wrapper .mdc-text-field .mdc-text-field--filled .mdc-text-field--no-label {
+  height: 44px !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--light-gray);
+}
+
+.mdc-text-field--filled {
+  height: 44px !important;
+}
+
+.mat-mdc-menu-panel.custom-menu-panel {
+  background-color: var(--black);
+}
+
+button.mat-mdc-menu-item.mat-mdc-menu-item{
+  color: var(--light-gray) ;
+}
+
+button.mat-mdc-menu-item.mat-mdc-menu-item:hover{
+  background-color: var(--medium-dark);
+}

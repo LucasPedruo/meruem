@@ -1,0 +1,33 @@
+@if (isOpen) {
+<div class="modal-success-backdrop" (click)="onBackdropClick()"></div>
+}
+
+@if (isOpen) {
+<div class="modal-success" (click)="$event.stopPropagation()">
+  <div class="modal-success__content">
+    <div class="modal-success__icon">
+      <img src="fulldev-transparent.png" alt="Logo FullDev" />
+    </div>
+    
+    <h2 class="modal-success__title">{{ title }}</h2>
+    
+    <p class="modal-success__message">{{ message }}</p>
+    
+    <div class="modal-success__actions">
+      @if (secondaryButtonText) {
+      <button 
+        class="modal-success__button modal-success__button--secondary"
+        (click)="onClose()">
+        {{ secondaryButtonText }}
+      </button>
+      }
+      <button 
+        class="modal-success__button modal-success__button--primary"
+        (click)="onPrimaryAction()">
+        {{ primaryButtonText }}
+      </button>
+    </div>
+  </div>
+</div>
+}
+

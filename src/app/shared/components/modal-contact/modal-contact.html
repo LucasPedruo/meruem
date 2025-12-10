@@ -1,0 +1,89 @@
+<app-custom-modal 
+  [isOpen]="isOpen"
+  [title]="isValidating ? '' : 'Contato'"
+  [showBanner]="false"
+  [showFooter]="false"
+  [showHeader]="!isValidating"
+  (close)="onClose()"
+  [size]="isValidating ? 'md' : 'lg'">
+  
+  <!-- Loading/Validação -->
+  @if (isValidating) {
+    <app-loading-validation></app-loading-validation>
+  }
+
+  <!-- Formulário -->
+  @if (!isValidating) {
+  <!-- Campo Nome -->
+  <div class="form-field">
+    <label class="field-label">Nome:</label>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput 
+             placeholder="Seu nome" 
+             [formControl]="nomeControl"
+             type="text">
+      <mat-error *ngIf="isFieldInvalid(nomeControl)">
+        {{ getFieldErrorMessage(nomeControl, 'Nome') }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Campo E-mail -->
+  <div class="form-field">
+    <label class="field-label">E-mail:</label>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput 
+             placeholder="Seu e-mail" 
+             [formControl]="emailControl"
+             type="email">
+      <mat-error *ngIf="isFieldInvalid(emailControl)">
+        {{ getFieldErrorMessage(emailControl, 'E-mail') }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Campo Assunto -->
+  <div class="form-field">
+    <label class="field-label">Assunto:</label>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput 
+             placeholder="Seu assunto" 
+             [formControl]="assuntoControl"
+             type="text">
+      <mat-error *ngIf="isFieldInvalid(assuntoControl)">
+        {{ getFieldErrorMessage(assuntoControl, 'Assunto') }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Campo Mensagem -->
+  <div class="form-field">
+    <label class="field-label">Mensagem:</label>
+    <div class="mat-like-field full-width">
+      <textarea class="plain-textarea"
+                placeholder="Sua mensagem"
+                [formControl]="mensagemControl"
+                rows="6"></textarea>
+    </div>
+    <div class="error-text" *ngIf="isFieldInvalid(mensagemControl)">
+      {{ getFieldErrorMessage(mensagemControl, 'Mensagem') }}
+    </div>
+  </div>
+
+  <!-- Checkbox de termos -->
+  <div class="checkbox-container">
+    <mat-checkbox [formControl]="termosControl">
+      Concordo com os termos de usuário
+    </mat-checkbox>
+  </div>
+ 
+  <!-- Botão de envio -->
+  <button 
+    class="submit-button" 
+    (click)="onSubmit()"
+    [disabled]="!isFormValid()">
+    Enviar
+  </button>
+  }
+</app-custom-modal>
+

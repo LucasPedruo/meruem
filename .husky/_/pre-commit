@@ -1,0 +1,15 @@
+#!/bin/sh
+# Husky pre-commit: bloqueia commit se lint ou build falhar
+echo "Executando lint-staged (lint e format nos arquivos modificados)..."
+npx lint-staged
+if [ $? -ne 0 ]; then
+  echo "Erro de lint/format! Commit bloqueado."
+  exit 1
+fi
+
+echo "Executando build..."
+npx ng build --configuration production
+if [ $? -ne 0 ]; then
+  echo "Erro de build! Commit bloqueado."
+  exit 1
+fi

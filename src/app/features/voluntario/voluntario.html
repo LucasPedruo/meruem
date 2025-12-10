@@ -1,0 +1,85 @@
+<section class="section section-voluntary">
+  <app-nav-menu-component></app-nav-menu-component>
+  <div class="container">
+    <h2 class="section__title">Seja voluntário</h2>
+    <article class="section-voluntary__content">
+      <section>
+        <p>A FullDev nasceu com um propósito</p>
+        <p>Conectar desenvolvedores e criar oportunidades reais de crescimento.</p>
+        <p>Mas nenhum sonho grande se constrói sozinho.</p>
+        <p>
+          Por isso, abrimos espaço para pessoas que acreditam no nosso movimento e querem caminhar
+          junto nessa jornada.
+        </p>
+        <p>
+          Ser voluntário na FullDev é muito mais do que doar tempo é fazer parte de algo maior, é
+          contribuir para a comunidade que está transformando o cenário dev no Brasil.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="section-voluntary__content__section-title">
+          O que você pode fazer como voluntário?
+        </h2>
+        <ul class="section-voluntary__content__list">
+          <li>Apoiar na organização de eventos online;</li>
+          <li>Contribuir na criação de conteúdos e materiais educativos;</li>
+          <li>Participar da moderação da comunidade e ajudar novos membros;</li>
+          <li>Colaborar em projetos de tecnologia, design e inovação;</li>
+          <li>Ser uma voz ativa nas nossas redes, compartilhando ideias e feedbacks.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-voluntary__content__section-title">O que você ganha com isso?</h2>
+        <ul class="section-voluntary__content__list">
+          <li>Experiência prática em projetos reais;</li>
+          <li>Networking com devs de todo o Brasil;</li>
+          <li>Reconhecimento dentro da comunidade;</li>
+          <li>A chance de deixar sua marca em um projeto que pode mudar a vida de muita gente.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-voluntary__content__section-title">Para quem é esse convite?</h2>
+        <p>
+          Para qualquer pessoa que queira somar, seja dev, designer, criador de conteúdo, estudante
+          ou profissional já consolidado.
+        </p>
+        <p>
+          O importante é ter vontade de contribuir e acreditar que a comunidade pode levar a gente
+          mais longe.
+        </p>
+      </section>
+
+      <app-custom-button-component [color]="'primary'" (click)="openModal()">Entrar em contato</app-custom-button-component>
+    </article>
+  </div>
+
+  <div>
+    <section class="section-social-media">
+      <app-custom-button-component>
+        <img class="section-social-media__img" src="github.svg" alt="" />
+      </app-custom-button-component>
+      <app-custom-button-component>
+        <img class="section-social-media__img" src="youtube.svg" alt="" />
+      </app-custom-button-component>
+      <app-custom-button-component>
+        <img class="section-social-media__img" src="linkedin.svg" alt="" />
+      </app-custom-button-component>
+      <app-custom-button-component>
+        <img class="section-social-media__img" src="instagram.svg" alt="" />
+      </app-custom-button-component>
+      <app-custom-button-component>
+        <img class="section-social-media__img" src="discord.svg" alt="" />
+      </app-custom-button-component>
+    </section>
+    <app-footer-component></app-footer-component>
+  </div>
+
+  <app-modal-volunteer 
+    [isOpen]="showModal" 
+    (close)="closeModal()"
+    (submit)="onFormSubmit($event)">
+  </app-modal-volunteer>
+</section>

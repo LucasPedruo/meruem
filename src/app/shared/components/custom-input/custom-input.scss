@@ -1,0 +1,37 @@
+.input-container {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  font-size: var(--font-size-small);
+  line-height: 1.72em;
+  font-weight: 400;
+  font-family: var(--font-base);
+
+  label{
+    margin-bottom: 0.28em;
+    color: #EDEEEE;
+  }
+
+  .input {
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    font-size: var(--font-size-small);
+    color: #696969;
+    border: none;
+    outline: none;
+  }
+
+  input.input {
+    border: none;
+  }
+}
+
+.input[type='checkbox'] {
+  width: auto;
+  display: inline;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}

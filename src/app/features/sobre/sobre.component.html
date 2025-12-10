@@ -1,0 +1,50 @@
+<section class="section section-sobre">
+    <app-nav-menu-component></app-nav-menu-component>
+    <div class="container">
+
+        <h2 class="section__title">Sobre nós</h2>
+        <div class="section__content">
+
+            <div class="section-about__history">
+                <h3 class="section-about__history__title">História da Comunidade FullDev</h3>
+
+                <ul class="section-about__history__list">
+                    <li>A história da FullDev começa com algo simples, quase banal, mas que carregava o potencial de
+                        transformar vidas.</li>
+                    <li>Em 2024, durante um curso de tecnologia do Santander, Lucas Pedro sentiu a necessidade de ter
+                        com quem conversar sobre programação.</li>
+                    <li>Não tinha amigos na área, nem um espaço seguro para trocar experiências.</li>
+                    <li>Foi então que ele criou um grupo no WhatsApp, chamado “Coders”, apenas como um pretexto para se
+                        aproximar de outras pessoas com interesses semelhantes.</li>
+                    <li>A intenção inicial era modesta: manter contato com colegas do curso e, quem sabe, trocar ideias
+                        de vez em quando.</li>
+                    <li>Quando o curso terminou, ao invés de deixar o grupo morrer, Lucas propôs a alguns membros que o
+                        mantivessem ativo.</li>
+                    <li>E foi nesse momento que veio o estalo: “Por que não transformar isso numa comunidade de
+                        verdade?”</li>
+                    <li>O início foi tímido: pouco mais de 100 pessoas, e a interação era mínima.</li>
+                    <li>Mas Lucas percebeu que, para algo realmente florescer, precisaria ser colaborativo.</li>
+                    <li>Ele começou a convidar mais pessoas para ajudar na gestão, criar iniciativas e gerar um senso de
+                        pertencimento.</li>
+                    <li>Aos poucos, o grupo ganhou vida: hackathons, indicações de vagas, bate-papos técnicos e
+                        conversas descontraídas começaram a surgir de forma natural.</li>
+                    <li>Pessoas que antes não se conheciam passaram a se ajudar, e histórias inspiradoras começaram a
+                        aparecer.</li>
+                </ul>
+
+                <app-custom-button-component sizes="medium" [color]="'primary'"
+                    text="Entrar em contato"></app-custom-button-component>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <app-social-component></app-social-component>
+        <app-footer-component></app-footer-component>
+    </div>
+
+    <app-modal-contact 
+        [isOpen]="showModal" 
+        (close)="toggleModal()"
+        (submit)="onContactSubmit($event)"></app-modal-contact>
+</section>

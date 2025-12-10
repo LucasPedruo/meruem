@@ -1,0 +1,17 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  color: #989898;
+  border-top: 1px solid #3D444D;
+  padding: 1em 0;
+  margin-top: 1em;
+  animation: subirFade .9s ease-out forwards;
+
+  p {
+    font-size: var(--font-size-capition);
+    margin: 0;
+  }
+}

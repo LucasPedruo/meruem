@@ -1,0 +1,28 @@
+<section class="group-section" [ngClass]="parentType">
+  <div class="group-section__content">
+    <img [src]="src" class="group-section__logo" alt="Logo FullDev" />
+    <div class="group-section__description">
+      <h2 class="group-section__description__title">{{ text }}</h2>
+      <!-- <p><img src="member.svg" alt="Icone membros" /> 1021</p> -->
+    </div>
+    @if (showIcon) {
+      <img src="fix.svg" alt="Icone fix" />
+    }
+  </div>
+  <app-custom-button-component
+    sizes="large"
+    text="Entrar no grupo"
+    color="link"
+    [showIcon]="true"
+    (buttonClick)="goToGroupLink()"
+    ></app-custom-button-component>
+    <!-- (buttonClick)="openMembershipModal()" -->
+
+  <app-modal-membership
+    [isOpen]="isMembershipModalOpen"
+    [groupName]="groupName || text"
+    (close)="closeMembershipModal()"
+    (confirm)="onMembershipConfirmed($event)"
+    (accessGroup)="onAccessGroup()"
+  ></app-modal-membership>
+</section>

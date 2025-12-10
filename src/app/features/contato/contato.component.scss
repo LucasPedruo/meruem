@@ -1,0 +1,8 @@
+.section__content__list{
+    list-style-type: disc;
+
+    a{
+        text-decoration: underline;
+        color: var(--text-color-secondary);
+    }
+}

@@ -1,0 +1,34 @@
+.formulario {
+  font-size: var(--font-size-small);
+  line-height: 1.72em;
+  margin-top: 1em;
+
+  .telephone {
+    > div {
+      display: grid;
+      grid-template-columns: 0.5fr 2.8fr;
+    }
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #5a5a5a;
+    margin: 1em;
+  }
+
+  &__termo {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+}
+
+:host ::ng-deep .section-voluntary {
+  padding: 0.57em 1.72em;
+  font-size: var(--font-size-small);
+
+  & .formulario .button {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,17 @@
+.section-social-media {
+  display: flex;
+  align-items: center; 
+  gap: 0.5em;
+  margin-inline-start: 0.25em; 
+  
+  img {
+    width: 1rem; 
+    height: auto; 
+    object-fit: contain; 
+    transition: transform 0.2s ease; 
+
+    &:hover {
+      transform: scale(1.1); 
+    }
+  }
+}

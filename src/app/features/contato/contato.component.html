@@ -1,0 +1,67 @@
+<section class="section">
+    <app-nav-menu-component></app-nav-menu-component>
+    <div class="container">
+
+        <h2 class="section__title">Contato</h2>
+        <article class="section__content">
+            <section>
+                <p>A FullDev é feita por pessoas e para pessoas. </p>
+                <p>Se você tem dúvidas, sugestões, ideias ou apenas quer trocar uma ideia com a gente, estamos prontos
+                    pra ouvir.</p>
+            </section>
+
+            <section>
+                <p>
+                    Como você pode falar com a gente:
+                </p>
+                <ul class="section__content__list">
+                    <li>E-mail: contato@fulldev.com</li>
+                    <li>WhatsApp: (21) 98956-0135</li>
+                    <li>Redes sociais:
+                        <a href="https://www.linkedin.com/company/comunidadefulldev/posts/?feedView=all">LinkedIn</a> |
+                        <a href="https://www.instagram.com/comunidadefulldev/">Instagram</a> |
+                        <a href="https://www.youtube.com/@comunidadefulldev">YouTube</a>
+                    </li>
+                    <li>Colaborar em projetos de tecnologia, design e inovação;</li>
+                    <li>Ser uma voz ativa nas nossas redes, compartilhando ideias e feedbacks.</li>
+                </ul>
+            </section>
+            <br />
+            <section>
+                <p>Dúvidas mais comuns:</p>
+                <ul class="section__content__list">
+                    <li>Quer ser voluntário?
+                        <ul class="section__content__list">
+                            <li><a routerLink="/voluntario">Clique aqui</a></li>
+                        </ul>
+                    <li>Quer propor uma parceria?
+                        <ul class="section__content__list">
+                            <li><span>Envie um e-mail para marketing@fulldev.com.br</span></li>
+                        </ul>
+                    </li>
+                    <li>Problemas técnicos?
+                        <ul class="section__content__list">
+                            <li><span>Entre em contato com o nosso suporte</span></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+
+            <app-custom-button-component text="Preencher formulário" color="primary" sizes="medium"
+                (buttonClick)="openModal()">
+            </app-custom-button-component>
+        </article>
+    </div>
+
+    <div>
+
+        <app-social-component></app-social-component>
+        <app-footer-component></app-footer-component>
+    </div>
+
+    <app-modal-contact 
+        [isOpen]="showModal" 
+        (close)="closeModal()"
+        (submit)="onContactSubmit($event)"></app-modal-contact>
+</section>

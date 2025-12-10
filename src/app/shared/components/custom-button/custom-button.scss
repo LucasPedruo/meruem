@@ -1,0 +1,54 @@
+.button {
+  font-size: var(--font-size-capition);
+  color: var(--text-color-primary);
+  font-family: var(--font-base);
+  border-radius: 0.34em;
+  padding: 1.04em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  border: none;
+  animation: subirFade .8s ease-out forwards;
+
+  &.link {
+    background-color: var(--dark-gray);
+    border: 1px solid var(--medium-dark);
+  }
+
+  &.primary {
+    background-color: var(--red);
+  }
+
+  &.secundary {
+    background-color: var(--medium-dark);
+  }
+
+  &.warning {
+    background-color: var(--orange);
+  }
+
+  &.small {
+    width: 32px;
+    height: 32px;
+    padding: 0.67em;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  &.medium {
+    padding: 0.572em 1.715em;
+    width: auto;
+    margin-top: 1.143em;
+    font-size: var(--font-size-small);
+    border-radius: 0;
+    line-height: 24px;
+  }
+
+  &.large {
+    width: 100%;
+  }
+}

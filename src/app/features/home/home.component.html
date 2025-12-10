@@ -1,0 +1,110 @@
+<section class="home" aria-labelledby="header-title">
+  <div class="wrapper-home">
+    <header class="header">
+      <img class="header__img" src="fd-dark.jpg" alt="logo FullDev" />
+
+      <div>
+        <h1 class="header__title" id="header-title">FullDev</h1>
+        <ul class="header__stats-list">
+          <li class="header__stats-list__item">
+            <img class="header__stats-list__item-icon" src="member.svg" alt="" aria-hidden="true" />
+            <p class="header__stats-list__item-text">5458 Membros</p>
+          </li>
+
+          <li class="header__stats-list__item">
+            <img
+              class="header__stats-list__item-icon"
+              src="group-chat.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <p class="header__stats-list__item-text">15 Grupos</p>
+          </li>
+
+          <li class="header__stats-list__item">
+            <img
+              class="header__stats-list__item-icon"
+              src="cupcake.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <p class="header__stats-list__item-text">Criado em 10/06/2024 20:36</p>
+          </li>
+
+          <li class="header__stats-list__item">
+            <img
+              class="header__stats-list__item-icon"
+              src="laptop-minimalistic.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <p class="header__stats-list__item-text">By Dev, For Dev</p>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <section>
+      <app-grupos-component
+        [showIcon]="true"
+        text="Geral 1"
+        [linkGroup]="'ChrXjnNn3Xh1gTikrYyjAs'"
+      ></app-grupos-component>
+
+      <app-grupos-component
+        [src]="'queens.jpg'"
+        [showIcon]="true"
+        text="Queens of Deploy"
+        [linkGroup]="'KOKFfsXGD1PBVWvAXXNbcb'"
+      ></app-grupos-component>
+
+      <app-custom-button-component
+        sizes="large"
+        class="home__button"
+        (buttonClick)="openModal()"
+        text="Exibir todos os grupos"
+        aria-haspopup="dialog"
+      >
+      </app-custom-button-component>
+    </section>
+
+    <!--         <ul class="list-group">
+            <li class="list-group__item">
+                <a class="list-group__item__link" routerLink="/sobre">Sobre nós
+                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página Sobre nós">
+                </a>
+            </li>
+            <li class="list-group__item">
+                <a class="list-group__item__link" routerLink="/voluntario">Seja voluntário
+                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página Seja voluntário">
+                </a>
+            </li>
+            <li class="list-group__item">
+                <a class="list-group__item__link" routerLink="/contato">Contato
+                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página para contato">
+                </a>
+            </li>
+            <li class="list-group__item">
+                <a class="list-group__item__link" routerLink="/reportar">Reportar bug
+                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página reportar bug">
+                </a>
+            </li>
+        </ul> -->
+
+    <app-social-component></app-social-component>
+
+    <app-footer-component></app-footer-component>
+
+    <app-custom-modal title="Grupos" [isOpen]="showModal" (closeModal)="closeModal()">
+      @for(item of groups(); track item){
+        <app-grupos-component
+          [parentType]="'modal'"
+          [text]="item.text"
+          [src]="item.src"
+          [linkGroup]="item.linkGroup"
+        ></app-grupos-component>
+      }
+    </app-custom-modal>
+
+  </div>
+</section>

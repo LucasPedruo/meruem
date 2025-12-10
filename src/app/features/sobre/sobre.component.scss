@@ -1,0 +1,15 @@
+.section-about__history__list {
+    margin: 0;
+    list-style: none;
+    padding-left: 0.4em;
+
+    li {
+        line-height: 100%;
+    }
+
+    li::before {
+        content: "•";
+        margin-right: 0.35rem;
+        color: currentColor;
+    }
+}
