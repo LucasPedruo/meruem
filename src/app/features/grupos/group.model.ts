@@ -14,18 +14,18 @@ export const _fixeGroups = signal<fixedGroupsInterface[]>([
         text: 'Geral 2',
         linkGroup: 'H3uqzOSGodo9URWQbKQBgq'
     },
-    {
+/*     {
         src: 'fd-default.jpg', //Icone
         shoIcon: true,
         text: 'Linkedin',
         linkGroup: 'KtO57yX6Ytx7Shee1SUUWZ'
-    },
-    {
+    }, */
+/*     {
         src: 'fd-default.jpg', //Icone
         shoIcon: true,
         text: 'Promoções',
         linkGroup: 'DtHVvrUZL2c1slBnfqvaN7'
-    },
+    }, */
     {
         src: 'fd-default.jpg', //Icone
         shoIcon: true,
@@ -50,12 +50,12 @@ export const _fixeGroups = signal<fixedGroupsInterface[]>([
         text: 'FrontEnd',
         linkGroup: 'LlqIsyvg1zn62m7TdvJthb'
     },
-    {
+/*     {
         src: 'fd-english.jpg', //Icone
         shoIcon: true,
         text: 'Only English',
         linkGroup: 'HcDc5HtAHzr0q4a7vPBJfS'
-    },
+    }, */
 ///    {
 ///       src: 'fd-default.jpg', //Icone
 ///        shoIcon: true,
