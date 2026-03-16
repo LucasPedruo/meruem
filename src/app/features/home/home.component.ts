@@ -27,18 +27,6 @@ export class HomeComponent {
   appTitle = environment.appTitle;
   isProduction = environment.production;
 
-hasInteracted = false;
-
-onUserInteraction() {
-  if (this.hasInteracted == true) return;
-
-  this.hasInteracted = true;
-  const audio = new Audio('jinglebell.mp3');
-  audio.loop = true;
-  audio.play();
-}
-
-
   constructor() {
     if (environment.production) {
       console.warn('🏠 Home component em produção ');

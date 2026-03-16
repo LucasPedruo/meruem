@@ -12,7 +12,7 @@ import { ModalMembershipComponent } from '../../shared/components/modal-membersh
 })
 export class GruposComponent {
   @Input() text = 'Grupos';
-  @Input() src: string = 'fd-default.jpg';
+  @Input() src: string = 'fulldev.png';
   @Input() parentType: 'home' | 'modal' = 'home';
   @Input() showIcon = false;
   @Input() groupName: string = '';
