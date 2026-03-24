@@ -56,6 +56,8 @@ body {
 
 body {
   max-width: 1024px;
+  width: 100%;
+  min-height: 100vh;
   font-family: var(--font-base);
   color: var(--text-color-secondary);
   background-color: var(--black);
@@ -64,17 +66,21 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
 
+}
+
+app-root {
+  display: block;
+  width: 100%;
 }
 
 a {
