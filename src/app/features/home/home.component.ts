@@ -26,12 +26,13 @@ export class HomeComponent {
   showModal: boolean = false;
   appTitle = environment.appTitle;
   isProduction = environment.production;
+  groups = () => _fixeGroups().filter((group) => group.text !== 'Geral 2');
 
   constructor() {
     if (environment.production) {
-      console.warn('🏠 Home component em produção ');
+      console.warn('ðŸ  Home component em produÃ§Ã£o ');
     } else {
-      console.warn('🏠 Home component em desenvolvimento ');
+      console.warn('ðŸ  Home component em desenvolvimento ');
     }
   }
 
@@ -42,6 +43,4 @@ export class HomeComponent {
   closeModal() {
     this.showModal = false;
   }
-
-  groups = _fixeGroups
 }

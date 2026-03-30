@@ -174,7 +174,7 @@ export class CommunityService {
       },
       {
         id: '2',
-        name: 'FullDev - Geral 1',
+        name: 'FullDev - Tecnologia 1',
         description: 'Fala, Dev! Seja muito Bem-vindo! 😆',
         imageUrl: '/images/Geral1.png',
         memberCount: 1024,
@@ -234,7 +234,7 @@ export class CommunityService {
       activeMembers: 3500,
       monthlyGrowth: 12.5,
       topGroups: [
-        { name: 'FullDev - Geral 1', members: 1024 },
+        { name: 'FullDev - Tecnologia 1', members: 1024 },
         { name: 'FullDev - Vagas e Freelas', members: 1024 },
         { name: 'FullDev - Code Queens', members: 504 },
       ],

@@ -8,7 +8,7 @@
         <ul class="header__stats-list">
           <li class="header__stats-list__item">
             <img class="header__stats-list__item-icon" src="member.svg" alt="" aria-hidden="true" />
-            <p class="header__stats-list__item-text">2006 Membros</p>
+            <p class="header__stats-list__item-text">3933 Membros gerais</p>
           </li>
 
           <li class="header__stats-list__item">
@@ -18,7 +18,7 @@
               alt=""
               aria-hidden="true"
             />
-            <p class="header__stats-list__item-text">7 Grupos</p>
+            <p class="header__stats-list__item-text">8 Grupos</p>
           </li>
 
           <li class="header__stats-list__item">
@@ -30,16 +30,6 @@
             />
             <p class="header__stats-list__item-text">Desde 06/2024</p>
           </li>
-
-<!--           <li class="header__stats-list__item">
-            <img
-              class="header__stats-list__item-icon"
-              src="laptop-minimalistic.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <p class="header__stats-list__item-text">By Dev, For Dev</p>
-          </li> -->
         </ul>
       </div>
     </header>
@@ -47,14 +37,23 @@
     <section>
       <app-grupos-component
         [showIcon]="true"
-        text="Geral 1"
+        text="Tecnologia 1"
+        [description]="'958 de 1024 Membros'"
         [linkGroup]="'ChrXjnNn3Xh1gTikrYyjAs'"
+      ></app-grupos-component>
+
+      <app-grupos-component
+        [showIcon]="true"
+        text="Tecnologia 2"
+        [description]="'319 de 1024 Membros'"
+        [linkGroup]="'H3uqzOSGodo9URWQbKQBgq'"
       ></app-grupos-component>
 
       <app-grupos-component
         [src]="'queens.jpg'"
         [showIcon]="true"
         text="Queens of Deploy"
+        [description]="'550 de 1024 Membros'"
         [linkGroup]="'KOKFfsXGD1PBVWvAXXNbcb'"
       ></app-grupos-component>
 
@@ -62,41 +61,19 @@
         [src]="'RainbowStack.png'"
         [showIcon]="true"
         text="RainbowStack"
+        [description]="'102 de 1024 Membros'"
         [linkGroup]="'BtWA88gNq3KGmAxAobB8X3'"
       ></app-grupos-component>
 
       <app-custom-button-component
         sizes="large"
-        class="home__button"
+        color="primary"
         (buttonClick)="openModal()"
         text="Exibir todos os grupos"
         aria-haspopup="dialog"
       >
       </app-custom-button-component>
     </section>
-
-    <!--         <ul class="list-group">
-            <li class="list-group__item">
-                <a class="list-group__item__link" routerLink="/sobre">Sobre nós
-                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página Sobre nós">
-                </a>
-            </li>
-            <li class="list-group__item">
-                <a class="list-group__item__link" routerLink="/voluntario">Seja voluntário
-                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página Seja voluntário">
-                </a>
-            </li>
-            <li class="list-group__item">
-                <a class="list-group__item__link" routerLink="/contato">Contato
-                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página para contato">
-                </a>
-            </li>
-            <li class="list-group__item">
-                <a class="list-group__item__link" routerLink="/reportar">Reportar bug
-                    <img class="list-group__arrow" src="arrow-up-right.svg" alt="Abrir página reportar bug">
-                </a>
-            </li>
-        </ul> -->
 
     <app-social-component></app-social-component>
 
@@ -107,10 +84,18 @@
         <app-grupos-component
           [parentType]="'modal'"
           [text]="item.text"
+          [description]="item.description"
           [src]="item.src"
           [linkGroup]="item.linkGroup"
         ></app-grupos-component>
       }
+      <app-grupos-component
+        [parentType]="'modal'"
+        [src]="'fulldev.png'"
+        text="FullDev Games"
+        [description]="'10 de 1024 Membros'"
+        [buttonText]="'Entrar'"
+      ></app-grupos-component>
     </app-custom-modal>
 
   </div>

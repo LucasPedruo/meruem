@@ -12,6 +12,8 @@ import { ModalMembershipComponent } from '../../shared/components/modal-membersh
 })
 export class GruposComponent {
   @Input() text = 'Grupos';
+  @Input() description = 'Grupo no WhatsApp';
+  @Input() buttonText = 'Entrar';
   @Input() src: string = 'fulldev.png';
   @Input() parentType: 'home' | 'modal' = 'home';
   @Input() showIcon = false;
@@ -33,11 +35,9 @@ export class GruposComponent {
   }
 
   onMembershipConfirmed(_data: { nome: string; telefone: string; pais: string; grupo: string }) {
-    // Implementar lógica para adicionar usuário ao grupo
   }
 
   onAccessGroup() {
-    // Implementar a lógica de acesso ao grupo (API, etc)
     this.closeMembershipModal();
   }
 

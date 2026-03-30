@@ -48,7 +48,7 @@ export class CustomButtonComponent {
   @Input() showIcon = false;
   @Input() label: string = 'Entrar no grupo';
   @Input() type: 'button' | 'submit' = 'button';
-  @Input() color: 'link' | 'primary' | 'secundary' | 'warning' = 'link';
+  @Input() color: 'link' | 'primary' | 'secundary' | 'destaque' | 'warning' = 'link';
   @Input() sizes: 'small' | 'medium' | 'large' = 'small';
   @Input() state: 'loading' | 'normal' | 'disabled' = 'normal';
 

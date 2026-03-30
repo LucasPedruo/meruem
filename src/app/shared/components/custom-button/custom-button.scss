@@ -12,6 +12,7 @@
   text-decoration: none;
   font-weight: 400;
   border: none;
+  opacity: 0;
   animation: subirFade .8s ease-out forwards;
 
   &.link {
@@ -20,7 +21,10 @@
   }
 
   &.primary {
-    background-color: var(--red);
+    background-image: linear-gradient(45deg, #5A1400, #8A2200, #B22D00, #E03A00, #5A1400);
+    background-size: 400% 200%;
+    box-shadow: 0 0 32px -2px rgba(178, 45, 0, 0.5);
+    animation: subirFade .8s ease-out forwards, textura 6.4s cubic-bezier(0.2, 0.5, 0.9, 0.6) infinite;
   }
 
   &.secundary {
@@ -42,7 +46,6 @@
   &.medium {
     padding: 0.572em 1.715em;
     width: auto;
-    margin-top: 1.143em;
     font-size: var(--font-size-small);
     border-radius: 0;
     line-height: 24px;
@@ -50,5 +53,19 @@
 
   &.large {
     width: 100%;
+  }
+}
+
+@keyframes textura {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

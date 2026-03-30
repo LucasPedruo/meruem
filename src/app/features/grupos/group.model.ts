@@ -4,6 +4,7 @@ export interface fixedGroupsInterface {
     src: string,
     shoIcon: boolean,
     text: string,
+    description: string,
     linkGroup: string,
 }
 
@@ -11,55 +12,29 @@ export const _fixeGroups = signal<fixedGroupsInterface[]>([
     {
         src: 'fulldev.png', //Icone
         shoIcon: true,
-        text: 'Geral 2',
-        linkGroup: 'H3uqzOSGodo9URWQbKQBgq'
-    },
-/*     {
-        src: 'fd-default.jpg', //Icone
-        shoIcon: true,
-        text: 'Linkedin',
-        linkGroup: 'KtO57yX6Ytx7Shee1SUUWZ'
-    }, */
-/*     {
-        src: 'fd-default.jpg', //Icone
-        shoIcon: true,
-        text: 'Promoções',
-        linkGroup: 'DtHVvrUZL2c1slBnfqvaN7'
-    }, */
-    {
-        src: 'fulldev.png', //Icone
-        shoIcon: true,
-        text: 'Vagas e Freelas 1',
+        text: 'Vagas 1',
+        description: '1022 de 1024 Membros',
         linkGroup: 'J6V7iaZv8AFFO05RG7SpEs'
     },
     {
         src: 'fulldev.png', //Icone
         shoIcon: true,
-        text: 'Vagas e Freelas 2',
+        text: 'Vagas 2',
+        description: '156 de 1024 Membros',
         linkGroup: 'DiEyNx37vLe3pQQvBg9x9U'
     },
     {
-        src: 'fulldev.png', //Icone
+        src: 'icon-white-red.png', //Icone
         shoIcon: true,
-        text: 'BackEnd',
-        linkGroup: 'ElrsyS77NHj9YOirwP3I0b'
-    },
-    {
-        src: 'fulldev.png', //Icone
-        shoIcon: true,
-        text: 'FrontEnd',
+        text: 'Off Topic - 1',
+        description: '381 de 1024 Membros',
         linkGroup: 'LlqIsyvg1zn62m7TdvJthb'
     },
-/*     {
-        src: 'fd-english.jpg', //Icone
+    {
+        src: 'icon-white-red.png', //Icone
         shoIcon: true,
-        text: 'Only English',
-        linkGroup: 'HcDc5HtAHzr0q4a7vPBJfS'
-    }, */
-///    {
-///       src: 'fd-default.jpg', //Icone
-///        shoIcon: true,
-///        text: 'Strong',
-///        linkGroup: 'IWEV2ThDLrxK0crZXrAT4X'
-///    },
+        text: 'Off Topic - 2',
+        description: '445 de 1024 Membros',
+        linkGroup: 'ElrsyS77NHj9YOirwP3I0b'
+    },
 ])

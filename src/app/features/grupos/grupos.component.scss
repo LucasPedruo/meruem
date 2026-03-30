@@ -9,7 +9,6 @@
         display: grid;
         align-items: center;
         grid-template-columns: auto 3fr auto;
-        margin-bottom: 0.57em;
     }
 
     h2 {
@@ -33,12 +32,34 @@
             color: var(--text-color-primary);
         }
 
+        &__subtitle {
+            margin: 0.28em 0 0 0;
+            font-size: var(--font-size-capition);
+            color: var(--text-color-secondary);
+        }
+
         p {
             margin: 0.28em 0 0 0;
             font-size: var(--font-size-capition);
             color: var(--text-color-secondary);
         }
 
+    }
+
+    &__action {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__action ::ng-deep .button {
+        margin-top: 0;
+        padding: 0.45em 0.9em;
+        width: auto;
+        min-width: 0;
+        line-height: 1.2;
+        white-space: nowrap;
     }
 }
 
