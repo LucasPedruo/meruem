@@ -29,11 +29,6 @@ export class HomeComponent {
   groups = () => _fixeGroups().filter((group) => group.text !== 'Geral 2');
 
   constructor() {
-    if (environment.production) {
-      console.warn('ðŸ  Home component em produÃ§Ã£o ');
-    } else {
-      console.warn('ðŸ  Home component em desenvolvimento ');
-    }
   }
 
   openModal() {
