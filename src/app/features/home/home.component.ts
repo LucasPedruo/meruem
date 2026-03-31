@@ -27,7 +27,7 @@ export class HomeComponent {
   activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
-  groups = () => _fixeGroups().filter((group) => group.text !== 'Geral 2');
+  modalGroups = () => _fixeGroups().filter((group) => group.text !== 'Games');
   teamSections = [
     {
       title: 'Conselho',
@@ -72,7 +72,81 @@ export class HomeComponent {
     },
     {
       title: 'Moderadores',
-      members: [],
+      members: [
+        {
+          name: 'Pablo Henrique',
+          stack: 'Moderador na FullDev',
+          image: 'equipe/pablo.jpg',
+          linkedin: 'https://www.linkedin.com/in/pablo-henrique-245709207/',
+        },
+        {
+          name: 'Lorenna Luize',
+          stack: 'Moderador no Queens',
+          image: 'equipe/lorena.jpg',
+          linkedin: 'https://www.linkedin.com/in/lorenna-dias/',
+        },
+        {
+          name: 'Dalila Castro',
+          stack: 'Moderador no Queens',
+          image: 'equipe/dalila.jpg',
+          linkedin: 'https://www.linkedin.com/in/dalila-castro-moresco/',
+        },
+        {
+          name: 'Ana Carolina',
+          stack: 'Moderador no Queens',
+          image: 'equipe/ana-carolina.jpg',
+          linkedin: 'https://www.linkedin.com/in/carolinamerloti',
+        },
+        {
+          name: 'Maria Clara',
+          stack: 'Moderador no Queens',
+          image: 'equipe/maria-clara.jpg',
+          linkedin: 'https://www.linkedin.com/in/maria-clara-silva374',
+        },
+        {
+          name: 'Sofia Vaz',
+          stack: 'Desenvolvedor na FullDev',
+          image: 'equipe/Sofia.jpg',
+          linkedin: 'https://www.linkedin.com/in/sofia-vazxavier',
+        },
+        {
+          name: 'José Henrike',
+          stack: 'Moderador na FullDev',
+          image: 'equipe/José Henrike.jpg',
+          linkedin: 'https://www.linkedin.com/in/josehenrike/',
+        },
+        {
+          name: 'Hernando Junior',
+          stack: 'Desenvolvedor na FullDev',
+          image: 'equipe/Hernando.jpg',
+          linkedin: 'https://www.linkedin.com/in/hernandojunior',
+        },
+        {
+          name: 'Luciana Galdino',
+          stack: 'Desenvolvedor na FullDev',
+          image: 'equipe/Luciana.jpg',
+          linkedin:
+            'https://www.linkedin.com/in/lucianagaldino-?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+        },
+        {
+          name: 'Fernando Valença',
+          stack: 'Desenvolvedor na FullDev',
+          image: 'equipe/fernando.jpg',
+          linkedin: 'http://www.linkedin.com.br/in/fernando-valenca',
+        },
+        {
+          name: 'Victoria Mariucha',
+          stack: 'Moderador no Queens',
+          image: 'equipe/Vitoria.jpg',
+          linkedin: 'https://www.linkedin.com/in/victoria-mariucha/',
+        },
+        {
+          name: 'Daniel Mesquita',
+          stack: 'Moderador na FullDev',
+          image: 'equipe/Daniel.jpg',
+          linkedin: 'https://www.linkedin.com/in/danielgmesquita',
+        },
+      ],
     },
   ] as const;
   partnerCards = [

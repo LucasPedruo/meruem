@@ -38,14 +38,14 @@
       <app-grupos-component
         [showIcon]="true"
         text="Tecnologia 1"
-        [description]="'958 de 1024 Membros'"
+        [description]="'999 de 1024 Membros'"
         [linkGroup]="'ChrXjnNn3Xh1gTikrYyjAs'"
       ></app-grupos-component>
 
       <app-grupos-component
         [showIcon]="true"
         text="Tecnologia 2"
-        [description]="'319 de 1024 Membros'"
+        [description]="'339 de 1024 Membros'"
         [linkGroup]="'H3uqzOSGodo9URWQbKQBgq'"
       ></app-grupos-component>
 
@@ -63,6 +63,14 @@
         text="RainbowStack"
         [description]="'102 de 1024 Membros'"
         [linkGroup]="'BtWA88gNq3KGmAxAobB8X3'"
+      ></app-grupos-component>
+
+      <app-grupos-component
+        [src]="'logo-fulldev-games.png'"
+        [showIcon]="true"
+        text="Games"
+        [description]="'10 de 1024 Membros'"
+        [linkGroup]="'CfM0zq1T8Oo9b9yvs0HZRK'"
       ></app-grupos-component>
 
       <app-custom-button-component
@@ -108,7 +116,7 @@
     <app-footer-component></app-footer-component>
 
     <app-custom-modal title="Grupos" [isOpen]="showModal" (closeModal)="closeModal()">
-      @for(item of groups(); track item){
+      @for(item of modalGroups(); track item){
         <app-grupos-component
           [parentType]="'modal'"
           [text]="item.text"

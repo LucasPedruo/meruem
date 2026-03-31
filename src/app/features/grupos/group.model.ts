@@ -38,7 +38,7 @@ export const _fixeGroups = signal<fixedGroupsInterface[]>([
         linkGroup: 'ElrsyS77NHj9YOirwP3I0b'
     },
     {
-        src: 'fulldev.png', //Icone
+        src: 'logo-fulldev-games.png', //Icone
         shoIcon: true,
         text: 'Games',
         description: '10 de 1024 Membros',
