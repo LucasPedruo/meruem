@@ -118,15 +118,86 @@
       (closeModal)="closeInstitutionalModal()"
     >
       <div class="institutional-modal" slot="body">
-        <p class="institutional-modal__description">
-          {{ activeInstitutionalContent().description }}
-        </p>
+        @if (activeInstitutionalKey === 'equipe') {
+          <div class="team-sections">
+            @for (section of teamSections; track section.title) {
+              <section class="team-sections__group">
+                <h3 class="team-sections__title">{{ section.title }}</h3>
 
-        <ul class="institutional-modal__list">
-          @for (item of activeInstitutionalContent().items; track item) {
-            <li class="institutional-modal__list-item">{{ item }}</li>
+                @if (section.members.length) {
+                  @for (member of section.members; track member.name) {
+                    <article class="team-card">
+                      <div class="team-card__content">
+                        <img [src]="member.image" class="team-card__logo" [alt]="'Foto de ' + member.name" />
+                        <div class="team-card__description">
+                          <h4 class="team-card__description__title">{{ member.name }}</h4>
+                          <p class="team-card__description__subtitle">{{ member.stack }}</p>
+                        </div>
+                        <app-custom-button-component
+                          class="team-card__action"
+                          sizes="medium"
+                          [iconSrc]="'linkedin.svg'"
+                          iconAlt="Abrir LinkedIn"
+                          color="link"
+                          [state]="member.linkedin ? 'normal' : 'disabled'"
+                          (buttonClick)="openExternalLink(member.linkedin)"
+                        ></app-custom-button-component>
+                      </div>
+                    </article>
+                  }
+                } @else {
+                  <p class="team-sections__empty">Em breve.</p>
+                }
+              </section>
+            }
+          </div>
+        } @else if (activeInstitutionalKey === 'parceiros') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
           }
-        </ul>
+
+          <ul class="institutional-modal__list">
+            @for (item of activeInstitutionalContent().items; track item) {
+              <li class="institutional-modal__list-item">{{ item }}</li>
+            }
+          </ul>
+
+          <div class="team-sections">
+            @for (partner of partnerCards; track partner.name) {
+              <article class="team-card">
+                <div class="team-card__content">
+                  <img [src]="partner.image" class="team-card__logo" [alt]="'Logo de ' + partner.name" />
+                  <div class="team-card__description">
+                    <h4 class="team-card__description__title">{{ partner.name }}</h4>
+                    <p class="team-card__description__subtitle">{{ partner.stack }}</p>
+                  </div>
+                  <app-custom-button-component
+                    class="team-card__action"
+                    sizes="medium"
+                    [iconSrc]="'linkedin.svg'"
+                    iconAlt="Abrir LinkedIn"
+                    color="link"
+                    (buttonClick)="openExternalLink(partner.linkedin)"
+                  ></app-custom-button-component>
+                </div>
+              </article>
+            }
+          </div>
+        } @else {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+
+          <ul class="institutional-modal__list">
+            @for (item of activeInstitutionalContent().items; track item) {
+              <li class="institutional-modal__list-item">{{ item }}</li>
+            }
+          </ul>
+        }
       </div>
     </app-custom-modal>
 

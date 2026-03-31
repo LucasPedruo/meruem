@@ -27,6 +27,61 @@ export class HomeComponent {
   appTitle = environment.appTitle;
   isProduction = environment.production;
   groups = () => _fixeGroups().filter((group) => group.text !== 'Geral 2');
+  teamSections = [
+    {
+      title: 'Conselho',
+      members: [
+        {
+          name: 'Lucas Pedro',
+          stack: 'Fundador da FullDev',
+          image: 'equipe/lucas.jpg',
+          linkedin: 'https://www.linkedin.com/in/lucaspedruo/',
+        },
+        {
+          name: 'Matheus Braz',
+          stack: 'Vice diretor',
+          image: 'equipe/math.jpg',
+          linkedin: 'https://www.linkedin.com/in/matheus-braz-gs/',
+        },
+        {
+          name: 'Lyssa Oliveira',
+          stack: 'Fundadora do Queens',
+          image: 'equipe/lyssa.jpeg',
+          linkedin: 'https://www.linkedin.com/in/lyssa-lima-brito/',
+        },
+        {
+          name: 'Giovanna Bertoletti',
+          stack: 'Vice diretora do Queens',
+          image: 'equipe/gio.jpg',
+          linkedin: 'https://www.linkedin.com/in/giovanna-bertoletti/',
+        },
+        {
+          name: 'Gabriela Mariano',
+          stack: 'Fundadora do Rainbowstack',
+          image: 'equipe/gabu.jpg',
+          linkedin: 'https://www.linkedin.com/in/gabi-mariano/',
+        },
+        {
+          name: 'João Victor',
+          stack: 'Fundador da FullDev Games',
+          image: 'equipe/joao.jpg',
+          linkedin: 'https://www.linkedin.com/in/jvemmanuell/',
+        },
+      ],
+    },
+    {
+      title: 'Moderadores',
+      members: [],
+    },
+  ] as const;
+  partnerCards = [
+    {
+      name: 'Friends of Figma',
+      stack: 'Comunidade oficial do Figma no Rio de Janeiro.',
+      image: 'fulldev.png',
+      linkedin: 'https://www.linkedin.com/company/fofrio',
+    },
+  ] as const;
   institutionalContent = {
     eventos: {
       title: 'Eventos',
@@ -40,28 +95,31 @@ export class HomeComponent {
     },
     sobre: {
       title: 'Sobre nós',
-      description:
-        'A FullDev nasceu para criar um espaço acessível de troca entre pessoas que estudam, trabalham ou querem crescer em tecnologia.',
+      description: '',
       items: [
-        'Comunidade focada em conexão, suporte e evolução contínua.',
-        'Ambiente para discutir carreira, estudo e projetos reais.',
-        'Iniciativas pensadas para fortalecer o senso de pertencimento.',
+        'A história da FullDev começa com algo simples, quase banal, mas que carregava o potencial de transformar vidas.',
+        'Em 2024, durante um curso de tecnologia do Santander, Lucas Pedro sentiu a necessidade de ter com quem conversar sobre programação.',
+        'Não tinha amigos na área, nem um espaço seguro para trocar experiências.',
+        'Foi então que ele criou um grupo no WhatsApp, chamado “Coders”, apenas como um pretexto para se aproximar de outras pessoas com interesses semelhantes.',
+        'A intenção inicial era modesta: manter contato com colegas do curso e, quem sabe, trocar ideias de vez em quando.',
+        'Quando o curso terminou, ao invés de deixar o grupo morrer, Lucas propôs a alguns membros que o mantivessem ativo.',
+        'E foi nesse momento que veio o estalo: “Por que não transformar isso numa comunidade de verdade?”',
+        'O início foi tímido: pouco mais de 100 pessoas, e a interação era mínima.',
+        'Mas Lucas percebeu que, para algo realmente florescer, precisaria ser colaborativo.',
+        'Ele começou a convidar mais pessoas para ajudar na gestão, criar iniciativas e gerar um senso de pertencimento.',
+        'Aos poucos, o grupo ganhou vida: hackathons, indicações de vagas, bate-papos técnicos e conversas descontraídas começaram a surgir de forma natural.',
+        'Pessoas que antes não se conheciam passaram a se ajudar, e histórias inspiradoras começaram a aparecer.',
       ],
     },
     equipe: {
       title: 'Equipe',
-      description:
-        'Nossa equipe organiza a comunidade, cuida das iniciativas e mantém os espaços ativos para que as conexões aconteçam com consistência.',
-      items: [
-        'Pessoas responsáveis por curadoria, organização e suporte.',
-        'Atuação colaborativa para manter grupos e ações funcionando.',
-        'Foco em acolhimento, qualidade das interações e continuidade.',
-      ],
+      description: '',
+      items: [],
     },
     parceiros: {
       title: 'Parceiros',
       description:
-        'A FullDev busca conexões com empresas, comunidades e iniciativas que compartilham o interesse em ampliar oportunidades em tecnologia.',
+        'A FullDev busca conexões com empresas, comunidades e iniciativas que compartilham o interesse em ampliar oportunidades em tecnologia. Para parcerias, entre em contato em lucasdearaujopedrolap@gmail.com.',
       items: [
         'Parcerias para eventos, ações educacionais e divulgação.',
         'Apoio a iniciativas que gerem valor real para a comunidade.',
@@ -91,5 +149,13 @@ export class HomeComponent {
 
   activeInstitutionalContent() {
     return this.institutionalContent[this.activeInstitutionalKey];
+  }
+
+  openExternalLink(url: string) {
+    if (!url) {
+      return;
+    }
+
+    window.open(url, '_blank');
   }
 }
