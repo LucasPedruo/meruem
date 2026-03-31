@@ -1,6 +1,6 @@
 .button {
   font-size: 12px;
-  color: var(--text-color-primary);
+  color: #8B949E;
   font-family: var(--font-base);
   border-radius: 0.34em;
   padding: 0.75em 1.04em;
@@ -27,6 +27,10 @@
     background-size: 400% 200%;
     box-shadow: 0 0 32px -2px rgba(178, 45, 0, 0.5);
     animation: subirFade .8s ease-out forwards, textura 6.4s cubic-bezier(0.2, 0.5, 0.9, 0.6) infinite;
+  }
+
+  &.primary.large {
+    color: var(--text-color-primary);
   }
 
   &.secundary {

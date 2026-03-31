@@ -78,8 +78,24 @@ export class HomeComponent {
     {
       name: 'Friends of Figma',
       stack: 'Comunidade oficial do Figma no Rio de Janeiro.',
-      image: 'fulldev.png',
+      image: 'fofrio_logo.jpg',
       linkedin: 'https://www.linkedin.com/company/fofrio',
+    },
+  ] as const;
+  eventCards = [
+    {
+      name: 'HandsOn Rio',
+      stack: 'Em fase de organização',
+      image: 'fulldev.png',
+      buttonText: '',
+      state: 'loading' as const,
+    },
+    {
+      name: 'Projeto online open source da FullDev',
+      stack: 'Em fase de organização',
+      image: 'fulldev.png',
+      buttonText: '',
+      state: 'loading' as const,
     },
   ] as const;
   institutionalContent = {

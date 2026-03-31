@@ -185,6 +185,39 @@
               </article>
             }
           </div>
+        } @else if (activeInstitutionalKey === 'eventos') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+
+          <ul class="institutional-modal__list">
+            @for (item of activeInstitutionalContent().items; track item) {
+              <li class="institutional-modal__list-item">{{ item }}</li>
+            }
+          </ul>
+
+          <div class="team-sections">
+            @for (event of eventCards; track event.name) {
+              <article class="team-card">
+                <div class="team-card__content">
+                  <img [src]="event.image" class="team-card__logo" [alt]="'Imagem de ' + event.name" />
+                  <div class="team-card__description">
+                    <h4 class="team-card__description__title">{{ event.name }}</h4>
+                    <p class="team-card__description__subtitle">{{ event.stack }}</p>
+                  </div>
+                  <app-custom-button-component
+                    class="team-card__action team-card__action--compact"
+                    sizes="medium"
+                    [text]="event.buttonText"
+                    color="link"
+                    [state]="event.state"
+                  ></app-custom-button-component>
+                </div>
+              </article>
+            }
+          </div>
         } @else {
           @if (activeInstitutionalContent().description) {
             <p class="institutional-modal__description">

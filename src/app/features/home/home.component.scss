@@ -127,7 +127,7 @@
       padding: 0.75rem 1rem;
       border: 0;
       border-radius: 0;
-      color: var(--text-color-primary);
+      color: #8B949E;
       text-decoration: none;
       font-size: 12px;
       background-color: transparent;
@@ -139,6 +139,16 @@
 
       &:not(:last-child) {
         border-bottom: 1px solid var(--medium-dark);
+      }
+
+      &:first-child {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
       }
 
       &:hover,
@@ -213,6 +223,8 @@
   background: #1f1f1f;
   box-sizing: border-box;
   width: 100%;
+  opacity: 0;
+  animation: subirFade .8s ease-out forwards;
 
   &__content {
     display: grid;
@@ -262,13 +274,23 @@
 
   &__action ::ng-deep .button {
     margin-top: 0;
-    width: 40px;
-    min-width: 40px;
     height: 40px;
     min-height: 40px;
-    padding: 0 !important;
+    padding: 0 12px !important;
     border-radius: 0.5rem;
     justify-content: center;
+  }
+
+  &__action ::ng-deep .button:has(img:only-child) {
+    width: 40px;
+    min-width: 40px;
+    padding: 0 !important;
+  }
+
+  &__action--compact ::ng-deep .button {
+    width: 40px;
+    min-width: 40px;
+    padding: 0 !important;
   }
 
   @media (max-width: 480px) {
