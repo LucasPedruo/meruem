@@ -61,12 +61,80 @@
 
     }
 
-    &__img {
+    &__logo-button {
+      display: flex;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 0.5em;
+      perspective: 1200px;
+
+      &:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.45);
+        outline-offset: 4px;
+      }
+    }
+
+    &__img-frame {
+      position: relative;
+      display: block;
       width: 7.57rem;
       height: 7.57rem;
       border-radius: 0.5em;
+      overflow: hidden;
       border: 1px solid var(--medium-dark);
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -18%;
+        background: linear-gradient(
+          115deg,
+          transparent 18%,
+          rgba(255, 255, 255, 0.1) 36%,
+          rgba(129, 212, 250, 0.92) 50%,
+          rgba(255, 255, 255, 0.12) 64%,
+          transparent 82%
+        );
+        opacity: 0;
+        transform: translateX(-150%) skewX(-20deg);
+        pointer-events: none;
+      }
+
+      &--flip-forward {
+        animation: headerFlipForward 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      &--flip-backward {
+        animation: headerFlipBackward 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      &--light-a {
+        &::after {
+          opacity: 1;
+          animation: headerLightSweepA 0.32s ease-out 0.58s forwards;
+        }
+      }
+
+      &--light-b {
+        &::after {
+          opacity: 1;
+          animation: headerLightSweepB 0.32s ease-out 0.58s forwards;
+        }
+      }
+    }
+
+    &__img {
+      width: 7.57rem;
+      height: 7.57rem;
+      border-radius: inherit;
+      border: 0;
       object-fit: cover;
+      backface-visibility: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.02),
+        0 12px 28px rgba(0, 0, 0, 0.28);
     }
 
     &__stats-list {
@@ -163,6 +231,66 @@
         flex-shrink: 0;
       }
     }
+  }
+}
+
+@keyframes headerLightSweepA {
+  0% {
+    opacity: 0;
+    transform: translateX(-150%) skewX(-20deg);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(150%) skewX(-20deg);
+  }
+}
+
+@keyframes headerLightSweepB {
+  0% {
+    opacity: 0;
+    transform: translateX(-150%) skewX(-20deg);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(150%) skewX(-20deg);
+  }
+}
+
+@keyframes headerFlipForward {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(90deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes headerFlipBackward {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(-90deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
   }
 }
 

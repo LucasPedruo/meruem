@@ -22,8 +22,15 @@ import { _fixeGroups } from '../grupos/group.model';
 })
 export class HomeComponent {
   readonly emptyInstitutionalItems: readonly string[] = [];
+  readonly headerLogoDefault = 'fulldev.png';
+  readonly headerLogoMascot = 'mascote.png';
+  readonly headerFlipDurationMs = 200;
   showModal: boolean = false;
   showInstitutionalModal = false;
+  isHeaderFlipping = false;
+  isHeaderMascotVisible = false;
+  headerLightVariant: 'a' | 'b' = 'a';
+  headerFlipDirection: 'forward' | 'backward' = 'forward';
   activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
@@ -74,46 +81,28 @@ export class HomeComponent {
       title: 'Moderadores',
       members: [
         {
-          name: 'Pablo Henrique',
+          name: 'Daniel Mesquita',
           stack: 'Moderador na FullDev',
-          image: 'equipe/pablo.jpg',
-          linkedin: 'https://www.linkedin.com/in/pablo-henrique-245709207/',
-        },
-        {
-          name: 'Lorenna Luize',
-          stack: 'Moderador no Queens',
-          image: 'equipe/lorena.jpg',
-          linkedin: 'https://www.linkedin.com/in/lorenna-dias/',
-        },
-        {
-          name: 'Dalila Castro',
-          stack: 'Moderador no Queens',
-          image: 'equipe/dalila.jpg',
-          linkedin: 'https://www.linkedin.com/in/dalila-castro-moresco/',
-        },
-        {
-          name: 'Ana Carolina',
-          stack: 'Moderador no Queens',
-          image: 'equipe/ana-carolina.jpg',
-          linkedin: 'https://www.linkedin.com/in/carolinamerloti',
-        },
-        {
-          name: 'Maria Clara',
-          stack: 'Moderador no Queens',
-          image: 'equipe/maria-clara.jpg',
-          linkedin: 'https://www.linkedin.com/in/maria-clara-silva374',
-        },
-        {
-          name: 'Sofia Vaz',
-          stack: 'Desenvolvedor na FullDev',
-          image: 'equipe/Sofia.jpg',
-          linkedin: 'https://www.linkedin.com/in/sofia-vazxavier',
+          image: 'equipe/Daniel.jpg',
+          linkedin: 'https://www.linkedin.com/in/danielgmesquita',
         },
         {
           name: 'José Henrike',
           stack: 'Moderador na FullDev',
           image: 'equipe/José Henrike.jpg',
           linkedin: 'https://www.linkedin.com/in/josehenrike/',
+        },
+        {
+          name: 'Pablo Henrique',
+          stack: 'Moderador na FullDev',
+          image: 'equipe/pablo.jpg',
+          linkedin: 'https://www.linkedin.com/in/pablo-henrique-245709207/',
+        },
+        {
+          name: 'Fernando Valença',
+          stack: 'Desenvolvedor na FullDev',
+          image: 'equipe/fernando.jpg',
+          linkedin: 'http://www.linkedin.com.br/in/fernando-valenca',
         },
         {
           name: 'Hernando Junior',
@@ -129,22 +118,40 @@ export class HomeComponent {
             'https://www.linkedin.com/in/lucianagaldino-?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
         },
         {
-          name: 'Fernando Valença',
+          name: 'Sofia Vaz',
           stack: 'Desenvolvedor na FullDev',
-          image: 'equipe/fernando.jpg',
-          linkedin: 'http://www.linkedin.com.br/in/fernando-valenca',
+          image: 'equipe/Sofia.jpg',
+          linkedin: 'https://www.linkedin.com/in/sofia-vazxavier',
+        },
+        {
+          name: 'Ana Carolina',
+          stack: 'Moderador no Queens',
+          image: 'equipe/ana-carolina.jpg',
+          linkedin: 'https://www.linkedin.com/in/carolinamerloti',
+        },
+        {
+          name: 'Dalila Castro',
+          stack: 'Moderador no Queens',
+          image: 'equipe/dalila.jpg',
+          linkedin: 'https://www.linkedin.com/in/dalila-castro-moresco/',
+        },
+        {
+          name: 'Lorenna Luize',
+          stack: 'Moderador no Queens',
+          image: 'equipe/lorena.jpg',
+          linkedin: 'https://www.linkedin.com/in/lorenna-dias/',
+        },
+        {
+          name: 'Maria Clara',
+          stack: 'Moderador no Queens',
+          image: 'equipe/maria-clara.jpg',
+          linkedin: 'https://www.linkedin.com/in/maria-clara-silva374',
         },
         {
           name: 'Victoria Mariucha',
           stack: 'Moderador no Queens',
           image: 'equipe/Vitoria.jpg',
           linkedin: 'https://www.linkedin.com/in/victoria-mariucha/',
-        },
-        {
-          name: 'Daniel Mesquita',
-          stack: 'Moderador na FullDev',
-          image: 'equipe/Daniel.jpg',
-          linkedin: 'https://www.linkedin.com/in/danielgmesquita',
         },
       ],
     },
@@ -246,6 +253,33 @@ export class HomeComponent {
 
   closeInstitutionalModal() {
     this.showInstitutionalModal = false;
+  }
+
+  currentHeaderImage() {
+    return this.isHeaderMascotVisible ? this.headerLogoMascot : this.headerLogoDefault;
+  }
+
+  currentHeaderAlt() {
+    return this.isHeaderMascotVisible ? 'mascote da FullDev' : 'logo FullDev';
+  }
+
+  triggerHeaderFlip() {
+    if (this.isHeaderFlipping) {
+      return;
+    }
+
+    this.headerFlipDirection = this.isHeaderMascotVisible ? 'backward' : 'forward';
+    this.headerLightVariant = this.headerLightVariant === 'a' ? 'b' : 'a';
+    this.isHeaderMascotVisible = !this.isHeaderMascotVisible;
+    this.isHeaderFlipping = true;
+
+    window.setTimeout(() => {
+      this.isHeaderFlipping = false;
+    }, this.headerFlipDurationMs);
+  }
+
+  onHeaderLogoClick() {
+    this.triggerHeaderFlip();
   }
 
   activeInstitutionalContent() {

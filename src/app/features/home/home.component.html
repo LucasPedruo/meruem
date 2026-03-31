@@ -1,7 +1,22 @@
 <section class="home" aria-labelledby="header-title">
   <div class="wrapper-home">
     <header class="header">
-      <img class="header__img" src="fulldev.png" alt="logo FullDev" />
+      <button
+        class="header__logo-button"
+        type="button"
+        (click)="onHeaderLogoClick()"
+        [attr.aria-label]="isHeaderMascotVisible ? 'Exibindo mascote da FullDev' : 'Exibindo logo da FullDev'"
+      >
+        <span
+          class="header__img-frame"
+          [class.header__img-frame--flip-forward]="isHeaderFlipping && headerFlipDirection === 'forward'"
+          [class.header__img-frame--flip-backward]="isHeaderFlipping && headerFlipDirection === 'backward'"
+          [class.header__img-frame--light-a]="isHeaderFlipping && headerLightVariant === 'a'"
+          [class.header__img-frame--light-b]="isHeaderFlipping && headerLightVariant === 'b'"
+        >
+          <img class="header__img" [src]="currentHeaderImage()" [alt]="currentHeaderAlt()" />
+        </span>
+      </button>
 
       <div>
         <h1 class="header__title" id="header-title">FullDev</h1>
