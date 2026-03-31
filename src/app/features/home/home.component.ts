@@ -166,7 +166,7 @@ export class HomeComponent {
       state: 'loading' as const,
     },
     {
-      name: 'Projeto online open source da FullDev',
+      name: 'FullDev Open Source',
       stack: 'Em fase de organização',
       image: 'fulldev.png',
       buttonText: '',
