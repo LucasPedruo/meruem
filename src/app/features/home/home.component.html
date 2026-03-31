@@ -68,11 +68,31 @@
       <app-custom-button-component
         sizes="large"
         color="primary"
+        [showIcon]="true"
         (buttonClick)="openModal()"
         text="Exibir todos os grupos"
         aria-haspopup="dialog"
       >
       </app-custom-button-component>
+
+      <nav class="home-menu" aria-label="Menu institucional">
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('eventos')">
+          <span>Eventos</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
+          <span>Sobre nós</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('equipe')">
+          <span>Equipe</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('parceiros')">
+          <span>Parceiros</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+      </nav>
     </section>
 
     <app-social-component></app-social-component>
@@ -89,6 +109,25 @@
           [linkGroup]="item.linkGroup"
         ></app-grupos-component>
       }
+    </app-custom-modal>
+
+    <app-custom-modal
+      [title]="activeInstitutionalContent().title"
+      [isOpen]="showInstitutionalModal"
+      [size]="'md'"
+      (closeModal)="closeInstitutionalModal()"
+    >
+      <div class="institutional-modal" slot="body">
+        <p class="institutional-modal__description">
+          {{ activeInstitutionalContent().description }}
+        </p>
+
+        <ul class="institutional-modal__list">
+          @for (item of activeInstitutionalContent().items; track item) {
+            <li class="institutional-modal__list-item">{{ item }}</li>
+          }
+        </ul>
+      </div>
     </app-custom-modal>
 
   </div>

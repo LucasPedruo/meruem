@@ -229,6 +229,8 @@ div.mat-mdc-select-panel {
 
 button.mat-mdc-menu-item.mat-mdc-menu-item{
   color: var(--light-gray) ;
+  min-height: 40px;
+  font-size: 12px;
 }
 
 button.mat-mdc-menu-item.mat-mdc-menu-item:hover{
