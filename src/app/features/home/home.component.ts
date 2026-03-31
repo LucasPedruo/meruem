@@ -21,9 +21,10 @@ import { _fixeGroups } from '../grupos/group.model';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  readonly emptyInstitutionalItems: readonly string[] = [];
   showModal: boolean = false;
   showInstitutionalModal = false;
-  activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' = 'sobre';
+  activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
   groups = () => _fixeGroups().filter((group) => group.text !== 'Geral 2');
@@ -135,13 +136,23 @@ export class HomeComponent {
     parceiros: {
       title: 'Parceiros',
       description:
-        'A FullDev busca conexões com empresas, comunidades e iniciativas que compartilham o interesse em ampliar oportunidades em tecnologia. Para parcerias, entre em contato em lucasdearaujopedrolap@gmail.com.',
+        'A FullDev busca conexões com empresas, comunidades e iniciativas que compartilham o interesse em ampliar oportunidades em tecnologia.',
       items: [
         'Parcerias para eventos, ações educacionais e divulgação.',
         'Apoio a iniciativas que gerem valor real para a comunidade.',
         'Construção de pontes entre talentos, conteúdo e mercado.',
+        'Para parcerias, entre em contato em lucasdearaujopedrolap@gmail.com.',
       ],
     },
+    loja: {
+      title: 'Loja',
+      description: 'Em breve teremos uma loja com produtos exclusivos da FullDev!',
+    },
+    school: {
+      title: 'School',
+      description: 'Em breve teremos uma school com cursos exclusivos da FullDev!',
+    }
+
   } as const;
 
   constructor() {}
@@ -154,7 +165,7 @@ export class HomeComponent {
     this.showModal = false;
   }
 
-  openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros') {
+  openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school') {
     this.activeInstitutionalKey = key;
     this.showInstitutionalModal = true;
   }
@@ -165,6 +176,11 @@ export class HomeComponent {
 
   activeInstitutionalContent() {
     return this.institutionalContent[this.activeInstitutionalKey];
+  }
+
+  activeInstitutionalItems() {
+    const content = this.activeInstitutionalContent();
+    return 'items' in content ? content.items : this.emptyInstitutionalItems;
   }
 
   openExternalLink(url: string) {

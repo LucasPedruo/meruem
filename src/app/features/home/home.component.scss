@@ -227,9 +227,9 @@
   animation: subirFade .8s ease-out forwards;
 
   &__content {
-    display: grid;
+    display: flex;
     align-items: center;
-    grid-template-columns: 43px minmax(0, 1fr) auto;
+    //grid-template-columns: 43px minmax(0, 1fr) auto;
     gap: 8px;
     width: 100%;
   }

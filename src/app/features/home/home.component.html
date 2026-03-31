@@ -92,6 +92,14 @@
           <span>Parceiros</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('loja')">
+          <span>Loja</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('school')">
+          <span>School</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
       </nav>
     </section>
 
@@ -159,7 +167,7 @@
           }
 
           <ul class="institutional-modal__list">
-            @for (item of activeInstitutionalContent().items; track item) {
+            @for (item of activeInstitutionalItems(); track item) {
               <li class="institutional-modal__list-item">{{ item }}</li>
             }
           </ul>
@@ -193,7 +201,7 @@
           }
 
           <ul class="institutional-modal__list">
-            @for (item of activeInstitutionalContent().items; track item) {
+            @for (item of activeInstitutionalItems(); track item) {
               <li class="institutional-modal__list-item">{{ item }}</li>
             }
           </ul>
@@ -218,7 +226,20 @@
               </article>
             }
           </div>
-        } @else {
+        } @else if (activeInstitutionalKey === 'loja') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+        } @else if (activeInstitutionalKey === 'school') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+        } 
+        @else {
           @if (activeInstitutionalContent().description) {
             <p class="institutional-modal__description">
               {{ activeInstitutionalContent().description }}
@@ -226,7 +247,7 @@
           }
 
           <ul class="institutional-modal__list">
-            @for (item of activeInstitutionalContent().items; track item) {
+            @for (item of activeInstitutionalItems(); track item) {
               <li class="institutional-modal__list-item">{{ item }}</li>
             }
           </ul>
