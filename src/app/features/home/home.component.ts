@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
 import { CustomButtonComponent } from '../../shared/components/custom-button/custom-button';
@@ -21,10 +22,18 @@ import { _fixeGroups } from '../grupos/group.model';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  private readonly sanitizer = inject(DomSanitizer);
+
   readonly emptyInstitutionalItems: readonly string[] = [];
   readonly headerLogoDefault = 'fulldev.png';
   readonly headerLogoMascot = 'mascote.png';
   readonly headerFlipDurationMs = 200;
+  readonly newsletterProfileUrl = 'https://substack.com/@fulldev';
+  readonly newsletterSubscribeUrl =
+    'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
+  readonly newsletterEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    'https://fulldev.substack.com/embed',
+  );
   showModal: boolean = false;
   showInstitutionalModal = false;
   isHeaderFlipping = false;

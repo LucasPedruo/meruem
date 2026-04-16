@@ -5,12 +5,18 @@
         class="header__logo-button"
         type="button"
         (click)="onHeaderLogoClick()"
-        [attr.aria-label]="isHeaderMascotVisible ? 'Exibindo mascote da FullDev' : 'Exibindo logo da FullDev'"
+        [attr.aria-label]="
+          isHeaderMascotVisible ? 'Exibindo mascote da FullDev' : 'Exibindo logo da FullDev'
+        "
       >
         <span
           class="header__img-frame"
-          [class.header__img-frame--flip-forward]="isHeaderFlipping && headerFlipDirection === 'forward'"
-          [class.header__img-frame--flip-backward]="isHeaderFlipping && headerFlipDirection === 'backward'"
+          [class.header__img-frame--flip-forward]="
+            isHeaderFlipping && headerFlipDirection === 'forward'
+          "
+          [class.header__img-frame--flip-backward]="
+            isHeaderFlipping && headerFlipDirection === 'backward'
+          "
           [class.header__img-frame--light-a]="isHeaderFlipping && headerLightVariant === 'a'"
           [class.header__img-frame--light-b]="isHeaderFlipping && headerLightVariant === 'b'"
         >
@@ -126,12 +132,33 @@
       </nav>
     </section>
 
+    <section class="newsletter" aria-labelledby="newsletter-title">
+      <div class="newsletter__header">
+        <p class="newsletter__eyebrow">Newsletter diária</p>
+        <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
+      </div>
+
+      <div class="newsletter__embed">
+        <iframe
+          [src]="newsletterEmbedUrl"
+          title="Assinar newsletter da FullDev no Substack"
+          loading="lazy"
+        >
+        </iframe>
+      </div>
+
+      <p class="newsletter__fallback">
+        Se o formulário não carregar, finalize a assinatura direto no
+        <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
+      </p>
+    </section>
+
     <app-social-component></app-social-component>
 
     <app-footer-component></app-footer-component>
 
     <app-custom-modal title="Grupos" [isOpen]="showModal" (closeModal)="closeModal()">
-      @for(item of modalGroups(); track item){
+      @for (item of modalGroups(); track item) {
         <app-grupos-component
           [parentType]="'modal'"
           [text]="item.text"
@@ -159,7 +186,11 @@
                   @for (member of section.members; track member.name) {
                     <article class="team-card">
                       <div class="team-card__content">
-                        <img [src]="member.image" class="team-card__logo" [alt]="'Foto de ' + member.name" />
+                        <img
+                          [src]="member.image"
+                          class="team-card__logo"
+                          [alt]="'Foto de ' + member.name"
+                        />
                         <div class="team-card__description">
                           <h4 class="team-card__description__title">{{ member.name }}</h4>
                           <p class="team-card__description__subtitle">{{ member.stack }}</p>
@@ -199,7 +230,11 @@
             @for (partner of partnerCards; track partner.name) {
               <article class="team-card">
                 <div class="team-card__content">
-                  <img [src]="partner.image" class="team-card__logo" [alt]="'Logo de ' + partner.name" />
+                  <img
+                    [src]="partner.image"
+                    class="team-card__logo"
+                    [alt]="'Logo de ' + partner.name"
+                  />
                   <div class="team-card__description">
                     <h4 class="team-card__description__title">{{ partner.name }}</h4>
                     <p class="team-card__description__subtitle">{{ partner.stack }}</p>
@@ -233,7 +268,11 @@
             @for (event of eventCards; track event.name) {
               <article class="team-card">
                 <div class="team-card__content">
-                  <img [src]="event.image" class="team-card__logo" [alt]="'Imagem de ' + event.name" />
+                  <img
+                    [src]="event.image"
+                    class="team-card__logo"
+                    [alt]="'Imagem de ' + event.name"
+                  />
                   <div class="team-card__description">
                     <h4 class="team-card__description__title">{{ event.name }}</h4>
                     <p class="team-card__description__subtitle">{{ event.stack }}</p>
@@ -261,8 +300,7 @@
               {{ activeInstitutionalContent().description }}
             </p>
           }
-        } 
-        @else {
+        } @else {
           @if (activeInstitutionalContent().description) {
             <p class="institutional-modal__description">
               {{ activeInstitutionalContent().description }}
@@ -277,6 +315,5 @@
         }
       </div>
     </app-custom-modal>
-
   </div>
 </section>
