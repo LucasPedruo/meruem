@@ -34,6 +34,7 @@ export class HomeComponent {
   readonly newsletterEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     'https://fulldev.substack.com/embed',
   );
+  readonly vscodeThemeUrl = 'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
   showModal: boolean = false;
   showInstitutionalModal = false;
   isHeaderFlipping = false;

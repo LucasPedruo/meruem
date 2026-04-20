@@ -61,6 +61,14 @@ Todos os membros são voluntários e colaboram para o crescimento da comunidade.
 
 ---
 
+## VS Code Theme (FullDev)
+
+[![FullDev Beru Theme](https://img.shields.io/badge/VS%20Code-FullDev%20Beru%20Theme-007ACC?logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme)
+
+Use este botao para instalar/abrir o tema no Marketplace e testar a aparencia do projeto no VS Code.
+
+---
+
 ## Boas Práticas Aplicadas
 
 - **Padronização de Código:**

@@ -291,6 +291,46 @@
       }
     }
   }
+
+  .vscode-theme {
+    padding: 1rem;
+    border: 1px solid var(--medium-dark);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0;
+    animation: subirFade 0.9s ease-out forwards;
+
+    &__header {
+      margin-bottom: 0.875rem;
+    }
+
+    &__eyebrow {
+      margin: 0 0 0.35rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-color-secondary);
+    }
+
+    &__title {
+      margin: 0;
+      color: var(--text-color-primary);
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    &__description {
+      margin: 0.5rem 0 0;
+      color: var(--text-color-secondary);
+      font-size: var(--font-size-small);
+      line-height: 1.5;
+    }
+  }
+
+  :host ::ng-deep .vscode-theme app-custom-button-component {
+    width: 100%;
+    display: block;
+  }
 }
 
 @keyframes headerLightSweepA {

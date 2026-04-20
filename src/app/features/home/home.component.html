@@ -153,6 +153,22 @@
       </p>
     </section>
 
+    <section class="vscode-theme" aria-labelledby="vscode-theme-title">
+      <div class="vscode-theme__header">
+        <p class="vscode-theme__eyebrow">Tema do VS Code</p>
+        <h2 class="vscode-theme__title" id="vscode-theme-title">Teste o FullDev Beru Theme</h2>
+      </div>
+
+      <app-custom-button-component
+        sizes="large"
+        color="link"
+        [showIcon]="true"
+        text="Abrir no Marketplace"
+        (buttonClick)="openExternalLink(vscodeThemeUrl)"
+      >
+      </app-custom-button-component>
+    </section>
+
     <app-social-component></app-social-component>
 
     <app-footer-component></app-footer-component>
