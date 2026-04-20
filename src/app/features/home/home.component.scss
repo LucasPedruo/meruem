@@ -232,6 +232,29 @@
         flex-shrink: 0;
       }
     }
+
+    &__item--newsletter {
+      position: relative;
+      color: var(--text-color-primary);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 999px;
+        background: #ffb494;
+        box-shadow: 0 0 0 4px rgba(255, 180, 148, 0.12);
+      }
+
+      span {
+        padding-left: 0.75rem;
+        font-weight: 500;
+      }
+    }
   }
 
   .newsletter {
@@ -290,6 +313,12 @@
         border: 0;
       }
     }
+
+    &--modal {
+      margin-top: 0;
+      opacity: 1;
+      animation: none;
+    }
   }
 
   .vscode-theme {
@@ -324,6 +353,11 @@
       color: var(--text-color-secondary);
       font-size: var(--font-size-small);
       line-height: 1.5;
+    }
+
+    &--modal {
+      opacity: 1;
+      animation: none;
     }
   }
 

@@ -105,6 +105,24 @@
       </app-custom-button-component>
 
       <nav class="home-menu" aria-label="Menu institucional">
+        <button
+          class="home-menu__item home-menu__item--newsletter"
+          type="button"
+          (click)="openNewsletterModal()"
+          aria-haspopup="dialog"
+        >
+          <span>Newsletter</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openVscodeThemeModal()"
+          aria-haspopup="dialog"
+        >
+          <span>Tema do VS Code</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('eventos')">
           <span>Eventos</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
@@ -132,43 +150,6 @@
       </nav>
     </section>
 
-    <section class="newsletter" aria-labelledby="newsletter-title">
-      <div class="newsletter__header">
-        <p class="newsletter__eyebrow">Newsletter diária</p>
-        <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
-      </div>
-
-      <div class="newsletter__embed">
-        <iframe
-          [src]="newsletterEmbedUrl"
-          title="Assinar newsletter da FullDev no Substack"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-
-      <p class="newsletter__fallback">
-        Se o formulário não carregar, finalize a assinatura direto no
-        <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
-      </p>
-    </section>
-
-    <section class="vscode-theme" aria-labelledby="vscode-theme-title">
-      <div class="vscode-theme__header">
-        <p class="vscode-theme__eyebrow">Tema do VS Code</p>
-        <h2 class="vscode-theme__title" id="vscode-theme-title">Teste o FullDev Beru Theme</h2>
-      </div>
-
-      <app-custom-button-component
-        sizes="large"
-        color="link"
-        [showIcon]="true"
-        text="Abrir no Marketplace"
-        (buttonClick)="openExternalLink(vscodeThemeUrl)"
-      >
-      </app-custom-button-component>
-    </section>
-
     <app-social-component></app-social-component>
 
     <app-footer-component></app-footer-component>
@@ -183,6 +164,57 @@
           [linkGroup]="item.linkGroup"
         ></app-grupos-component>
       }
+    </app-custom-modal>
+
+    <app-custom-modal
+      title="Newsletter"
+      [isOpen]="showNewsletterModal"
+      [size]="'lg'"
+      (closeModal)="closeNewsletterModal()"
+    >
+      <section class="newsletter newsletter--modal" aria-labelledby="newsletter-title">
+        <div class="newsletter__header">
+          <p class="newsletter__eyebrow">Newsletter diária</p>
+          <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
+        </div>
+
+        <div class="newsletter__embed">
+          <iframe
+            [src]="newsletterEmbedUrl"
+            title="Assinar newsletter da FullDev no Substack"
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+
+        <p class="newsletter__fallback">
+          Se o formulário não carregar, finalize a assinatura direto no
+          <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
+        </p>
+      </section>
+    </app-custom-modal>
+
+    <app-custom-modal
+      title="Tema do VS Code"
+      [isOpen]="showVscodeThemeModal"
+      [size]="'md'"
+      (closeModal)="closeVscodeThemeModal()"
+    >
+      <section class="vscode-theme vscode-theme--modal" aria-labelledby="vscode-theme-title">
+        <div class="vscode-theme__header">
+          <p class="vscode-theme__eyebrow">Tema do VS Code</p>
+          <h2 class="vscode-theme__title" id="vscode-theme-title">Teste o FullDev Beru Theme</h2>
+        </div>
+
+        <app-custom-button-component
+          sizes="large"
+          color="link"
+          [showIcon]="true"
+          text="Abrir no Marketplace"
+          (buttonClick)="openExternalLink(vscodeThemeUrl)"
+        >
+        </app-custom-button-component>
+      </section>
     </app-custom-modal>
 
     <app-custom-modal

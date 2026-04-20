@@ -37,6 +37,8 @@ export class HomeComponent {
   readonly vscodeThemeUrl = 'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
   showModal: boolean = false;
   showInstitutionalModal = false;
+  showNewsletterModal = false;
+  showVscodeThemeModal = false;
   isHeaderFlipping = false;
   isHeaderMascotVisible = false;
   headerLightVariant: 'a' | 'b' = 'a';
@@ -254,6 +256,22 @@ export class HomeComponent {
 
   closeModal() {
     this.showModal = false;
+  }
+
+  openNewsletterModal() {
+    this.showNewsletterModal = true;
+  }
+
+  closeNewsletterModal() {
+    this.showNewsletterModal = false;
+  }
+
+  openVscodeThemeModal() {
+    this.showVscodeThemeModal = true;
+  }
+
+  closeVscodeThemeModal() {
+    this.showVscodeThemeModal = false;
   }
 
   openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school') {
