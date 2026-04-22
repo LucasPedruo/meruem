@@ -4,7 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
-@import 'animation.scss';
+@use 'animation.scss';
 
 html {
   @include mat.theme((color: (primary: mat.$azure-palette,
@@ -167,6 +167,189 @@ a {
 .section-social-media {
   display: flex;
   gap: 0.5em;
+}
+
+.institutional-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.institutional-modal__description {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.institutional-modal__list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-color-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.institutional-modal__list-item + .institutional-modal__list-item {
+  margin-top: 0.5rem;
+}
+
+.team-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.team-sections__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.team-sections__title {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.team-sections__empty {
+  margin: 0;
+  color: var(--text-color-secondary);
+  font-size: 12px;
+}
+
+.team-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--medium-dark);
+  background: #1f1f1f;
+  box-sizing: border-box;
+  width: 100%;
+  opacity: 0;
+  animation: subirFade 0.8s ease-out forwards;
+}
+
+.team-card__content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.team-card__logo {
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--medium-dark);
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.team-card__description {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.team-card__description__title {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-card__description__subtitle {
+  margin: 0;
+  color: var(--text-color-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.team-card__action {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-card__action ::ng-deep .button {
+  margin-top: 0;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 12px !important;
+  border-radius: 0.5rem;
+  justify-content: center;
+}
+
+.team-card__action ::ng-deep .button:has(img:only-child) {
+  width: 40px;
+  min-width: 40px;
+  padding: 0 !important;
+}
+
+.team-card__action--compact ::ng-deep .button {
+  width: 40px;
+  min-width: 40px;
+  padding: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .team-card__content {
+    grid-template-columns: auto 1fr;
+  }
+
+  .team-card__action {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+.vscode-theme {
+  padding: 1rem;
+  border: 1px solid var(--medium-dark);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  opacity: 0;
+  animation: subirFade 0.9s ease-out forwards;
+}
+
+.vscode-theme__header {
+  margin-bottom: 0.875rem;
+}
+
+.vscode-theme__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-color-secondary);
+}
+
+.vscode-theme__title {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.vscode-theme__description {
+  margin: 0.5rem 0 0;
+  color: var(--text-color-secondary);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+
+.vscode-theme--modal {
+  opacity: 1;
+  animation: none;
+}
+
+.vscode-theme app-custom-button-component {
+  width: 100%;
+  display: block;
 }
 
 .mat-mdc-form-field-subscript-wrapper {

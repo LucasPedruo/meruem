@@ -106,15 +106,6 @@
 
       <nav class="home-menu" aria-label="Menu institucional">
         <button
-          class="home-menu__item home-menu__item--newsletter"
-          type="button"
-          (click)="openNewsletterModal()"
-          aria-haspopup="dialog"
-        >
-          <span>Newsletter</span>
-          <img src="link-external.svg" alt="" aria-hidden="true" />
-        </button>
-        <button
           class="home-menu__item"
           type="button"
           (click)="openVscodeThemeModal()"
@@ -150,6 +141,27 @@
       </nav>
     </section>
 
+    <section class="newsletter" aria-labelledby="newsletter-title">
+      <div class="newsletter__header">
+        <p class="newsletter__eyebrow">Newsletter diária</p>
+        <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
+      </div>
+
+      <div class="newsletter__embed">
+        <iframe
+          [src]="newsletterEmbedUrl"
+          title="Assinar newsletter da FullDev no Substack"
+          loading="lazy"
+        >
+        </iframe>
+      </div>
+
+      <p class="newsletter__fallback">
+        Se o formulário não carregar, finalize a assinatura direto no
+        <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
+      </p>
+    </section>
+
     <app-social-component></app-social-component>
 
     <app-footer-component></app-footer-component>
@@ -167,34 +179,6 @@
     </app-custom-modal>
 
     <app-custom-modal
-      title="Newsletter"
-      [isOpen]="showNewsletterModal"
-      [size]="'lg'"
-      (closeModal)="closeNewsletterModal()"
-    >
-      <section class="newsletter newsletter--modal" aria-labelledby="newsletter-title">
-        <div class="newsletter__header">
-          <p class="newsletter__eyebrow">Newsletter diária</p>
-          <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
-        </div>
-
-        <div class="newsletter__embed">
-          <iframe
-            [src]="newsletterEmbedUrl"
-            title="Assinar newsletter da FullDev no Substack"
-            loading="lazy"
-          >
-          </iframe>
-        </div>
-
-        <p class="newsletter__fallback">
-          Se o formulário não carregar, finalize a assinatura direto no
-          <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
-        </p>
-      </section>
-    </app-custom-modal>
-
-    <app-custom-modal
       title="Tema do VS Code"
       [isOpen]="showVscodeThemeModal"
       [size]="'md'"
@@ -202,8 +186,10 @@
     >
       <section class="vscode-theme vscode-theme--modal" aria-labelledby="vscode-theme-title">
         <div class="vscode-theme__header">
-          <p class="vscode-theme__eyebrow">Tema do VS Code</p>
-          <h2 class="vscode-theme__title" id="vscode-theme-title">Teste o FullDev Beru Theme</h2>
+          <p class="vscode-theme__eyebrow">Tema para o VS Code</p>
+          <h2 class="vscode-theme__title" id="vscode-theme-title">
+            Experimente o FullDev Beru Theme
+          </h2>
         </div>
 
         <app-custom-button-component

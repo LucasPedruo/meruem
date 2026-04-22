@@ -258,8 +258,8 @@
   }
 
   .newsletter {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 0.875rem;
+    padding: 0.875rem;
     border: 1px solid var(--medium-dark);
     border-radius: 0.75rem;
     background: linear-gradient(180deg, rgba(178, 45, 0, 0.18) 0%, rgba(28, 28, 28, 0.96) 100%);
@@ -267,7 +267,7 @@
     animation: subirFade 0.85s ease-out forwards;
 
     &__header {
-      margin-bottom: 0.875rem;
+      margin-bottom: 0.75rem;
     }
 
     &__eyebrow {
@@ -281,7 +281,7 @@
     &__title {
       margin: 0;
       color: var(--text-color-primary);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 500;
     }
 
@@ -300,7 +300,7 @@
     }
 
     &__embed {
-      margin-top: 0.9rem;
+      margin-top: 0.75rem;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 0.75rem;
@@ -309,61 +309,10 @@
       iframe {
         display: block;
         width: 100%;
-        min-height: 320px;
+        min-height: 280px;
         border: 0;
       }
     }
-
-    &--modal {
-      margin-top: 0;
-      opacity: 1;
-      animation: none;
-    }
-  }
-
-  .vscode-theme {
-    padding: 1rem;
-    border: 1px solid var(--medium-dark);
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.02);
-    opacity: 0;
-    animation: subirFade 0.9s ease-out forwards;
-
-    &__header {
-      margin-bottom: 0.875rem;
-    }
-
-    &__eyebrow {
-      margin: 0 0 0.35rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-color-secondary);
-    }
-
-    &__title {
-      margin: 0;
-      color: var(--text-color-primary);
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-
-    &__description {
-      margin: 0.5rem 0 0;
-      color: var(--text-color-secondary);
-      font-size: var(--font-size-small);
-      line-height: 1.5;
-    }
-
-    &--modal {
-      opacity: 1;
-      animation: none;
-    }
-  }
-
-  :host ::ng-deep .vscode-theme app-custom-button-component {
-    width: 100%;
-    display: block;
   }
 }
 
@@ -424,145 +373,6 @@
 
   100% {
     transform: rotateY(0deg);
-  }
-}
-
-.institutional-modal {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  &__description {
-    margin: 0;
-    color: var(--text-color-primary);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  &__list {
-    margin: 0;
-    padding-left: 1.25rem;
-    color: var(--text-color-secondary);
-    font-size: 12px;
-    line-height: 1.6;
-  }
-
-  &__list-item + &__list-item {
-    margin-top: 0.5rem;
-  }
-}
-
-.team-sections {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  &__group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  &__title {
-    margin: 0;
-    color: var(--text-color-primary);
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  &__empty {
-    margin: 0;
-    color: var(--text-color-secondary);
-    font-size: 12px;
-  }
-}
-
-.team-card {
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--medium-dark);
-  background: #1f1f1f;
-  box-sizing: border-box;
-  width: 100%;
-  opacity: 0;
-  animation: subirFade .8s ease-out forwards;
-
-  &__content {
-    display: flex;
-    align-items: center;
-    //grid-template-columns: 43px minmax(0, 1fr) auto;
-    gap: 8px;
-    width: 100%;
-  }
-
-  &__logo {
-    width: 43px;
-    height: 43px;
-    border: 1px solid var(--medium-dark);
-    border-radius: 8px;
-    object-fit: cover;
-  }
-
-  &__description {
-    min-width: 0;
-    width: 100%;
-    overflow: hidden;
-
-    &__title {
-      margin: 0;
-      color: var(--text-color-primary);
-      font-size: 16px;
-      font-weight: 400;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &__subtitle {
-      margin: 0;
-      color: var(--text-color-secondary);
-      font-size: 12px;
-      line-height: 1.4;
-    }
-  }
-
-  &__action {
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__action ::ng-deep .button {
-    margin-top: 0;
-    height: 40px;
-    min-height: 40px;
-    padding: 0 12px !important;
-    border-radius: 0.5rem;
-    justify-content: center;
-  }
-
-  &__action ::ng-deep .button:has(img:only-child) {
-    width: 40px;
-    min-width: 40px;
-    padding: 0 !important;
-  }
-
-  &__action--compact ::ng-deep .button {
-    width: 40px;
-    min-width: 40px;
-    padding: 0 !important;
-  }
-
-  @media (max-width: 480px) {
-    &__content {
-      grid-template-columns: auto 1fr;
-    }
-
-    &__action {
-      grid-column: 1 / -1;
-      justify-content: flex-start;
-    }
   }
 }
 

@@ -28,7 +28,6 @@ export class HomeComponent {
   readonly headerLogoDefault = 'fulldev.png';
   readonly headerLogoMascot = 'mascote.png';
   readonly headerFlipDurationMs = 200;
-  readonly newsletterProfileUrl = 'https://substack.com/@fulldev';
   readonly newsletterSubscribeUrl =
     'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
   readonly newsletterEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -37,7 +36,6 @@ export class HomeComponent {
   readonly vscodeThemeUrl = 'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
   showModal: boolean = false;
   showInstitutionalModal = false;
-  showNewsletterModal = false;
   showVscodeThemeModal = false;
   isHeaderFlipping = false;
   isHeaderMascotVisible = false;
@@ -256,14 +254,6 @@ export class HomeComponent {
 
   closeModal() {
     this.showModal = false;
-  }
-
-  openNewsletterModal() {
-    this.showNewsletterModal = true;
-  }
-
-  closeNewsletterModal() {
-    this.showNewsletterModal = false;
   }
 
   openVscodeThemeModal() {
