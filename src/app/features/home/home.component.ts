@@ -173,22 +173,39 @@ export class HomeComponent {
       image: 'fofrio_logo.jpg',
       linkedin: 'https://www.linkedin.com/company/fofrio',
     },
+    {
+      name: 'PUC Minas',
+      stack: 'Universidade (Belo Horizonte, MG).',
+      image: 'pucminas_logo.png',
+      linkedin: 'https://www.linkedin.com/school/pucminas',
+    },
   ] as const;
   eventCards = [
     {
-      name: 'HandsOn Rio',
-      stack: 'Em fase de organização',
-      image: 'fulldev.png',
-      buttonText: '',
-      state: 'loading' as const,
+      name: 'Hackathon da PUC',
+      stack:
+        'Hackathon Inteligente',
+      image: 'pucminas_logo.png',
+      buttonText: 'Participar',
+      link: 'https://www.sympla.com.br/evento/hackathon-varejo-inteligente-transformacao-digital-experiencia-phygital-e-inovacao-no-varejo/3385412?share_id=copiarlink',
+      state: 'normal' as const,
     },
     {
+      name: 'HandsOn Rio',
+      stack: 'Em fase de organização',
+      image: 'fofrio_logo.jpg',
+      buttonText: 'Em breve',
+      link: '',
+      state: 'normal' as const,
+    },
+   /*  {
       name: 'FullDev Open Source',
       stack: 'Em fase de organização',
       image: 'fulldev.png',
       buttonText: '',
+      link: '',
       state: 'loading' as const,
-    },
+    }, */
   ] as const;
   institutionalContent = {
     eventos: {

@@ -105,15 +105,7 @@
       </app-custom-button-component>
 
       <nav class="home-menu" aria-label="Menu institucional">
-        <button
-          class="home-menu__item"
-          type="button"
-          (click)="openVscodeThemeModal()"
-          aria-haspopup="dialog"
-        >
-          <span>Tema do VS Code</span>
-          <img src="link-external.svg" alt="" aria-hidden="true" />
-        </button>
+        <!--  -->
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('eventos')">
           <span>Eventos</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
@@ -136,6 +128,15 @@
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('school')">
           <span>School</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openVscodeThemeModal()"
+          aria-haspopup="dialog"
+        >
+          <span>Tema do VS Code</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
       </nav>
@@ -279,6 +280,7 @@
                     [iconSrc]="'linkedin.svg'"
                     iconAlt="Abrir LinkedIn"
                     color="link"
+                    [state]="partner.linkedin ? 'normal' : 'disabled'"
                     (buttonClick)="openExternalLink(partner.linkedin)"
                   ></app-custom-button-component>
                 </div>
@@ -316,7 +318,8 @@
                     sizes="medium"
                     [text]="event.buttonText"
                     color="link"
-                    [state]="event.state"
+                    [state]="event.link ? event.state : 'disabled'"
+                    (buttonClick)="openExternalLink(event.link)"
                   ></app-custom-button-component>
                 </div>
               </article>
