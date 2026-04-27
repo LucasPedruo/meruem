@@ -7,6 +7,13 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'hackathon',
+    loadComponent: () =>
+      import('./features/hackathon/hackathon-redirect.component').then(
+        (m) => m.HackathonRedirectComponent,
+      ),
+  },
+  {
     path: 'home',
     loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
   },
