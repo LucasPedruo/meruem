@@ -194,7 +194,7 @@ export class HomeComponent {
       name: 'HandsOn Rio',
       stack: 'Em fase de organização',
       image: 'fofrio_logo.jpg',
-      buttonText: 'Em breve',
+      buttonText: 'Aguarde',
       link: '',
       state: 'normal' as const,
     },
