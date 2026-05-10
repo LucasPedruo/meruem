@@ -179,15 +179,26 @@ export class HomeComponent {
       image: 'pucminas_logo.png',
       linkedin: 'https://www.linkedin.com/school/pucminas',
     },
+    {
+      name: 'Web Summit Rio',
+      stack: 'Evento internacional de tecnologia e inovação.',
+      image: 'web_summit_rio_logo.jpg',
+      linkedin: 'https://www.linkedin.com/company/web-summit-rio/',
+    },
+    {
+      name: 'Rocketseat',
+      stack: 'Escola de programação e comunidade dev.',
+      image: 'rocketseat_logo.jpg',
+      linkedin: 'https://www.linkedin.com/school/rocketseat/posts/?feedView=all',
+    },
   ] as const;
   eventCards = [
     {
-      name: 'Hackathon da PUC',
-      stack:
-        'Hackathon Inteligente',
-      image: 'pucminas_logo.png',
+      name: 'Web Summit Rio',
+      stack: 'Evento internacional de tecnologia e inovação.',
+      image: 'web_summit_rio_logo.jpg',
       buttonText: 'Participar',
-      link: 'https://www.sympla.com.br/evento/hackathon-varejo-inteligente-transformacao-digital-experiencia-phygital-e-inovacao-no-varejo/3385412?share_id=copiarlink',
+      link: '/websummit',
       state: 'normal' as const,
     },
     {
@@ -222,18 +233,11 @@ export class HomeComponent {
       title: 'Sobre nós',
       description: '',
       items: [
-        'A história da FullDev começa com algo simples, quase banal, mas que carregava o potencial de transformar vidas.',
-        'Em 2024, durante um curso de tecnologia do Santander, Lucas Pedro sentiu a necessidade de ter com quem conversar sobre programação.',
-        'Não tinha amigos na área, nem um espaço seguro para trocar experiências.',
-        'Foi então que ele criou um grupo no WhatsApp, chamado “Coders”, apenas como um pretexto para se aproximar de outras pessoas com interesses semelhantes.',
-        'A intenção inicial era modesta: manter contato com colegas do curso e, quem sabe, trocar ideias de vez em quando.',
-        'Quando o curso terminou, ao invés de deixar o grupo morrer, Lucas propôs a alguns membros que o mantivessem ativo.',
-        'E foi nesse momento que veio o estalo: “Por que não transformar isso numa comunidade de verdade?”',
-        'O início foi tímido: pouco mais de 100 pessoas, e a interação era mínima.',
-        'Mas Lucas percebeu que, para algo realmente florescer, precisaria ser colaborativo.',
-        'Ele começou a convidar mais pessoas para ajudar na gestão, criar iniciativas e gerar um senso de pertencimento.',
-        'Aos poucos, o grupo ganhou vida: hackathons, indicações de vagas, bate-papos técnicos e conversas descontraídas começaram a surgir de forma natural.',
-        'Pessoas que antes não se conheciam passaram a se ajudar, e histórias inspiradoras começaram a aparecer.',
+        'A FullDev nasceu em 2024 a partir de um grupo de pessoas que queriam aprender programação, trocar experiências e não caminhar sozinhas na área de tecnologia.',
+        'Hoje, somos uma comunidade feita por devs e para devs, reunindo pessoas em diferentes níveis de experiência para compartilhar conhecimento, oportunidades e vivências reais do mercado.',
+        'Nosso objetivo é criar um ambiente colaborativo, acessível e ativo, onde dúvidas viram conversas, ideias viram projetos e conexões ajudam pessoas a crescerem profissionalmente.',
+        'A comunidade promove eventos, hackathons, indicações de vagas, conteúdos técnicos, ações com parceiros e espaços de networking para aproximar talentos, empresas e iniciativas de tecnologia.',
+        'Mais do que um grupo, a FullDev é um ponto de encontro para quem acredita que aprender em comunidade torna a jornada mais leve, prática e cheia de possibilidades.',
       ],
     },
     equipe: {
