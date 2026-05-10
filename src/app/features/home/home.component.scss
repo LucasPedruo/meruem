@@ -14,7 +14,7 @@
   @media (max-width: 768px) {
     padding: 2.5rem 1rem 1.5rem;
 
-    >div {
+    > div {
       width: 100%;
       max-width: none;
     }
@@ -24,7 +24,7 @@
     padding: 2rem 0.75rem 1rem;
   }
 
-  .wrapper-home{
+  .wrapper-home {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -35,13 +35,13 @@
     gap: 1em;
     line-height: 100%;
     height: 7.57rem;
-    animation: subirFade .6s ease-out forwards;
+    animation: subirFade 0.6s ease-out forwards;
 
     // Ajustes para mobile
     @media (max-width: 768px) {
       gap: 1.5em;
 
-      >div {
+      > div {
         width: fit-content;
         padding-right: 0;
         height: auto;
@@ -59,7 +59,6 @@
       margin: 0.2em 0;
       font-weight: 400;
       letter-spacing: 0%;
-
     }
 
     &__logo-button {
@@ -184,7 +183,7 @@
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.02);
     opacity: 0;
-    animation: subirFade .8s ease-out forwards;
+    animation: subirFade 0.8s ease-out forwards;
 
     &__item {
       display: flex;
@@ -196,7 +195,7 @@
       padding: 0.75rem 1rem;
       border: 0;
       border-radius: 0;
-      color: #8B949E;
+      color: #8b949e;
       text-decoration: none;
       font-size: 12px;
       background-color: transparent;
@@ -248,6 +247,42 @@
         border-radius: 999px;
         background: #ffb494;
         box-shadow: 0 0 0 4px rgba(255, 180, 148, 0.12);
+      }
+
+      span {
+        padding-left: 0.75rem;
+        font-weight: 500;
+      }
+    }
+
+    &__item--featured {
+      position: relative;
+      color: var(--text-color-primary);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0.95rem;
+        top: 50%;
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 999px;
+        background: #4ade80;
+        box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.14);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0.95rem;
+        top: 50%;
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 999px;
+        border: 1px solid rgba(74, 222, 128, 0.72);
+        animation: mapPing 1.8s ease-out infinite;
       }
 
       span {
@@ -381,11 +416,11 @@
   padding: 1.04em;
   border-radius: 0.57em;
   margin: 1em 0;
-  animation: subirFade .9s ease-out forwards;
+  animation: subirFade 0.9s ease-out forwards;
 
   &__item {
     list-style-type: none;
-    border-bottom: 1px solid #3D444D;
+    border-bottom: 1px solid #3d444d;
     padding: 1.04em;
     font-size: 0.86em;
 

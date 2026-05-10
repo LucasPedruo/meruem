@@ -33,7 +33,8 @@ export class HomeComponent {
   readonly newsletterEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     'https://fulldev.substack.com/embed',
   );
-  readonly vscodeThemeUrl = 'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
+  readonly vscodeThemeUrl =
+    'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
   showModal: boolean = false;
   showInstitutionalModal = false;
   showVscodeThemeModal = false;
@@ -41,7 +42,7 @@ export class HomeComponent {
   isHeaderMascotVisible = false;
   headerLightVariant: 'a' | 'b' = 'a';
   headerFlipDirection: 'forward' | 'backward' = 'forward';
-  activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' = 'sobre';
+  activeInstitutionalKey: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
   modalGroups = () => _fixeGroups().filter((group) => group.text !== 'Games');
@@ -192,6 +193,29 @@ export class HomeComponent {
       linkedin: 'https://www.linkedin.com/school/rocketseat/posts/?feedView=all',
     },
   ] as const;
+  socialChannels = [
+    {
+      name: 'WhatsApp',
+      description:
+        'Nosso primeiro contato para entrar na comunidade, conhecer os grupos e conversar com outros devs.',
+      icon: 'group-chat.svg',
+      link: 'https://chat.whatsapp.com/ChrXjnNn3Xh1gTikrYyjAs?mode=hqrt1',
+    },
+    {
+      name: 'LinkedIn',
+      description:
+        'Nosso segundo canal para novidades, parcerias, eventos e movimentações da comunidade.',
+      icon: 'linkedin.svg',
+      link: 'https://www.linkedin.com/company/comunidadefulldev/posts/?feedView=all',
+    },
+    {
+      name: 'Discord',
+      description:
+        'Nosso terceiro espaço para trocar ideias, acompanhar conversas e se aproximar da comunidade.',
+      icon: 'discord.svg',
+      link: 'https://discord.com/invite/2vMkX7kc8t',
+    },
+  ] as const;
   eventCards = [
     {
       name: 'Web Summit Rio',
@@ -199,6 +223,18 @@ export class HomeComponent {
       image: 'web_summit_rio_logo.jpg',
       buttonText: 'Participar',
       link: '/websummit',
+      dateLabel: '15/05/2026',
+      featured: true,
+      state: 'normal' as const,
+    },
+    {
+      name: 'Aniversário de 9 anos da Rocketseat',
+      stack: 'Celebração da comunidade dev da Rocketseat.',
+      image: 'rocketseat_logo.jpg',
+      buttonText: 'Participar',
+      link: 'https://rseat.in/aniversario-rocketseat-devs-fulldev',
+      dateLabel: '11/05/2026',
+      featured: false,
       state: 'normal' as const,
     },
     {
@@ -207,9 +243,11 @@ export class HomeComponent {
       image: 'fofrio_logo.jpg',
       buttonText: 'Aguarde',
       link: '',
+      dateLabel: '',
+      featured: false,
       state: 'normal' as const,
     },
-   /*  {
+    /*  {
       name: 'FullDev Open Source',
       stack: 'Em fase de organização',
       image: 'fulldev.png',
@@ -240,6 +278,16 @@ export class HomeComponent {
         'Mais do que um grupo, a FullDev é um ponto de encontro para quem acredita que aprender em comunidade torna a jornada mais leve, prática e cheia de possibilidades.',
       ],
     },
+    redes: {
+      title: 'Redes sociais',
+      description:
+        'A FullDev se organiza em canais diferentes para facilitar contato, novidades e troca entre membros.',
+      items: [
+        'WhatsApp é o nosso primeiro contato para quem quer entrar na comunidade.',
+        'LinkedIn é o nosso segundo canal para acompanhar novidades, parceiros e eventos.',
+        'Discord é o nosso terceiro espaço para conversas, networking e aproximação com a comunidade.',
+      ],
+    },
     equipe: {
       title: 'Equipe',
       description: '',
@@ -264,7 +312,6 @@ export class HomeComponent {
     //   title: 'School',
     //   description: 'Em breve teremos uma school com cursos exclusivos da FullDev!',
     // }
-
   } as const;
 
   constructor() {}
@@ -285,7 +332,7 @@ export class HomeComponent {
     this.showVscodeThemeModal = false;
   }
 
-  openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros') {
+  openInstitutionalModal(key: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros') {
     this.activeInstitutionalKey = key;
     this.showInstitutionalModal = true;
   }

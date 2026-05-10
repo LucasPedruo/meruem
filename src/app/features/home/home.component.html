@@ -106,12 +106,20 @@
 
       <nav class="home-menu" aria-label="Menu institucional">
         <!--  -->
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('eventos')">
+        <button
+          class="home-menu__item home-menu__item--featured"
+          type="button"
+          (click)="openInstitutionalModal('eventos')"
+        >
           <span>Eventos</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
           <span>Sobre nós</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('redes')">
+          <span>Redes sociais</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('equipe')">
@@ -212,6 +220,22 @@
     >
       <div class="institutional-modal" slot="body">
         @if (activeInstitutionalKey === 'equipe') {
+          <div
+            class="social-channels social-channels--compact"
+            aria-label="Redes sociais da FullDev"
+          >
+            @for (channel of socialChannels; track channel.name) {
+              <app-custom-button-component
+                class="social-channels__icon"
+                sizes="small"
+                [iconSrc]="channel.icon"
+                [iconAlt]="'Abrir ' + channel.name"
+                color="link"
+                (buttonClick)="openExternalLink(channel.link)"
+              ></app-custom-button-component>
+            }
+          </div>
+
           <div class="team-sections">
             @for (section of teamSections; track section.title) {
               <section class="team-sections__group">
@@ -287,6 +311,44 @@
               </article>
             }
           </div>
+        } @else if (activeInstitutionalKey === 'redes') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+
+          <ul class="institutional-modal__list">
+            @for (item of activeInstitutionalItems(); track item) {
+              <li class="institutional-modal__list-item">{{ item }}</li>
+            }
+          </ul>
+
+          <div class="social-channels">
+            @for (channel of socialChannels; track channel.name) {
+              <article class="social-channel-card">
+                <div class="social-channel-card__content">
+                  <img
+                    class="social-channel-card__icon"
+                    [src]="channel.icon"
+                    [alt]="'Logo de ' + channel.name"
+                  />
+                  <div class="social-channel-card__description">
+                    <h4 class="social-channel-card__title">{{ channel.name }}</h4>
+                    <p class="social-channel-card__subtitle">{{ channel.description }}</p>
+                  </div>
+                  <app-custom-button-component
+                    class="social-channel-card__action"
+                    sizes="medium"
+                    [iconSrc]="channel.icon"
+                    [iconAlt]="'Abrir ' + channel.name"
+                    color="link"
+                    (buttonClick)="openExternalLink(channel.link)"
+                  ></app-custom-button-component>
+                </div>
+              </article>
+            }
+          </div>
         } @else if (activeInstitutionalKey === 'eventos') {
           @if (activeInstitutionalContent().description) {
             <p class="institutional-modal__description">
@@ -302,7 +364,19 @@
 
           <div class="team-sections">
             @for (event of eventCards; track event.name) {
-              <article class="team-card">
+              <article class="team-card" [class.team-card--featured-event]="event.featured">
+                @if (event.featured || event.dateLabel) {
+                  <div class="team-card__badges">
+                    @if (event.featured) {
+                      <span class="team-card__badge">Destaque</span>
+                    }
+                    @if (event.dateLabel) {
+                      <span class="team-card__badge team-card__badge--date">
+                        {{ event.dateLabel }}
+                      </span>
+                    }
+                  </div>
+                }
                 <div class="team-card__content">
                   <img
                     [src]="event.image"
