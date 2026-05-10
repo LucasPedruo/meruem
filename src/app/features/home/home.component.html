@@ -122,14 +122,14 @@
           <span>Parceiros</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('loja')">
+        <!-- <button class="home-menu__item" type="button" (click)="openInstitutionalModal('loja')">
           <span>Loja</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('school')">
           <span>School</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
-        </button>
+        </button> -->
         <button
           class="home-menu__item"
           type="button"
@@ -325,18 +325,6 @@
               </article>
             }
           </div>
-        } @else if (activeInstitutionalKey === 'loja') {
-          @if (activeInstitutionalContent().description) {
-            <p class="institutional-modal__description">
-              {{ activeInstitutionalContent().description }}
-            </p>
-          }
-        } @else if (activeInstitutionalKey === 'school') {
-          @if (activeInstitutionalContent().description) {
-            <p class="institutional-modal__description">
-              {{ activeInstitutionalContent().description }}
-            </p>
-          }
         } @else {
           @if (activeInstitutionalContent().description) {
             <p class="institutional-modal__description">

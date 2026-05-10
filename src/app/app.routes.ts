@@ -14,6 +14,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'websummit',
+    loadComponent: () =>
+      import('./features/websummit/websummit-redirect.component').then(
+        (m) => m.WebsummitRedirectComponent,
+      ),
+  },
+  {
     path: 'home',
     loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
   },

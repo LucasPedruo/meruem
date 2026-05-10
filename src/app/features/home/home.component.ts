@@ -41,7 +41,7 @@ export class HomeComponent {
   isHeaderMascotVisible = false;
   headerLightVariant: 'a' | 'b' = 'a';
   headerFlipDirection: 'forward' | 'backward' = 'forward';
-  activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school' = 'sobre';
+  activeInstitutionalKey: 'eventos' | 'sobre' | 'equipe' | 'parceiros' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
   modalGroups = () => _fixeGroups().filter((group) => group.text !== 'Games');
@@ -252,14 +252,14 @@ export class HomeComponent {
         'Para parcerias, entre em contato em lucasdearaujopedrolap@gmail.com.',
       ],
     },
-    loja: {
-      title: 'Loja',
-      description: 'Em breve teremos uma loja com produtos exclusivos da FullDev!',
-    },
-    school: {
-      title: 'School',
-      description: 'Em breve teremos uma school com cursos exclusivos da FullDev!',
-    }
+    // loja: {
+    //   title: 'Loja',
+    //   description: 'Em breve teremos uma loja com produtos exclusivos da FullDev!',
+    // },
+    // school: {
+    //   title: 'School',
+    //   description: 'Em breve teremos uma school com cursos exclusivos da FullDev!',
+    // }
 
   } as const;
 
@@ -281,7 +281,7 @@ export class HomeComponent {
     this.showVscodeThemeModal = false;
   }
 
-  openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros' | 'loja' | 'school') {
+  openInstitutionalModal(key: 'eventos' | 'sobre' | 'equipe' | 'parceiros') {
     this.activeInstitutionalKey = key;
     this.showInstitutionalModal = true;
   }
