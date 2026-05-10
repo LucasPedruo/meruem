@@ -45,7 +45,47 @@ export class HomeComponent {
   activeInstitutionalKey: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
-  modalGroups = () => _fixeGroups().filter((group) => group.text !== 'Games');
+  primaryGroups = [
+    {
+      src: 'fulldev.png',
+      shoIcon: true,
+      text: 'Tecnologia 1',
+      description: '999 de 1024 Membros',
+      linkGroup: 'ChrXjnNn3Xh1gTikrYyjAs',
+    },
+    {
+      src: 'fulldev.png',
+      shoIcon: true,
+      text: 'Tecnologia 2',
+      description: '339 de 1024 Membros',
+      linkGroup: 'H3uqzOSGodo9URWQbKQBgq',
+    },
+    {
+      src: 'queens.jpg',
+      shoIcon: true,
+      text: 'Queens of Deploy',
+      description: '612 de 1024 Membros',
+      linkGroup: 'KOKFfsXGD1PBVWvAXXNbcb',
+    },
+    {
+      src: 'RainbowStack.png',
+      shoIcon: true,
+      text: 'RainbowStack',
+      description: '102 de 1024 Membros',
+      linkGroup: 'BtWA88gNq3KGmAxAobB8X3',
+    },
+    {
+      src: 'logo-fulldev-games.png',
+      shoIcon: true,
+      text: 'Games',
+      description: '10 de 1024 Membros',
+      linkGroup: 'CfM0zq1T8Oo9b9yvs0HZRK',
+    },
+  ] as const;
+  modalGroups = () => [
+    ...this.primaryGroups,
+    ..._fixeGroups().filter((group) => group.text !== 'Games'),
+  ];
   teamSections = [
     {
       title: 'Conselho',
@@ -195,13 +235,6 @@ export class HomeComponent {
   ] as const;
   socialChannels = [
     {
-      name: 'WhatsApp',
-      description:
-        'Nosso primeiro contato para entrar na comunidade, conhecer os grupos e conversar com outros devs.',
-      icon: 'group-chat.svg',
-      link: 'https://chat.whatsapp.com/ChrXjnNn3Xh1gTikrYyjAs?mode=hqrt1',
-    },
-    {
       name: 'LinkedIn',
       description:
         'Nosso segundo canal para novidades, parcerias, eventos e movimentações da comunidade.',
@@ -283,9 +316,8 @@ export class HomeComponent {
       description:
         'A FullDev se organiza em canais diferentes para facilitar contato, novidades e troca entre membros.',
       items: [
-        'WhatsApp é o nosso primeiro contato para quem quer entrar na comunidade.',
-        'LinkedIn é o nosso segundo canal para acompanhar novidades, parceiros e eventos.',
-        'Discord é o nosso terceiro espaço para conversas, networking e aproximação com a comunidade.',
+        'LinkedIn é o nosso canal para acompanhar novidades, parceiros e eventos.',
+        'Discord é o nosso espaço para conversas, networking e aproximação com a comunidade.',
       ],
     },
     equipe: {
