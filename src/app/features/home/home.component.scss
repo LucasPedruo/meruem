@@ -150,6 +150,11 @@
 
         &-icon {
           padding-right: 0.7em;
+
+          &--accent {
+            filter: brightness(0) saturate(100%) invert(74%) sepia(55%) saturate(489%)
+              hue-rotate(84deg) brightness(91%) contrast(86%);
+          }
         }
 
         &-text {
