@@ -20,7 +20,7 @@ import { MaterialModule } from '../../material.module';
     } @else {
       <button
         [type]="type"
-        [ngClass]="[color, sizes, customClass]"
+        [ngClass]="[color, sizes, customClass, state]"
         class="button"
         [disabled]="isDisabled()"
         (click)="onClick()"
@@ -82,6 +82,10 @@ export class CustomButtonComponent {
   }
 
   onClick() {
+    if (this.isDisabled()) {
+      return;
+    }
+
     this.buttonClick.emit();
   }
 }

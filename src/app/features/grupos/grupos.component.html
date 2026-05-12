@@ -16,8 +16,10 @@
       class="group-section__action"
       sizes="medium"
       [text]="buttonText"
+      [state]="buttonState === 'loading' ? 'loading' : 'normal'"
+      [customClass]="buttonState === 'disabled' ? 'disabled' : ''"
       color="link"
-      (buttonClick)="goToGroupLink()"
+      (buttonClick)="onGroupButtonClick()"
     ></app-custom-button-component>
   </div>
 

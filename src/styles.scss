@@ -543,6 +543,21 @@ a {
   width: 100%;
 }
 
+.access-restriction-notice {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 1100;
+  width: min(28rem, calc(100vw - 2rem));
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 180, 148, 0.34);
+  border-radius: 0.75rem;
+  background: rgba(31, 31, 31, 0.96);
+  color: var(--text-color-primary);
+  font-size: 0.8rem;
+  transform: translateX(-50%);
+}
+
 .home .groups-showcase {
   opacity: 0;
   animation: subirFade 0.75s ease-out forwards;

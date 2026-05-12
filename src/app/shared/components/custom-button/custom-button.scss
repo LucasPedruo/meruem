@@ -67,6 +67,11 @@
   &.large {
     width: 100%;
   }
+
+  &.disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.25);
+  }
 }
 
 @keyframes textura {

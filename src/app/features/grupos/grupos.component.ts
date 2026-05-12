@@ -21,7 +21,9 @@ export class GruposComponent {
   @Input() showIcon = false;
   @Input() groupName: string = '';
   @Input() linkGroup: string = '';
+  @Input() buttonState: 'loading' | 'normal' | 'disabled' = 'normal';
   @Output() queensAccessRequested = new EventEmitter<string>();
+  @Output() blockedAccessRequested = new EventEmitter<string>();
 
   isMembershipModalOpen = false;
 
@@ -33,7 +35,16 @@ export class GruposComponent {
     return typeof window !== 'undefined' && window.localStorage.getItem(this.queensStorageKey) === 'true';
   }
 
-  goToGroupLink() {
+  onGroupButtonClick() {
+    if (this.buttonState === 'disabled') {
+      this.blockedAccessRequested.emit(this.text);
+      return;
+    }
+
+    this.goToGroupLink();
+  }
+
+  private goToGroupLink() {
     if (this.isQueensGroup() && !this.hasQueensConfirmation()) {
       this.queensAccessRequested.emit(this.linkGroup);
       return;

@@ -79,6 +79,8 @@ export class HomeComponent implements OnInit {
   showQueensAccessModal = false;
   showGenderPreferenceModal = false;
   pendingQueensLinkGroup = '';
+  accessRestrictionNotice = '';
+  private accessRestrictionNoticeTimeout?: ReturnType<typeof setTimeout>;
   genderPreference: GenderPreference | null = null;
   hasGenderPreference = false;
   isHeaderFlipping = false;
@@ -417,6 +419,33 @@ export class HomeComponent implements OnInit {
 
   remainingGroupsCount() {
     return this.modalGroups().length;
+  }
+
+  groupButtonState(groupName: string): 'normal' | 'disabled' {
+    const shouldBlockGroup =
+      groupName === 'Queens of Deploy' || groupName === 'RainbowStack';
+    const shouldBlockByPreference =
+      this.genderPreference === 'male' || this.genderPreference === 'not_informed';
+
+    return shouldBlockGroup && shouldBlockByPreference ? 'disabled' : 'normal';
+  }
+
+  showRestrictedGroupNotification(groupName: string) {
+    if (this.groupButtonState(groupName) !== 'disabled') {
+      return;
+    }
+
+    this.accessRestrictionNotice =
+      'Este grupo so esta habilitado para o respectivo genero selecionado.';
+
+    if (this.accessRestrictionNoticeTimeout) {
+      clearTimeout(this.accessRestrictionNoticeTimeout);
+    }
+
+    this.accessRestrictionNoticeTimeout = setTimeout(() => {
+      this.accessRestrictionNotice = '';
+      this.accessRestrictionNoticeTimeout = undefined;
+    }, 4200);
   }
 
   openModal() {

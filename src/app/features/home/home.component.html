@@ -75,7 +75,9 @@
             [text]="group.text"
             [description]="group.description"
             [linkGroup]="group.linkGroup"
+            [buttonState]="groupButtonState(group.text)"
             (queensAccessRequested)="openQueensAccessModal($event)"
+            (blockedAccessRequested)="showRestrictedGroupNotification($event)"
           ></app-grupos-component>
         }
 
@@ -151,7 +153,7 @@
           (click)="resetGenderPreference()"
           aria-haspopup="dialog"
         >
-          <span>Resetar genero</span>
+          <span>Resetar preferência sexual</span>
           <img src="close.svg" alt="" aria-hidden="true" />
         </button>
       </nav>
@@ -200,7 +202,7 @@
           <app-custom-button-component
             class="gender-preference-modal__action--female"
             sizes="large"
-            text="Sou do sexo feminino"
+            text="Mulher cis"
             color="link"
             customClass="primary-pink"
             (buttonClick)="selectGenderPreference('female')"
@@ -208,7 +210,7 @@
 
           <app-custom-button-component
             sizes="large"
-            text="Sou do sexo masculino"
+            text="Homem cis"
             color="link"
             (buttonClick)="selectGenderPreference('male')"
           ></app-custom-button-component>
@@ -238,9 +240,17 @@
           [description]="item.description"
           [src]="item.src"
           [linkGroup]="item.linkGroup"
+          [buttonState]="groupButtonState(item.text)"
+          (blockedAccessRequested)="showRestrictedGroupNotification($event)"
         ></app-grupos-component>
       }
     </app-custom-modal>
+
+    @if (accessRestrictionNotice) {
+      <div class="access-restriction-notice" role="status" aria-live="polite">
+        {{ accessRestrictionNotice }}
+      </div>
+    }
 
     <app-custom-modal
       title="Confirmação de acesso"
