@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
@@ -8,6 +8,8 @@ import { FooterComponent } from '../../shared/components/footer/footer-component
 import { SocialComponent } from '../../shared/components/social-component/social-component';
 import { GruposComponent } from '../grupos/grupos.component';
 import { _fixeGroups } from '../grupos/group.model';
+
+type GenderPreference = 'female' | 'male' | 'lgbt' | 'not_informed';
 
 @Component({
   selector: 'app-home-component',
@@ -21,13 +23,15 @@ import { _fixeGroups } from '../grupos/group.model';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly queensStorageKey = 'queens-of-deploy-confirmed';
+  private readonly genderStorageKey = 'fulldev-user-gender';
   private readonly homeGroups = [
     {
       src: 'fulldev.png',
       text: 'Tecnologia 1',
-      description: '999 de 1024 Membros',
+      description: '1017 de 1024 Membros',
       linkGroup: 'ChrXjnNn3Xh1gTikrYyjAs',
     },
     {
@@ -70,6 +74,11 @@ export class HomeComponent {
   showModal: boolean = false;
   showInstitutionalModal = false;
   showVscodeThemeModal = false;
+  showQueensAccessModal = false;
+  showGenderPreferenceModal = false;
+  pendingQueensLinkGroup = '';
+  genderPreference: GenderPreference | null = null;
+  hasGenderPreference = false;
   isHeaderFlipping = false;
   isHeaderMascotVisible = false;
   headerLightVariant: 'a' | 'b' = 'a';
@@ -77,9 +86,32 @@ export class HomeComponent {
   activeInstitutionalKey: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
-  featuredGroups = this.homeGroups.slice(0, 3);
-  hiddenHomeGroups = this.homeGroups.slice(3);
-  modalGroups = () => [...this.hiddenHomeGroups, ..._fixeGroups()];
+  get featuredGroups() {
+    if (this.genderPreference === 'female') {
+      return this.homeGroups.filter((group) => group.text === 'Queens of Deploy');
+    }
+
+    if (this.genderPreference === 'lgbt') {
+      return this.homeGroups.filter((group) => group.text === 'RainbowStack');
+    }
+
+    return this.homeGroups.filter((group) => group.text === 'Tecnologia 1' || group.text === 'Tecnologia 2');
+  }
+  modalGroups = () => {
+    const featuredGroupNames = new Set<string>(this.featuredGroups.map((group) => group.text));
+    const hiddenHomeGroups = this.homeGroups.filter((group) => !featuredGroupNames.has(group.text));
+    const groups = [...hiddenHomeGroups, ..._fixeGroups()];
+    const seen = new Set<string>();
+
+    return groups.filter((group) => {
+      if (seen.has(group.text)) {
+        return false;
+      }
+
+      seen.add(group.text);
+      return true;
+    });
+  };
   teamSections = [
     {
       title: 'Conselho',
@@ -342,6 +374,45 @@ export class HomeComponent {
 
   constructor() {}
 
+  ngOnInit() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const savedGender = window.localStorage.getItem(this.genderStorageKey);
+    const hasConfirmedQueens = window.localStorage.getItem(this.queensStorageKey) === 'true';
+
+    this.hasGenderPreference = Boolean(savedGender || hasConfirmedQueens);
+
+    if (savedGender === 'female' || hasConfirmedQueens) {
+      this.genderPreference = 'female';
+      this.applyGenderTheme('female');
+
+      if (!savedGender && hasConfirmedQueens) {
+        window.localStorage.setItem(this.genderStorageKey, 'female');
+      }
+
+      return;
+    }
+
+    if (savedGender === 'male' || savedGender === 'lgbt' || savedGender === 'not_informed') {
+      this.genderPreference = savedGender;
+      this.applyGenderTheme(savedGender);
+      return;
+    }
+
+    if (savedGender === 'other') {
+      this.genderPreference = 'not_informed';
+      window.localStorage.setItem(this.genderStorageKey, 'not_informed');
+      this.clearGenderThemes();
+      return;
+    }
+
+    if (!savedGender) {
+      this.showGenderPreferenceModal = true;
+    }
+  }
+
   remainingGroupsCount() {
     return this.modalGroups().length;
   }
@@ -354,12 +425,68 @@ export class HomeComponent {
     this.showModal = false;
   }
 
+  openQueensAccessModal(linkGroup: string) {
+    this.pendingQueensLinkGroup = linkGroup;
+    this.showQueensAccessModal = true;
+  }
+
+  closeQueensAccessModal() {
+    this.showQueensAccessModal = false;
+  }
+
+  closeGenderPreferenceModal() {
+    this.showGenderPreferenceModal = false;
+  }
+
+  selectGenderPreference(gender: GenderPreference) {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(this.genderStorageKey, gender);
+    }
+
+    this.hasGenderPreference = true;
+    this.genderPreference = gender;
+    this.applyGenderTheme(gender);
+
+    this.closeGenderPreferenceModal();
+  }
+
+  confirmQueensAccess() {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(this.queensStorageKey, 'true');
+      window.localStorage.setItem(this.genderStorageKey, 'female');
+    }
+
+    this.applyGenderTheme('female');
+    this.genderPreference = 'female';
+    this.hasGenderPreference = true;
+
+    this.closeQueensAccessModal();
+
+    if (this.pendingQueensLinkGroup) {
+      window.open(`https://chat.whatsapp.com/${this.pendingQueensLinkGroup}?mode=hqrt1`, '_blank');
+    }
+  }
+
   openVscodeThemeModal() {
     this.showVscodeThemeModal = true;
   }
 
   closeVscodeThemeModal() {
     this.showVscodeThemeModal = false;
+  }
+
+  resetGenderPreference() {
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem(this.genderStorageKey);
+      window.localStorage.removeItem(this.queensStorageKey);
+    }
+
+    this.genderPreference = null;
+    this.hasGenderPreference = false;
+    this.pendingQueensLinkGroup = '';
+    this.showQueensAccessModal = false;
+    this.clearGenderThemes();
+    this.showGenderPreferenceModal = true;
   }
 
   openInstitutionalModal(key: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros') {
@@ -413,5 +540,26 @@ export class HomeComponent {
     }
 
     window.open(url, '_blank');
+  }
+
+  private applyGenderTheme(gender: GenderPreference) {
+    if (typeof document !== 'undefined') {
+      this.clearGenderThemes();
+
+      if (gender === 'female') {
+        document.body.classList.add('theme-queens');
+      }
+
+      if (gender === 'lgbt') {
+        document.body.classList.add('theme-rainbow');
+      }
+    }
+  }
+
+  private clearGenderThemes() {
+    if (typeof document !== 'undefined') {
+      document.body.classList.remove('theme-queens');
+      document.body.classList.remove('theme-rainbow');
+    }
   }
 }

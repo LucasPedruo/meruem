@@ -1,4 +1,11 @@
-<section class="group-section" [ngClass]="parentType">
+<section
+  class="group-section"
+  [ngClass]="[
+    parentType,
+    parentType === 'home' && text === 'Queens of Deploy' ? 'group-section--queens' : '',
+    parentType === 'home' && text === 'RainbowStack' ? 'group-section--rainbow' : ''
+  ]"
+>
   <div class="group-section__content">
     <img [src]="src" class="group-section__logo" alt="Logo FullDev" />
     <div class="group-section__description">
@@ -21,4 +28,5 @@
     (confirm)="onMembershipConfirmed($event)"
     (accessGroup)="onAccessGroup()"
   ></app-modal-membership>
+
 </section>

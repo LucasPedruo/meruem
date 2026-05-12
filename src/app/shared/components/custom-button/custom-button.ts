@@ -20,7 +20,7 @@ import { MaterialModule } from '../../material.module';
     } @else {
       <button
         [type]="type"
-        [ngClass]="[color, sizes]"
+        [ngClass]="[color, sizes, customClass]"
         class="button"
         [disabled]="isDisabled()"
         (click)="onClick()"
@@ -51,6 +51,7 @@ export class CustomButtonComponent {
   @Input() color: 'link' | 'primary' | 'secundary' | 'destaque' | 'warning' = 'link';
   @Input() sizes: 'small' | 'medium' | 'large' = 'small';
   @Input() state: 'loading' | 'normal' | 'disabled' = 'normal';
+  @Input() customClass = '';
 
   //Link
   @Input() routerLink?: string; /* Link interno */

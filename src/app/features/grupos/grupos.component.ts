@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CustomButtonComponent } from '../../shared/components/custom-button/custom-button';
 import { ModalMembershipComponent } from '../../shared/components/modal-membership/modal-membership';
@@ -11,6 +11,8 @@ import { ModalMembershipComponent } from '../../shared/components/modal-membersh
   standalone: true
 })
 export class GruposComponent {
+  private readonly queensStorageKey = 'queens-of-deploy-confirmed';
+
   @Input() text = 'Grupos';
   @Input() description = 'Grupo no WhatsApp';
   @Input() buttonText = 'Entrar';
@@ -19,10 +21,24 @@ export class GruposComponent {
   @Input() showIcon = false;
   @Input() groupName: string = '';
   @Input() linkGroup: string = '';
+  @Output() queensAccessRequested = new EventEmitter<string>();
 
   isMembershipModalOpen = false;
 
+  private isQueensGroup() {
+    return this.text === 'Queens of Deploy';
+  }
+
+  private hasQueensConfirmation() {
+    return typeof window !== 'undefined' && window.localStorage.getItem(this.queensStorageKey) === 'true';
+  }
+
   goToGroupLink() {
+    if (this.isQueensGroup() && !this.hasQueensConfirmation()) {
+      this.queensAccessRequested.emit(this.linkGroup);
+      return;
+    }
+
     window.open(`https://chat.whatsapp.com/${this.linkGroup}?mode=hqrt1`, '_blank');
   }
 

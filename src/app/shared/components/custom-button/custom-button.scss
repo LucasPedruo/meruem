@@ -29,6 +29,12 @@
     animation: subirFade .8s ease-out forwards, textura 6.4s cubic-bezier(0.2, 0.5, 0.9, 0.6) infinite;
   }
 
+  &.primary-pink:hover,
+  &.primary-pink:focus-visible {
+    background-image: linear-gradient(45deg, #7d3554, #b4517d, #d96f98, #f29bb8, #7d3554);
+    box-shadow: 0 0 32px -2px rgba(217, 111, 152, 0.45);
+  }
+
   &.primary.large {
     color: var(--text-color-primary);
   }

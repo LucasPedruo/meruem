@@ -66,10 +66,6 @@
     </header>
 
     <section class="groups-showcase" aria-labelledby="groups-showcase-title">
-      <div class="groups-showcase__header">
-        <h2 class="groups-showcase__title" id="groups-showcase-title">Grupos em destaque</h2>
-      </div>
-
       <div class="groups-showcase__grid">
         @for (group of featuredGroups; track group.text) {
           <app-grupos-component
@@ -79,23 +75,30 @@
             [text]="group.text"
             [description]="group.description"
             [linkGroup]="group.linkGroup"
+            (queensAccessRequested)="openQueensAccessModal($event)"
           ></app-grupos-component>
         }
 
-        <button
+        <div
           class="groups-showcase__more-tile"
-          type="button"
+          [class.groups-showcase__more-tile--compact]="featuredGroups.length === 2"
+          role="button"
+          tabindex="0"
           (click)="openModal()"
+          (keydown.enter)="openModal()"
+          (keydown.space)="openModal()"
           aria-haspopup="dialog"
           aria-label="Abrir lista com todos os outros grupos"
         >
-          <span class="groups-showcase__more-stack" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span class="groups-showcase__more-count">+{{ remainingGroupsCount() }}</span>
-          </span>
-          <span class="groups-showcase__more-label">Ver todos os grupos</span>
-        </button>
+          @if (featuredGroups.length !== 2) {
+            <span class="groups-showcase__more-stack" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span class="groups-showcase__more-count">+{{ remainingGroupsCount() }}</span>
+            </span>
+          }
+          <span class="groups-showcase__more-action" aria-hidden="true">Ver todos os grupos</span>
+        </div>
       </div>
 
       <nav class="home-menu" aria-label="Menu institucional">
@@ -141,6 +144,16 @@
           <span>Tema do VS Code</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
+
+        <button
+          class="home-menu__item home-menu__item--muted"
+          type="button"
+          (click)="resetGenderPreference()"
+          aria-haspopup="dialog"
+        >
+          <span>Resetar preferencia de sexo</span>
+          <img src="close.svg" alt="" aria-hidden="true" />
+        </button>
       </nav>
     </section>
 
@@ -169,6 +182,54 @@
 
     <app-footer-component></app-footer-component>
 
+    <app-custom-modal
+      title="Personalizar experiência"
+      [isOpen]="showGenderPreferenceModal"
+      [size]="'md'"
+      (closeModal)="closeGenderPreferenceModal()"
+    >
+      <div class="gender-preference-modal" slot="body">
+        <p class="gender-preference-modal__text">
+          Para ajustar a experiência visual da comunidade, informe como você prefere seguir.
+        </p>
+        <p class="gender-preference-modal__text gender-preference-modal__text--secondary">
+          A escolha define quais grupos aparecem primeiro e salva a preferência neste dispositivo.
+        </p>
+
+        <div class="gender-preference-modal__actions">
+          <app-custom-button-component
+            class="gender-preference-modal__action--female"
+            sizes="large"
+            text="Sou do sexo feminino"
+            color="link"
+            customClass="primary-pink"
+            (buttonClick)="selectGenderPreference('female')"
+          ></app-custom-button-component>
+
+          <app-custom-button-component
+            sizes="large"
+            text="Sou do sexo masculino"
+            color="link"
+            (buttonClick)="selectGenderPreference('male')"
+          ></app-custom-button-component>
+
+          <app-custom-button-component
+            sizes="large"
+            text="Sou LGBT"
+            color="link"
+            (buttonClick)="selectGenderPreference('lgbt')"
+          ></app-custom-button-component>
+
+          <app-custom-button-component
+            sizes="large"
+            text="Prefiro não informar"
+            color="link"
+            (buttonClick)="selectGenderPreference('not_informed')"
+          ></app-custom-button-component>
+        </div>
+      </div>
+    </app-custom-modal>
+
     <app-custom-modal title="Grupos" [isOpen]="showModal" (closeModal)="closeModal()">
       @for (item of modalGroups(); track item) {
         <app-grupos-component
@@ -179,6 +240,32 @@
           [linkGroup]="item.linkGroup"
         ></app-grupos-component>
       }
+    </app-custom-modal>
+
+    <app-custom-modal
+      title="Confirmação de acesso"
+      [isOpen]="showQueensAccessModal"
+      [size]="'md'"
+      (closeModal)="closeQueensAccessModal()"
+    >
+      <div class="queens-access-modal" slot="body">
+        <p class="queens-access-modal__text">
+          O Queens of Deploy é um grupo destinado a mulheres, criado para fortalecer conexões,
+          apoio e troca de experiências em tecnologia.
+        </p>
+        <p class="queens-access-modal__text queens-access-modal__text--secondary">
+          Para continuar, confirme que você é do sexo feminino. Essa escolha ficará salva neste
+          dispositivo e ativa o tema rosa da experiência.
+        </p>
+        <app-custom-button-component
+          class="queens-access-modal__action queens-access-modal__action--female"
+          sizes="large"
+          text="Confirmo que sou do sexo feminino"
+          color="primary"
+          customClass="primary-pink"
+          (buttonClick)="confirmQueensAccess()"
+        ></app-custom-button-component>
+      </div>
     </app-custom-modal>
 
     <app-custom-modal
