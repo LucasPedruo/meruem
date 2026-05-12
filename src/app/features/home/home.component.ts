@@ -23,6 +23,38 @@ import { _fixeGroups } from '../grupos/group.model';
 })
 export class HomeComponent {
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly homeGroups = [
+    {
+      src: 'fulldev.png',
+      text: 'Tecnologia 1',
+      description: '999 de 1024 Membros',
+      linkGroup: 'ChrXjnNn3Xh1gTikrYyjAs',
+    },
+    {
+      src: 'fulldev.png',
+      text: 'Tecnologia 2',
+      description: '339 de 1024 Membros',
+      linkGroup: 'H3uqzOSGodo9URWQbKQBgq',
+    },
+    {
+      src: 'queens.jpg',
+      text: 'Queens of Deploy',
+      description: '612 de 1024 Membros',
+      linkGroup: 'KOKFfsXGD1PBVWvAXXNbcb',
+    },
+    {
+      src: 'RainbowStack.png',
+      text: 'RainbowStack',
+      description: '102 de 1024 Membros',
+      linkGroup: 'BtWA88gNq3KGmAxAobB8X3',
+    },
+    {
+      src: 'logo-fulldev-games.png',
+      text: 'Games',
+      description: '10 de 1024 Membros',
+      linkGroup: 'CfM0zq1T8Oo9b9yvs0HZRK',
+    },
+  ] as const;
 
   readonly emptyInstitutionalItems: readonly string[] = [];
   readonly headerLogoDefault = 'fulldev.png';
@@ -45,47 +77,9 @@ export class HomeComponent {
   activeInstitutionalKey: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
-  primaryGroups = [
-    {
-      src: 'fulldev.png',
-      shoIcon: true,
-      text: 'Tecnologia 1',
-      description: '999 de 1024 Membros',
-      linkGroup: 'ChrXjnNn3Xh1gTikrYyjAs',
-    },
-    {
-      src: 'fulldev.png',
-      shoIcon: true,
-      text: 'Tecnologia 2',
-      description: '339 de 1024 Membros',
-      linkGroup: 'H3uqzOSGodo9URWQbKQBgq',
-    },
-    {
-      src: 'queens.jpg',
-      shoIcon: true,
-      text: 'Queens of Deploy',
-      description: '612 de 1024 Membros',
-      linkGroup: 'KOKFfsXGD1PBVWvAXXNbcb',
-    },
-    {
-      src: 'RainbowStack.png',
-      shoIcon: true,
-      text: 'RainbowStack',
-      description: '102 de 1024 Membros',
-      linkGroup: 'BtWA88gNq3KGmAxAobB8X3',
-    },
-    {
-      src: 'logo-fulldev-games.png',
-      shoIcon: true,
-      text: 'Games',
-      description: '10 de 1024 Membros',
-      linkGroup: 'CfM0zq1T8Oo9b9yvs0HZRK',
-    },
-  ] as const;
-  modalGroups = () => [
-    ...this.primaryGroups,
-    ..._fixeGroups().filter((group) => group.text !== 'Games'),
-  ];
+  featuredGroups = this.homeGroups.slice(0, 3);
+  hiddenHomeGroups = this.homeGroups.slice(3);
+  modalGroups = () => [...this.hiddenHomeGroups, ..._fixeGroups()];
   teamSections = [
     {
       title: 'Conselho',
@@ -347,6 +341,10 @@ export class HomeComponent {
   } as const;
 
   constructor() {}
+
+  remainingGroupsCount() {
+    return this.modalGroups().length;
+  }
 
   openModal() {
     this.showModal = true;

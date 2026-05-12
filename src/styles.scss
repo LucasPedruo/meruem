@@ -464,6 +464,106 @@ a {
   display: block;
 }
 
+.home .groups-showcase {
+  opacity: 0;
+  animation: subirFade 0.75s ease-out forwards;
+}
+
+.home .groups-showcase__header {
+  margin-bottom: 0.75rem;
+}
+
+.home .groups-showcase__title {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.home .groups-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.home .groups-showcase__card {
+  display: block;
+}
+
+.home .groups-showcase__more-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  aspect-ratio: 1 / 1;
+  padding: 0.875rem;
+  border: 1px solid var(--medium-dark);
+  border-radius: 0.75rem;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  color: var(--text-color-primary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.home .groups-showcase__more-tile:hover,
+.home .groups-showcase__more-tile:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.home .groups-showcase__more-tile:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.22);
+  outline-offset: 2px;
+}
+
+.home .groups-showcase__more-stack {
+  position: relative;
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.home .groups-showcase__more-stack span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.home .groups-showcase__more-stack span:nth-child(1) {
+  transform: translate(0.8rem, 0);
+  opacity: 0.35;
+}
+
+.home .groups-showcase__more-stack span:nth-child(2) {
+  transform: translate(0.4rem, 0.4rem);
+  opacity: 0.6;
+}
+
+.home .groups-showcase__more-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+.home .groups-showcase__more-label {
+  max-width: 9ch;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
 .mat-mdc-form-field-subscript-wrapper {
   display: none !important;
 }

@@ -64,6 +64,57 @@
     }
 }
 
+.group-section.home {
+    display: flex;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 48%),
+      rgba(255, 255, 255, 0.015);
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .group-section__logo {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0.8rem;
+        object-fit: cover;
+    }
+
+    .group-section__description {
+        margin-left: 0;
+    }
+
+    .group-section__description__title {
+        font-size: 0.98rem;
+        line-height: 1.15;
+    }
+
+    .group-section__description__subtitle {
+        margin-top: 0.4rem;
+        line-height: 1.35;
+    }
+
+    .group-section__action {
+        margin-top: auto;
+        width: 100%;
+    }
+
+    .group-section__action ::ng-deep .button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .modal{
     background-color: #1F1F1F;
     border: 1px solid var(--dark-gray);

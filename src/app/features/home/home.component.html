@@ -65,54 +65,38 @@
       </div>
     </header>
 
-    <section>
-      <app-grupos-component
-        [showIcon]="true"
-        text="Tecnologia 1"
-        [description]="'999 de 1024 Membros'"
-        [linkGroup]="'ChrXjnNn3Xh1gTikrYyjAs'"
-      ></app-grupos-component>
+    <section class="groups-showcase" aria-labelledby="groups-showcase-title">
+      <div class="groups-showcase__header">
+        <h2 class="groups-showcase__title" id="groups-showcase-title">Grupos em destaque</h2>
+      </div>
 
-      <app-grupos-component
-        [showIcon]="true"
-        text="Tecnologia 2"
-        [description]="'339 de 1024 Membros'"
-        [linkGroup]="'H3uqzOSGodo9URWQbKQBgq'"
-      ></app-grupos-component>
+      <div class="groups-showcase__grid">
+        @for (group of featuredGroups; track group.text) {
+          <app-grupos-component
+            class="groups-showcase__card"
+            [showIcon]="true"
+            [src]="group.src"
+            [text]="group.text"
+            [description]="group.description"
+            [linkGroup]="group.linkGroup"
+          ></app-grupos-component>
+        }
 
-      <app-grupos-component
-        [src]="'queens.jpg'"
-        [showIcon]="true"
-        text="Queens of Deploy"
-        [description]="'612 de 1024 Membros'"
-        [linkGroup]="'KOKFfsXGD1PBVWvAXXNbcb'"
-      ></app-grupos-component>
-
-      <app-grupos-component
-        [src]="'RainbowStack.png'"
-        [showIcon]="true"
-        text="RainbowStack"
-        [description]="'102 de 1024 Membros'"
-        [linkGroup]="'BtWA88gNq3KGmAxAobB8X3'"
-      ></app-grupos-component>
-
-      <app-grupos-component
-        [src]="'logo-fulldev-games.png'"
-        [showIcon]="true"
-        text="Games"
-        [description]="'10 de 1024 Membros'"
-        [linkGroup]="'CfM0zq1T8Oo9b9yvs0HZRK'"
-      ></app-grupos-component>
-
-      <app-custom-button-component
-        sizes="large"
-        color="primary"
-        [showIcon]="true"
-        (buttonClick)="openModal()"
-        text="Exibir todos os grupos"
-        aria-haspopup="dialog"
-      >
-      </app-custom-button-component>
+        <button
+          class="groups-showcase__more-tile"
+          type="button"
+          (click)="openModal()"
+          aria-haspopup="dialog"
+          aria-label="Abrir lista com todos os outros grupos"
+        >
+          <span class="groups-showcase__more-stack" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span class="groups-showcase__more-count">+{{ remainingGroupsCount() }}</span>
+          </span>
+          <span class="groups-showcase__more-label">Ver todos os grupos</span>
+        </button>
+      </div>
 
       <nav class="home-menu" aria-label="Menu institucional">
         <!--  -->
