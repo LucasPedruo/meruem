@@ -559,11 +559,6 @@ a {
   display: block;
 }
 
-.home .groups-showcase__card .group-section.home {
-  height: 100%;
-  box-sizing: border-box;
-}
-
 .home .groups-showcase__grid > :last-child:nth-child(odd) {
   grid-column: 1 / -1;
 }
@@ -671,6 +666,18 @@ a {
 }
 
 @media (max-width: 768px) {
+  .home .groups-showcase__card {
+    display: flex;
+    min-width: 0;
+  }
+
+  .home .groups-showcase__card .group-section.home {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    box-sizing: border-box;
+  }
+
   .home .groups-showcase__more-tile:not(.groups-showcase__more-tile--compact) {
     height: 100%;
     aspect-ratio: auto;
