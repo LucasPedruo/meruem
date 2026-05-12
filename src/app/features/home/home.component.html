@@ -6,7 +6,7 @@
         type="button"
         (click)="onHeaderLogoClick()"
         [attr.aria-label]="
-          isHeaderMascotVisible ? 'Exibindo mascote da FullDev' : 'Exibindo logo da FullDev'
+          currentHeaderAriaLabel()
         "
       >
         <span
@@ -151,7 +151,7 @@
           (click)="resetGenderPreference()"
           aria-haspopup="dialog"
         >
-          <span>Resetar preferencia de sexo</span>
+          <span>Resetar genero</span>
           <img src="close.svg" alt="" aria-hidden="true" />
         </button>
       </nav>

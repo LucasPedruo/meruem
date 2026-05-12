@@ -62,6 +62,8 @@ export class HomeComponent implements OnInit {
 
   readonly emptyInstitutionalItems: readonly string[] = [];
   readonly headerLogoDefault = 'fulldev.png';
+  readonly headerLogoQueens = 'queens.jpg';
+  readonly headerLogoRainbow = 'RainbowStack.png';
   readonly headerLogoMascot = 'mascote.png';
   readonly headerFlipDurationMs = 200;
   readonly newsletterSubscribeUrl =
@@ -445,6 +447,7 @@ export class HomeComponent implements OnInit {
 
     this.hasGenderPreference = true;
     this.genderPreference = gender;
+    this.showHeaderLogo();
     this.applyGenderTheme(gender);
 
     this.closeGenderPreferenceModal();
@@ -459,6 +462,7 @@ export class HomeComponent implements OnInit {
     this.applyGenderTheme('female');
     this.genderPreference = 'female';
     this.hasGenderPreference = true;
+    this.showHeaderLogo();
 
     this.closeQueensAccessModal();
 
@@ -483,6 +487,7 @@ export class HomeComponent implements OnInit {
 
     this.genderPreference = null;
     this.hasGenderPreference = false;
+    this.showHeaderLogo();
     this.pendingQueensLinkGroup = '';
     this.showQueensAccessModal = false;
     this.clearGenderThemes();
@@ -499,11 +504,44 @@ export class HomeComponent implements OnInit {
   }
 
   currentHeaderImage() {
-    return this.isHeaderMascotVisible ? this.headerLogoMascot : this.headerLogoDefault;
+    if (this.isHeaderMascotVisible) {
+      return this.headerLogoMascot;
+    }
+
+    if (this.genderPreference === 'female') {
+      return this.headerLogoQueens;
+    }
+
+    if (this.genderPreference === 'lgbt') {
+      return this.headerLogoRainbow;
+    }
+
+    return this.headerLogoDefault;
   }
 
   currentHeaderAlt() {
-    return this.isHeaderMascotVisible ? 'mascote da FullDev' : 'logo FullDev';
+    if (this.isHeaderMascotVisible) {
+      return 'mascote da FullDev';
+    }
+
+    if (this.genderPreference === 'female') {
+      return 'logo do Queens of Deploy';
+    }
+
+    if (this.genderPreference === 'lgbt') {
+      return 'logo do RainbowStack';
+    }
+
+    return 'logo FullDev';
+  }
+
+  currentHeaderAriaLabel() {
+    return `Exibindo ${this.currentHeaderAlt()}`;
+  }
+
+  private showHeaderLogo() {
+    this.isHeaderMascotVisible = false;
+    this.headerFlipDirection = 'backward';
   }
 
   triggerHeaderFlip() {
