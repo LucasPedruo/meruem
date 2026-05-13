@@ -21,6 +21,20 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'newletter',
+    loadComponent: () =>
+      import('./features/newsletter/newsletter-redirect.component').then(
+        (m) => m.NewsletterRedirectComponent,
+      ),
+  },
+  {
+    path: 'newsletter',
+    loadComponent: () =>
+      import('./features/newsletter/newsletter-redirect.component').then(
+        (m) => m.NewsletterRedirectComponent,
+      ),
+  },
+  {
     path: 'home',
     loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
   },
