@@ -35,7 +35,7 @@
               alt=""
               aria-hidden="true"
             />
-            <p class="header__stats-list__item-text">Tecnologia, programaÃ§Ã£o e carreira</p>
+            <p class="header__stats-list__item-text">Tecnologia, programação e carreira</p>
           </li> -->
 
           <li class="header__stats-list__item">
@@ -64,7 +64,7 @@
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
-          <span>Sobre nÃ³s</span>
+          <span>Sobre nós</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('projetos')">
@@ -93,48 +93,57 @@
           (click)="resetGenderPreference()"
           aria-haspopup="dialog"
         >
-          <span>Resetar preferÃªncia sexual</span>
+          <span>Resetar preferência sexual</span>
           <img src="close.svg" alt="" aria-hidden="true" />
         </button>
       </nav>
     </section>
 
     <section class="supporters" aria-labelledby="supporters-title">
-      <h2 class="supporters__title" id="supporters-title">Apoiadores</h2>
-      <div class="supporters__list">
-        @for (partner of partnerCards; track partner.name) {
-          <button
-            class="supporters__item"
-            type="button"
-            (click)="openExternalLink(partner.linkedin)"
-            [attr.aria-label]="'Abrir apoiador ' + partner.name"
-          >
-            <img
-              class="supporters__logo"
-              [src]="partner.image"
-              [alt]="partner.name"
-              (error)="handleSupporterLogoError($event)"
-            />
-            <span>{{ partner.name }}</span>
-          </button>
-        }
+      <div class="supporters__badge">
+        <h2 class="supporters__title" id="supporters-title">Apoiadores</h2>
+        <ngx-fast-marquee
+          class="supporters__marquee"
+          speed="slow"
+          [autoFill]="true"
+          [pauseOnHover]="true"
+          [maskPercentage]="8"
+          aria-label="Lista de apoiadores"
+        >
+          @for (partner of partnerCards; track partner.name) {
+            <button
+              class="supporters__item"
+              type="button"
+              (click)="openExternalLink(partner.linkedin)"
+              [attr.aria-label]="'Abrir apoiador ' + partner.name"
+            >
+              <img
+                class="supporters__logo"
+                [src]="partner.image"
+                [alt]="partner.name"
+                (error)="handleSupporterLogoError($event)"
+              />
+              <span>{{ partner.name }}</span>
+            </button>
+          }
+        </ngx-fast-marquee>
       </div>
     </section>
 
     <app-footer-component></app-footer-component>
 
     <app-custom-modal
-      title="Personalizar experiÃªncia"
+      title="Personalizar experiência"
       [isOpen]="showGenderPreferenceModal"
       [size]="'md'"
       (closeModal)="closeGenderPreferenceModal()"
     >
       <div class="gender-preference-modal" slot="body">
         <p class="gender-preference-modal__text">
-          Para ajustar a experiÃªncia visual da comunidade, informe como vocÃª prefere seguir.
+          Para ajustar a experiência visual da comunidade, informe como você prefere seguir.
         </p>
         <p class="gender-preference-modal__text gender-preference-modal__text--secondary">
-          A escolha define quais grupos aparecem primeiro e salva a preferÃªncia neste dispositivo.
+          A escolha define quais grupos aparecem primeiro e salva a preferência neste dispositivo.
         </p>
 
         <div class="gender-preference-modal__actions">
@@ -191,7 +200,7 @@
             >
               <span aria-hidden="true">!</span>
               <span class="gender-preference-modal__tooltip" role="tooltip">
-                Pessoas lÃ©sbicas, gays, bissexuais, trans ou de outras vivÃªncias de gÃªnero e
+                Pessoas lésbicas, gays, bissexuais, trans ou de outras vivências de gênero e
                 sexualidade.
               </span>
             </button>
@@ -200,18 +209,18 @@
           <div class="gender-preference-modal__option">
             <app-custom-button-component
               sizes="large"
-              text="Prefiro nÃ£o informar"
+              text="Prefiro não informar"
               color="link"
               (buttonClick)="selectGenderPreference('not_informed')"
             ></app-custom-button-component>
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa preferir nÃ£o informar?"
+              aria-label="O que significa preferir não informar?"
             >
               <span aria-hidden="true">!</span>
               <span class="gender-preference-modal__tooltip" role="tooltip">
-                MantÃ©m a experiÃªncia padrÃ£o sem compartilhar uma preferÃªncia sexual.
+                Mantém a experiência padrão sem compartilhar uma preferência sexual.
               </span>
             </button>
           </div>
@@ -274,19 +283,19 @@
     }
 
     <app-custom-modal
-      title="ConfirmaÃ§Ã£o de acesso"
+      title="Confirmação de acesso"
       [isOpen]="showQueensAccessModal"
       [size]="'md'"
       (closeModal)="closeQueensAccessModal()"
     >
       <div class="queens-access-modal" slot="body">
         <p class="queens-access-modal__text">
-          O Queens of Deploy Ã© um grupo destinado a mulheres, criado para fortalecer conexÃµes,
-          apoio e troca de experiÃªncias em tecnologia.
+          O Queens of Deploy é um grupo destinado a mulheres, criado para fortalecer conexões,
+          apoio e troca de experiências em tecnologia.
         </p>
         <p class="queens-access-modal__text queens-access-modal__text--secondary">
-          Para continuar, confirme que vocÃª Ã© do sexo feminino. Essa escolha ficarÃ¡ salva neste
-          dispositivo e ativa o tema rosa da experiÃªncia.
+          Para continuar, confirme que você é do sexo feminino. Essa escolha ficará salva neste
+          dispositivo e ativa o tema rosa da experiência.
         </p>
         <app-custom-button-component
           class="queens-access-modal__action queens-access-modal__action--female"

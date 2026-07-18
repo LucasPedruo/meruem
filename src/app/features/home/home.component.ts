@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { NgxFastMarqueeModule } from 'ngx-fast-marquee';
 
 import { environment } from '../../../environments/environment';
 import { CustomButtonComponent } from '../../shared/components/custom-button/custom-button';
@@ -29,6 +30,7 @@ type InstitutionalKey = 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' |
     FooterComponent,
     ModalComponent,
     SocialComponent,
+    NgxFastMarqueeModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -240,13 +242,13 @@ export class HomeComponent implements OnInit {
       linkedin: 'https://www.linkedin.com/company/hostgator-latam',
     },
     {
-      name: 'PUC Minas',
+      name: 'PUC',
       stack: 'Universidade (Belo Horizonte, MG).',
       image: 'pucminas_logo.png',
       linkedin: 'https://www.linkedin.com/school/pucminas',
     },
     {
-      name: 'Web Summit Rio',
+      name: 'Web Summit',
       stack: 'Evento internacional de tecnologia e inovação.',
       image: 'web_summit_rio_logo.jpg',
       linkedin: 'https://www.linkedin.com/company/web-summit-rio/',

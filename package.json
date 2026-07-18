@@ -45,6 +45,7 @@
     "@angular/ssr": "20.3.20",
     "express": "^5.1.0",
     "magic-snowflakes": "^7.0.2",
+    "ngx-fast-marquee": "^20.0.4",
     "ngx-sonner": "^3.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

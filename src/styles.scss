@@ -430,6 +430,14 @@ a {
   animation: subirFade 0.85s ease-out forwards;
 }
 
+.supporters__badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .supporters__title {
   margin: 0;
   color: var(--text-color-third);
@@ -439,20 +447,21 @@ a {
   text-transform: uppercase;
 }
 
-.supporters__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.45rem;
+.supporters__marquee {
+  display: block;
+  min-width: 0;
+  flex: 1;
 }
 
 .supporters__item {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  min-height: 2rem;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 1.85rem;
+  margin-right: 0.45rem;
+  padding: 0.3rem 0.5rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 999px;
   background: transparent;
   color: var(--text-color-secondary);
