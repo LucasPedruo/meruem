@@ -673,34 +673,12 @@ a {
 }
 
 .gender-preference-modal__option {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 2.5rem;
-  align-items: stretch;
-  gap: 0.5rem;
-}
-
-.gender-preference-modal__help {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  min-height: 40px;
-  border: 1px solid var(--medium-dark);
-  border-radius: 0.5rem;
-  background: var(--dark-gray);
-  color: var(--text-color-secondary);
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: help;
 }
 
-.gender-preference-modal__help:hover,
-.gender-preference-modal__help:focus,
-.gender-preference-modal__help:focus-visible {
-  color: var(--text-color-primary);
-  border-color: rgba(255, 255, 255, 0.2);
-  outline: 0;
+.gender-preference-modal__button-tooltip {
+  position: relative;
+  display: block;
 }
 
 .gender-preference-modal__tooltip {
@@ -742,22 +720,13 @@ a {
   transform: translateY(-50%) rotate(45deg);
 }
 
-.gender-preference-modal__help:hover .gender-preference-modal__tooltip,
-.gender-preference-modal__help:focus .gender-preference-modal__tooltip,
-.gender-preference-modal__help:focus-visible .gender-preference-modal__tooltip {
+.gender-preference-modal__button-tooltip:hover .gender-preference-modal__tooltip,
+.gender-preference-modal__button-tooltip:focus-within .gender-preference-modal__tooltip {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (max-width: 480px) {
-  .gender-preference-modal__option {
-    grid-template-columns: minmax(0, 1fr) 2.25rem;
-  }
-
-  .gender-preference-modal__help {
-    width: 2.25rem;
-  }
-
   .gender-preference-modal__tooltip {
     width: min(14rem, calc(100vw - 3rem));
     max-width: calc(100vw - 3rem);

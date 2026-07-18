@@ -177,20 +177,15 @@
 
         <div class="gender-preference-modal__actions">
           <div class="gender-preference-modal__option">
-            <app-custom-button-component
-              class="gender-preference-modal__action--female"
-              sizes="large"
-              text="Mulher cis"
-              color="link"
-              (buttonClick)="selectGenderPreference('female')"
-            ></app-custom-button-component>
-            <button
-              class="gender-preference-modal__help"
-              type="button"
-              aria-label="Ajuda sobre Mulher cis"
-              aria-describedby="gender-tooltip-female"
-            >
-              ?
+            <div class="gender-preference-modal__button-tooltip">
+              <app-custom-button-component
+                class="gender-preference-modal__action--female"
+                sizes="large"
+                text="Mulher cis"
+                color="link"
+                ariaDescribedBy="gender-tooltip-female"
+                (buttonClick)="selectGenderPreference('female')"
+              ></app-custom-button-component>
               <span
                 class="gender-preference-modal__tooltip"
                 id="gender-tooltip-female"
@@ -198,23 +193,18 @@
               >
                 Pessoa que se identifica como mulher e foi registrada como mulher ao nascer.
               </span>
-            </button>
+            </div>
           </div>
 
           <div class="gender-preference-modal__option">
-            <app-custom-button-component
-              sizes="large"
-              text="Homem cis"
-              color="link"
-              (buttonClick)="selectGenderPreference('male')"
-            ></app-custom-button-component>
-            <button
-              class="gender-preference-modal__help"
-              type="button"
-              aria-label="Ajuda sobre Homem cis"
-              aria-describedby="gender-tooltip-male"
-            >
-              ?
+            <div class="gender-preference-modal__button-tooltip">
+              <app-custom-button-component
+                sizes="large"
+                text="Homem cis"
+                color="link"
+                ariaDescribedBy="gender-tooltip-male"
+                (buttonClick)="selectGenderPreference('male')"
+              ></app-custom-button-component>
               <span
                 class="gender-preference-modal__tooltip"
                 id="gender-tooltip-male"
@@ -222,23 +212,18 @@
               >
                 Pessoa que se identifica como homem e foi registrada como homem ao nascer.
               </span>
-            </button>
+            </div>
           </div>
 
           <div class="gender-preference-modal__option">
-            <app-custom-button-component
-              sizes="large"
-              text="Sou LGBT"
-              color="link"
-              (buttonClick)="selectGenderPreference('lgbt')"
-            ></app-custom-button-component>
-            <button
-              class="gender-preference-modal__help"
-              type="button"
-              aria-label="Ajuda sobre Sou LGBT"
-              aria-describedby="gender-tooltip-lgbt"
-            >
-              ?
+            <div class="gender-preference-modal__button-tooltip">
+              <app-custom-button-component
+                sizes="large"
+                text="Sou LGBT"
+                color="link"
+                ariaDescribedBy="gender-tooltip-lgbt"
+                (buttonClick)="selectGenderPreference('lgbt')"
+              ></app-custom-button-component>
               <span
                 class="gender-preference-modal__tooltip"
                 id="gender-tooltip-lgbt"
@@ -247,23 +232,18 @@
                 Pessoas lésbicas, gays, bissexuais, trans ou de outras vivências de gênero e
                 sexualidade.
               </span>
-            </button>
+            </div>
           </div>
 
           <div class="gender-preference-modal__option">
-            <app-custom-button-component
-              sizes="large"
-              text="Prefiro não informar"
-              color="link"
-              (buttonClick)="selectGenderPreference('not_informed')"
-            ></app-custom-button-component>
-            <button
-              class="gender-preference-modal__help"
-              type="button"
-              aria-label="Ajuda sobre Prefiro não informar"
-              aria-describedby="gender-tooltip-not-informed"
-            >
-              ?
+            <div class="gender-preference-modal__button-tooltip">
+              <app-custom-button-component
+                sizes="large"
+                text="Prefiro não informar"
+                color="link"
+                ariaDescribedBy="gender-tooltip-not-informed"
+                (buttonClick)="selectGenderPreference('not_informed')"
+              ></app-custom-button-component>
               <span
                 class="gender-preference-modal__tooltip"
                 id="gender-tooltip-not-informed"
@@ -271,7 +251,7 @@
               >
                 Mantém a experiência padrão sem compartilhar uma preferência sexual.
               </span>
-            </button>
+            </div>
           </div>
         </div>
       </div>

@@ -10,11 +10,22 @@ import { MaterialModule } from '../../material.module';
   styleUrl: './custom-button.scss',
   template: `
     @if (isRouterLink()) {
-      <a [routerLink]="routerLink" [ngClass]="color" class="button">
+      <a
+        [routerLink]="routerLink"
+        [ngClass]="color"
+        [attr.aria-describedby]="ariaDescribedBy || null"
+        class="button"
+      >
         <ng-content></ng-content>
       </a>
     } @else if (isExternalLink()) {
-      <a [href]="href" [target]="target" [ngClass]="color" class="button">
+      <a
+        [href]="href"
+        [target]="target"
+        [ngClass]="color"
+        [attr.aria-describedby]="ariaDescribedBy || null"
+        class="button"
+      >
         <ng-content></ng-content>
       </a>
     } @else {
@@ -23,6 +34,7 @@ import { MaterialModule } from '../../material.module';
         [ngClass]="[color, sizes, customClass, state]"
         class="button"
         [disabled]="isDisabled()"
+        [attr.aria-describedby]="ariaDescribedBy || null"
         (click)="onClick()"
       >
         @if (shouldShowIcon()) {
@@ -44,6 +56,7 @@ export class CustomButtonComponent {
   @Input() text = 'Botão';
   @Input() iconSrc?: string;
   @Input() iconAlt: string = '';
+  @Input() ariaDescribedBy?: string;
 
   @Input() showIcon = false;
   @Input() label: string = 'Entrar no grupo';
