@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgxFastMarqueeModule } from 'ngx-fast-marquee';
 
 import { environment } from '../../../environments/environment';
@@ -35,7 +35,9 @@ type InstitutionalKey = 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' |
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('partnerContentCarousel') private partnerContentCarousel?: ElementRef<HTMLElement>;
+
   private readonly queensStorageKey = 'queens-of-deploy-confirmed';
   private readonly genderStorageKey = 'fulldev-user-gender';
   private readonly homeGroups = [
@@ -83,7 +85,10 @@ export class HomeComponent implements OnInit {
   pendingQueensLinkGroup = '';
   accessRestrictionNotice = '';
   private accessRestrictionNoticeTimeout?: ReturnType<typeof setTimeout>;
+  private partnerContentAutoplay?: ReturnType<typeof setInterval>;
+  private partnerContentScrollSyncTimeout?: ReturnType<typeof setTimeout>;
   genderPreference: GenderPreference | null = null;
+  activePartnerContentIndex = 0;
   hasGenderPreference = false;
   isHeaderFlipping = false;
   isHeaderMascotVisible = false;
@@ -263,6 +268,44 @@ export class HomeComponent implements OnInit {
       linkedin: 'https://www.linkedin.com/school/rocketseat/posts/?feedView=all',
     },
   ] as const;
+  partnerContentCards = [
+    {
+      partner: 'Asaas',
+      title: 'Conta digital PJ completa e sem mensalidade',
+      type: 'Benefício',
+      description:
+        'Ofereça diferentes formas de pagamento, gerencie cobranças, emita notas, antecipe recebíveis e pague fornecedores. Tudo em um só lugar.',
+      image: 'logo-asaas.png',
+      link: 'https://www.asaas.com/',
+    },
+    {
+      partner: 'HostGator',
+      title: 'Hospedagem de sites e Servidor VPS',
+      type: 'Cupons',
+      description:
+        'Hospedagem de sites\nVálido para os planos P, M e Turbo, nos ciclos a partir do semestral\n80% OFF - HOST80COMUNIDADE\n\nServidor VPS\nVálido para os planos NVMe 2, 4, 8 e 12, nos ciclos a partir do anual\n45% OFF - VPS45COMUNIDADE',
+      image: 'hostgator.png',
+      link: 'https://www.hostgator.com.br/',
+    },
+    {
+      partner: 'Rocketseat',
+      title: 'Decole sua carreira em programação e Inteligência artificial',
+      type: 'Assinatura',
+      description:
+        'A plataforma completa para começar do zero ou se especializar, estudar no seu ritmo e criar projetos práticos que te preparam de verdade para o mercado.',
+      image: 'rocketseat_logo.jpg',
+      link: 'https://www.rocketseat.com.br/assinatura',
+    },
+    {
+      partner: 'PUC Minas',
+      title: 'Acompanhe oportunidades, eventos e novidades da universidade',
+      type: 'Instagram',
+      description:
+        'Conteúdos sobre educação, tecnologia, pesquisa, extensão e iniciativas acadêmicas para quem quer se aproximar da comunidade PUC Minas.',
+      image: 'pucminas_logo.png',
+      link: 'https://www.instagram.com/pucminas/',
+    },
+  ] as const;
   teamOpenings = [
     {
       title: 'Moderacao da comunidade',
@@ -407,6 +450,22 @@ export class HomeComponent implements OnInit {
 
     if (!savedGender) {
       this.showGenderPreferenceModal = true;
+    }
+  }
+
+  ngAfterViewInit() {
+    this.startPartnerContentAutoplay();
+  }
+
+  ngOnDestroy() {
+    this.stopPartnerContentAutoplay();
+
+    if (this.partnerContentScrollSyncTimeout) {
+      clearTimeout(this.partnerContentScrollSyncTimeout);
+    }
+
+    if (this.accessRestrictionNoticeTimeout) {
+      clearTimeout(this.accessRestrictionNoticeTimeout);
     }
   }
 
@@ -607,6 +666,80 @@ export class HomeComponent implements OnInit {
     }
 
     window.open(url, '_blank');
+  }
+
+  showPartnerContent(index: number, resetAutoplay = true) {
+    const carousel = this.partnerContentCarousel?.nativeElement;
+    const total = this.partnerContentCards.length;
+
+    if (!total) {
+      return;
+    }
+
+    const normalizedIndex = (index + total) % total;
+    this.activePartnerContentIndex = normalizedIndex;
+
+    if (carousel) {
+      const target = carousel.children.item(normalizedIndex);
+
+      if (target instanceof HTMLElement) {
+        carousel.scrollTo({
+          left: target.offsetLeft,
+          behavior: 'smooth',
+        });
+      }
+    }
+
+    if (resetAutoplay) {
+      this.startPartnerContentAutoplay();
+    }
+  }
+
+  syncPartnerContentIndex(carousel: HTMLElement) {
+    if (this.partnerContentScrollSyncTimeout) {
+      clearTimeout(this.partnerContentScrollSyncTimeout);
+    }
+
+    this.partnerContentScrollSyncTimeout = setTimeout(() => {
+      this.updatePartnerContentIndexFromScroll(carousel);
+    }, 80);
+  }
+
+  private updatePartnerContentIndexFromScroll(carousel: HTMLElement) {
+    const cards = Array.from(carousel.children).filter(
+      (child): child is HTMLElement => child instanceof HTMLElement,
+    );
+
+    if (!cards.length) {
+      return;
+    }
+
+    const closestIndex = cards.reduce((closest, card, index) => {
+      const currentDistance = Math.abs(card.offsetLeft - carousel.scrollLeft);
+      const closestDistance = Math.abs(cards[closest].offsetLeft - carousel.scrollLeft);
+
+      return currentDistance < closestDistance ? index : closest;
+    }, 0);
+
+    this.activePartnerContentIndex = closestIndex;
+  }
+
+  private startPartnerContentAutoplay() {
+    if (typeof window === 'undefined' || this.partnerContentCards.length <= 1) {
+      return;
+    }
+
+    this.stopPartnerContentAutoplay();
+    this.partnerContentAutoplay = setInterval(() => {
+      this.showPartnerContent(this.activePartnerContentIndex + 1, false);
+    }, 5000);
+  }
+
+  private stopPartnerContentAutoplay() {
+    if (this.partnerContentAutoplay) {
+      clearInterval(this.partnerContentAutoplay);
+      this.partnerContentAutoplay = undefined;
+    }
   }
 
   private openWhatsappGroup(linkGroup: string) {

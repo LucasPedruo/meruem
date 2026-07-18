@@ -159,6 +159,63 @@
       </div>
     </section>
 
+    <section class="partner-content" aria-labelledby="partner-content-title">
+      <div class="partner-content__header">
+        <h2 class="partner-content__title" id="partner-content-title">Conteúdos dos apoiadores</h2>
+      </div>
+
+      <div
+        #partnerContentCarousel
+        class="partner-content__carousel"
+        aria-label="Conteúdos compartilhados pelos apoiadores"
+        (scroll)="syncPartnerContentIndex(partnerContentCarousel)"
+      >
+        @for (content of partnerContentCards; track content.title) {
+          <article class="partner-content-card">
+            <div class="partner-content-card__header">
+              <img
+                class="partner-content-card__logo"
+                [src]="content.image"
+                [alt]="'Logo de ' + content.partner"
+              />
+              <div class="partner-content-card__meta">
+                <span class="partner-content-card__partner">{{ content.partner }}</span>
+                <span class="partner-content-card__type">{{ content.type }}</span>
+              </div>
+            </div>
+
+            <h3 class="partner-content-card__title">{{ content.title }}</h3>
+            <p class="partner-content-card__description">{{ content.description }}</p>
+
+            <a
+              class="partner-content-card__action"
+              [href]="content.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Abrir conteúdo</span>
+              <img src="link-external.svg" alt="" aria-hidden="true" />
+            </a>
+          </article>
+        }
+      </div>
+
+      <div class="partner-content__indicators" aria-label="Selecionar conteúdo dos apoiadores">
+        @for (content of partnerContentCards; track content.title; let index = $index) {
+          <button
+            class="partner-content__indicator"
+            type="button"
+            [class.partner-content__indicator--active]="activePartnerContentIndex === index"
+            [attr.aria-label]="
+              'Mostrar conteúdo ' + (index + 1) + ' de ' + partnerContentCards.length
+            "
+            [attr.aria-current]="activePartnerContentIndex === index ? 'true' : null"
+            (click)="showPartnerContent(index)"
+          ></button>
+        }
+      </div>
+    </section>
+
     <app-footer-component></app-footer-component>
 
     <app-custom-modal
