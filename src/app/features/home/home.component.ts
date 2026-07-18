@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
       src: 'RainbowStack.png',
       text: 'RainbowStack',
       description: '102 de 1024 Membros',
-      linkGroup: 'BtWA88gNq3KGmAxAobB8X3',
+      linkGroup: 'https://chat.whatsapp.com/BtWA88gNq3KGmAxAobB8X3?s=cl&p=a&ilr=0&amv=3',
     },
   ] as const;
 
@@ -69,6 +69,8 @@ export class HomeComponent implements OnInit {
     'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
   readonly whatsappCommunityUrl = 'https://chat.whatsapp.com/GtlHPlfmXlp27vPZVBej19';
   readonly whatsappFemaleCommunityUrl = 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbc';
+  readonly whatsappLgbtCommunityUrl =
+    'https://chat.whatsapp.com/BtWA88gNq3KGmAxAobB8X3?s=cl&p=a&ilr=0&amv=3';
   readonly discordCommunityUrl = 'https://discord.com/invite/2vMkX7kc8t';
   readonly vscodeThemeUrl =
     'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
@@ -413,8 +415,7 @@ export class HomeComponent implements OnInit {
   }
 
   groupButtonState(groupName: string): 'normal' | 'disabled' {
-    const shouldBlockGroup =
-      groupName === 'Queens of Deploy' || groupName === 'RainbowStack';
+    const shouldBlockGroup = groupName === 'Queens of Deploy' || groupName === 'RainbowStack';
     const shouldBlockByPreference =
       this.genderPreference === 'male' || this.genderPreference === 'not_informed';
 
@@ -427,7 +428,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.accessRestrictionNotice =
-      'Este grupo so esta habilitado para o respectivo genero selecionado.';
+      'Este grupo só está habilitado para o respectivo gênero selecionado.';
 
     if (this.accessRestrictionNoticeTimeout) {
       clearTimeout(this.accessRestrictionNoticeTimeout);
@@ -495,7 +496,7 @@ export class HomeComponent implements OnInit {
     this.closeQueensAccessModal();
 
     if (this.pendingQueensLinkGroup) {
-      window.open(`https://chat.whatsapp.com/${this.pendingQueensLinkGroup}?mode=hqrt1`, '_blank');
+      this.openWhatsappGroup(this.pendingQueensLinkGroup);
     }
   }
 
@@ -604,6 +605,14 @@ export class HomeComponent implements OnInit {
     if (!url) {
       return;
     }
+
+    window.open(url, '_blank');
+  }
+
+  private openWhatsappGroup(linkGroup: string) {
+    const url = linkGroup.startsWith('http')
+      ? linkGroup
+      : `https://chat.whatsapp.com/${linkGroup}?mode=hqrt1`;
 
     window.open(url, '_blank');
   }

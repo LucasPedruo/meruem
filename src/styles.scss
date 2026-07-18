@@ -435,6 +435,7 @@ a {
   flex-direction: column;
   gap: 0.55rem;
   width: 100%;
+  padding: 4px 2px 2px;
   box-sizing: border-box;
 }
 
@@ -481,7 +482,6 @@ a {
   background: rgba(255, 255, 255, 0.03);
   color: var(--text-color-primary);
   outline: 0;
-  transform: translateY(-1px);
 }
 
 .supporters__logo {
@@ -708,7 +708,9 @@ a {
   right: 0;
   bottom: calc(100% + 0.5rem);
   z-index: 1200;
-  width: min(17rem, calc(100vw - 3rem));
+  width: min(17rem, calc(100vw - 4rem));
+  max-width: calc(100vw - 4rem);
+  box-sizing: border-box;
   padding: 0.65rem 0.75rem;
   border: 1px solid rgba(255, 180, 148, 0.28);
   border-radius: 0.5rem;
@@ -717,6 +719,8 @@ a {
   font-size: 0.74rem;
   line-height: 1.4;
   text-align: left;
+  white-space: normal;
+  overflow-wrap: break-word;
   opacity: 0;
   pointer-events: none;
   transform: translateY(0.25rem);
@@ -725,11 +729,40 @@ a {
     transform 0.16s ease;
 }
 
+.gender-preference-modal__tooltip::after {
+  content: '';
+  position: absolute;
+  right: 0.85rem;
+  top: 100%;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 1px solid rgba(255, 180, 148, 0.28);
+  border-bottom: 1px solid rgba(255, 180, 148, 0.28);
+  background: #1f1f1f;
+  transform: translateY(-50%) rotate(45deg);
+}
+
 .gender-preference-modal__help:hover .gender-preference-modal__tooltip,
 .gender-preference-modal__help:focus .gender-preference-modal__tooltip,
 .gender-preference-modal__help:focus-visible .gender-preference-modal__tooltip {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .gender-preference-modal__option {
+    grid-template-columns: minmax(0, 1fr) 2.25rem;
+  }
+
+  .gender-preference-modal__help {
+    width: 2.25rem;
+  }
+
+  .gender-preference-modal__tooltip {
+    width: min(14rem, calc(100vw - 3rem));
+    max-width: calc(100vw - 3rem);
+    font-size: 0.72rem;
+  }
 }
 
 .access-restriction-notice {
@@ -779,7 +812,6 @@ a {
     aspect-ratio: auto;
     box-sizing: border-box;
   }
-
 }
 
 body.theme-queens .header__img-frame,

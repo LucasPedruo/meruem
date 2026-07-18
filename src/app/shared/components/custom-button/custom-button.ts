@@ -31,7 +31,7 @@ import { MaterialModule } from '../../material.module';
           {{ text }}
         }
         @if (showIcon) {
-          <img src="link-external.svg" alt="Icone link externo" />
+          <img src="link-external.svg" alt="Ícone link externo" />
         }
         @if (isLoading()) {
           <mat-spinner diameter="20"></mat-spinner>

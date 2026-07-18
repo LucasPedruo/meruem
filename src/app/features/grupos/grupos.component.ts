@@ -56,7 +56,11 @@ export class GruposComponent {
       return;
     }
 
-    window.open(`https://chat.whatsapp.com/${this.linkGroup}?mode=hqrt1`, '_blank');
+    const groupUrl = this.linkGroup.startsWith('http')
+      ? this.linkGroup
+      : `https://chat.whatsapp.com/${this.linkGroup}?mode=hqrt1`;
+
+    window.open(groupUrl, '_blank');
   }
 
   openMembershipModal() {

@@ -5,9 +5,7 @@
         class="header__logo-button"
         type="button"
         (click)="onHeaderLogoClick()"
-        [attr.aria-label]="
-          currentHeaderAriaLabel()
-        "
+        [attr.aria-label]="currentHeaderAriaLabel()"
       >
         <span
           class="header__img-frame"
@@ -27,8 +25,7 @@
       <div class="header__content">
         <h1 class="header__title" id="header-title">FullDev</h1>
         <ul class="header__stats-list">
-
-<!--           <li class="header__stats-list__item">
+          <!--           <li class="header__stats-list__item">
             <img
               class="header__stats-list__item-icon"
               src="group-chat.svg"
@@ -65,27 +62,49 @@
             <img src="link-external.svg" alt="" aria-hidden="true" />
           </button>
         }
-        <button class="home-menu__item" type="button" (click)="openExternalLink(whatsappCommunityUrl)">
+        @if (genderPreference === 'lgbt') {
+          <button
+            class="home-menu__item"
+            type="button"
+            (click)="openExternalLink(whatsappLgbtCommunityUrl)"
+          >
+            <span>Comunidade LGBT no WhatsApp</span>
+            <img src="link-external.svg" alt="" aria-hidden="true" />
+          </button>
+        }
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openExternalLink(whatsappCommunityUrl)"
+        >
           <span>Comunidade geral no WhatsApp</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openExternalLink(discordCommunityUrl)">
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openExternalLink(discordCommunityUrl)"
+        >
           <span>Comunidade no Discord</span>
-          <img src="link-external.svg" alt="" aria-hidden="true" />
-        </button>
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
-          <span>Sobre nós</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('projetos')">
           <span>Projetos em andamento</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
+          <span>Sobre nós</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
         <button class="home-menu__item" type="button" (click)="openTeamOpeningsModal()">
           <span>Faça parte da equipe</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openExternalLink(newsletterSubscribeUrl)">
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openExternalLink(newsletterSubscribeUrl)"
+        >
           <span>Newsletter</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
@@ -168,10 +187,15 @@
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa Mulher cis?"
+              aria-label="Ajuda sobre Mulher cis"
+              aria-describedby="gender-tooltip-female"
             >
-              <span aria-hidden="true">!</span>
-              <span class="gender-preference-modal__tooltip" role="tooltip">
+              ?
+              <span
+                class="gender-preference-modal__tooltip"
+                id="gender-tooltip-female"
+                role="tooltip"
+              >
                 Pessoa que se identifica como mulher e foi registrada como mulher ao nascer.
               </span>
             </button>
@@ -187,10 +211,15 @@
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa Homem cis?"
+              aria-label="Ajuda sobre Homem cis"
+              aria-describedby="gender-tooltip-male"
             >
-              <span aria-hidden="true">!</span>
-              <span class="gender-preference-modal__tooltip" role="tooltip">
+              ?
+              <span
+                class="gender-preference-modal__tooltip"
+                id="gender-tooltip-male"
+                role="tooltip"
+              >
                 Pessoa que se identifica como homem e foi registrada como homem ao nascer.
               </span>
             </button>
@@ -206,10 +235,15 @@
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa LGBT?"
+              aria-label="Ajuda sobre Sou LGBT"
+              aria-describedby="gender-tooltip-lgbt"
             >
-              <span aria-hidden="true">!</span>
-              <span class="gender-preference-modal__tooltip" role="tooltip">
+              ?
+              <span
+                class="gender-preference-modal__tooltip"
+                id="gender-tooltip-lgbt"
+                role="tooltip"
+              >
                 Pessoas lésbicas, gays, bissexuais, trans ou de outras vivências de gênero e
                 sexualidade.
               </span>
@@ -226,10 +260,15 @@
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa preferir não informar?"
+              aria-label="Ajuda sobre Prefiro não informar"
+              aria-describedby="gender-tooltip-not-informed"
             >
-              <span aria-hidden="true">!</span>
-              <span class="gender-preference-modal__tooltip" role="tooltip">
+              ?
+              <span
+                class="gender-preference-modal__tooltip"
+                id="gender-tooltip-not-informed"
+                role="tooltip"
+              >
                 Mantém a experiência padrão sem compartilhar uma preferência sexual.
               </span>
             </button>
@@ -300,8 +339,8 @@
     >
       <div class="queens-access-modal" slot="body">
         <p class="queens-access-modal__text">
-          O Queens of Deploy é um grupo destinado a mulheres, criado para fortalecer conexões,
-          apoio e troca de experiências em tecnologia.
+          O Queens of Deploy é um grupo destinado a mulheres, criado para fortalecer conexões, apoio
+          e troca de experiências em tecnologia.
         </p>
         <p class="queens-access-modal__text queens-access-modal__text--secondary">
           Para continuar, confirme que você é do sexo feminino. Essa escolha ficará salva neste

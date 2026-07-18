@@ -1,9 +1,11 @@
 .home {
   display: flex;
-  min-height: 100vh;
-  padding: 2.75rem 1rem 1rem;
+  min-height: 100dvh;
+  padding: clamp(0.75rem, 3.5vh, 2rem) 1rem 0.75rem;
+  box-sizing: border-box;
   justify-content: center;
   align-items: flex-start;
+  overflow: clip;
 
   > div {
     margin: 0 auto;
@@ -12,7 +14,7 @@
   }
 
   @media (max-width: 768px) {
-    padding: 2.5rem 1rem 1.5rem;
+    padding: 1.5rem 1rem 0.75rem;
 
     > div {
       width: 100%;
@@ -21,13 +23,13 @@
   }
 
   @media (max-width: 480px) {
-    padding: 2rem 0.75rem 1rem;
+    padding: 1.25rem 0.75rem 0.75rem;
   }
 
   .wrapper-home {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: clamp(8px, 1.4vh, 10px);
   }
 
   .header {
@@ -35,7 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: clamp(10px, 2vh, 20px);
     line-height: 100%;
     height: auto;
     text-align: center;
@@ -101,8 +103,8 @@
     &__img-frame {
       position: relative;
       display: block;
-      width: 7.57rem;
-      height: 7.57rem;
+      width: clamp(5.75rem, 15vh, 7.57rem);
+      height: clamp(5.75rem, 15vh, 7.57rem);
       border-radius: 100%;
       overflow: hidden;
       border: 1px solid var(--medium-dark);
@@ -148,8 +150,8 @@
     }
 
     &__img {
-      width: 7.57rem;
-      height: 7.57rem;
+      width: clamp(5.75rem, 15vh, 7.57rem);
+      height: clamp(5.75rem, 15vh, 7.57rem);
       border-radius: inherit;
       border: 0;
       object-fit: cover;
@@ -165,7 +167,7 @@
       flex-direction: column;
       gap: 0.25em;
       align-items: center;
-      margin: 0.75rem 0 0;
+      margin: clamp(0.4rem, 1vh, 0.75rem) 0 0;
 
       &__item {
         display: flex;
@@ -206,8 +208,8 @@
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 1rem;
-    padding: 0.5rem;
+    margin-top: clamp(0.25rem, 1vh, 0.5rem);
+    padding: clamp(0.35rem, 1vh, 0.5rem);
     border: 1px solid var(--medium-dark);
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.02);
@@ -220,8 +222,8 @@
       align-items: center;
       width: 100%;
       box-sizing: border-box;
-      min-height: 2.75rem;
-      padding: 0.75rem 1rem;
+      min-height: clamp(2.2rem, 5vh, 2.75rem);
+      padding: clamp(0.45rem, 1.5vh, 0.75rem) 1rem;
       border: 0;
       border-radius: 0;
       color: #8b949e;
@@ -386,7 +388,6 @@
       }
     }
   }
-
 }
 
 @keyframes headerLightSweepA {
