@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
       src: 'queens.jpg',
       text: 'Queens of Deploy',
       description: '612 de 1024 Membros',
-      linkGroup: 'KOKFfsXGD1PBVWvAXXNbcb',
+      linkGroup: 'KOKFfsXGD1PBVWvAXXNbc',
     },
     {
       src: 'RainbowStack.png',
@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit {
   readonly newsletterSubscribeUrl =
     'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
   readonly whatsappCommunityUrl = 'https://chat.whatsapp.com/GtlHPlfmXlp27vPZVBej19';
+  readonly whatsappFemaleCommunityUrl = 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbc';
   readonly discordCommunityUrl = 'https://discord.com/invite/2vMkX7kc8t';
   readonly vscodeThemeUrl =
     'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';

@@ -55,8 +55,18 @@
     <section class="groups-showcase" aria-labelledby="groups-showcase-title">
       <nav class="home-menu" aria-label="Menu institucional">
         <!--  -->
+        @if (genderPreference === 'female') {
+          <button
+            class="home-menu__item"
+            type="button"
+            (click)="openExternalLink(whatsappFemaleCommunityUrl)"
+          >
+            <span>Comunidade feminina no WhatsApp</span>
+            <img src="link-external.svg" alt="" aria-hidden="true" />
+          </button>
+        }
         <button class="home-menu__item" type="button" (click)="openExternalLink(whatsappCommunityUrl)">
-          <span>Comunidade no WhatsApp</span>
+          <span>Comunidade geral no WhatsApp</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openExternalLink(discordCommunityUrl)">
