@@ -24,23 +24,9 @@
         </span>
       </button>
 
-      <div>
+      <div class="header__content">
         <h1 class="header__title" id="header-title">FullDev</h1>
         <ul class="header__stats-list">
-          <li class="header__stats-list__item">
-            <img
-              class="header__stats-list__item-icon header__stats-list__item-icon--accent"
-              src="arrow-up-right.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <p class="header__stats-list__item-text">+1k acessos diários</p>
-          </li>
-
-          <li class="header__stats-list__item">
-            <img class="header__stats-list__item-icon" src="member.svg" alt="" aria-hidden="true" />
-            <p class="header__stats-list__item-text">8350 Membros gerais</p>
-          </li>
 
 <!--           <li class="header__stats-list__item">
             <img
@@ -49,7 +35,7 @@
               alt=""
               aria-hidden="true"
             />
-            <p class="header__stats-list__item-text">Tecnologia, programação e carreira</p>
+            <p class="header__stats-list__item-text">Tecnologia, programaÃ§Ã£o e carreira</p>
           </li> -->
 
           <li class="header__stats-list__item">
@@ -62,71 +48,35 @@
             <p class="header__stats-list__item-text">Desde 06/2024</p>
           </li>
         </ul>
+        <app-social-component></app-social-component>
       </div>
     </header>
 
     <section class="groups-showcase" aria-labelledby="groups-showcase-title">
-      <div class="groups-showcase__grid">
-        @for (group of featuredGroups; track group.text) {
-          <app-grupos-component
-            class="groups-showcase__card"
-            [showIcon]="true"
-            [src]="group.src"
-            [text]="group.text"
-            [description]="group.description"
-            [linkGroup]="group.linkGroup"
-            [buttonState]="groupButtonState(group.text)"
-            (queensAccessRequested)="openQueensAccessModal($event)"
-            (blockedAccessRequested)="showRestrictedGroupNotification($event)"
-          ></app-grupos-component>
-        }
-
-        <div
-          class="groups-showcase__more-tile"
-          [class.groups-showcase__more-tile--compact]="featuredGroups.length === 2"
-          role="button"
-          tabindex="0"
-          (click)="openModal()"
-          (keydown.enter)="openModal()"
-          (keydown.space)="openModal()"
-          aria-haspopup="dialog"
-          aria-label="Abrir lista com todos os outros grupos"
-        >
-          @if (featuredGroups.length !== 2) {
-            <span class="groups-showcase__more-stack" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span class="groups-showcase__more-count">+{{ remainingGroupsCount() }}</span>
-            </span>
-          }
-          <span class="groups-showcase__more-action" aria-hidden="true">Ver todos os grupos</span>
-        </div>
-      </div>
-
       <nav class="home-menu" aria-label="Menu institucional">
         <!--  -->
-        <button
-          class="home-menu__item home-menu__item--featured"
-          type="button"
-          (click)="openInstitutionalModal('eventos')"
-        >
-          <span>Eventos</span>
+        <button class="home-menu__item" type="button" (click)="openExternalLink(whatsappCommunityUrl)">
+          <span>Comunidade no WhatsApp</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button class="home-menu__item" type="button" (click)="openExternalLink(discordCommunityUrl)">
+          <span>Comunidade no Discord</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
-          <span>Sobre nós</span>
+          <span>Sobre nÃ³s</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('redes')">
-          <span>Redes sociais</span>
+        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('projetos')">
+          <span>Projetos em andamento</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('equipe')">
-          <span>Equipe</span>
+        <button class="home-menu__item" type="button" (click)="openTeamOpeningsModal()">
+          <span>Faça parte da equipe</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
-        <button class="home-menu__item" type="button" (click)="openInstitutionalModal('parceiros')">
-          <span>Parceiros</span>
+        <button class="home-menu__item" type="button" (click)="openExternalLink(newsletterSubscribeUrl)">
+          <span>Newsletter</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <!-- <button class="home-menu__item" type="button" (click)="openInstitutionalModal('loja')">
@@ -138,64 +88,53 @@
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button> -->
         <button
-          class="home-menu__item"
-          type="button"
-          (click)="openVscodeThemeModal()"
-          aria-haspopup="dialog"
-        >
-          <span>Tema do VS Code</span>
-          <img src="link-external.svg" alt="" aria-hidden="true" />
-        </button>
-
-        <button
           class="home-menu__item home-menu__item--muted"
           type="button"
           (click)="resetGenderPreference()"
           aria-haspopup="dialog"
         >
-          <span>Resetar preferência sexual</span>
+          <span>Resetar preferÃªncia sexual</span>
           <img src="close.svg" alt="" aria-hidden="true" />
         </button>
       </nav>
     </section>
 
-    <section class="newsletter" aria-labelledby="newsletter-title">
-      <div class="newsletter__header">
-        <p class="newsletter__eyebrow">Newsletter diária</p>
-        <h2 class="newsletter__title" id="newsletter-title">Receba a FullDev no seu e-mail</h2>
+    <section class="supporters" aria-labelledby="supporters-title">
+      <h2 class="supporters__title" id="supporters-title">Apoiadores</h2>
+      <div class="supporters__list">
+        @for (partner of partnerCards; track partner.name) {
+          <button
+            class="supporters__item"
+            type="button"
+            (click)="openExternalLink(partner.linkedin)"
+            [attr.aria-label]="'Abrir apoiador ' + partner.name"
+          >
+            <img
+              class="supporters__logo"
+              [src]="partner.image"
+              [alt]="partner.name"
+              (error)="handleSupporterLogoError($event)"
+            />
+            <span>{{ partner.name }}</span>
+          </button>
+        }
       </div>
-
-      <div class="newsletter__embed">
-        <iframe
-          [src]="newsletterEmbedUrl"
-          title="Assinar newsletter da FullDev no Substack"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-
-      <p class="newsletter__fallback">
-        Se o formulário não carregar, finalize a assinatura direto no
-        <a [href]="newsletterSubscribeUrl" target="_blank" rel="noopener noreferrer">Substack</a>.
-      </p>
     </section>
-
-    <app-social-component></app-social-component>
 
     <app-footer-component></app-footer-component>
 
     <app-custom-modal
-      title="Personalizar experiência"
+      title="Personalizar experiÃªncia"
       [isOpen]="showGenderPreferenceModal"
       [size]="'md'"
       (closeModal)="closeGenderPreferenceModal()"
     >
       <div class="gender-preference-modal" slot="body">
         <p class="gender-preference-modal__text">
-          Para ajustar a experiência visual da comunidade, informe como você prefere seguir.
+          Para ajustar a experiÃªncia visual da comunidade, informe como vocÃª prefere seguir.
         </p>
         <p class="gender-preference-modal__text gender-preference-modal__text--secondary">
-          A escolha define quais grupos aparecem primeiro e salva a preferência neste dispositivo.
+          A escolha define quais grupos aparecem primeiro e salva a preferÃªncia neste dispositivo.
         </p>
 
         <div class="gender-preference-modal__actions">
@@ -252,7 +191,7 @@
             >
               <span aria-hidden="true">!</span>
               <span class="gender-preference-modal__tooltip" role="tooltip">
-                Pessoas lésbicas, gays, bissexuais, trans ou de outras vivências de gênero e
+                Pessoas lÃ©sbicas, gays, bissexuais, trans ou de outras vivÃªncias de gÃªnero e
                 sexualidade.
               </span>
             </button>
@@ -261,18 +200,18 @@
           <div class="gender-preference-modal__option">
             <app-custom-button-component
               sizes="large"
-              text="Prefiro não informar"
+              text="Prefiro nÃ£o informar"
               color="link"
               (buttonClick)="selectGenderPreference('not_informed')"
             ></app-custom-button-component>
             <button
               class="gender-preference-modal__help"
               type="button"
-              aria-label="O que significa preferir não informar?"
+              aria-label="O que significa preferir nÃ£o informar?"
             >
               <span aria-hidden="true">!</span>
               <span class="gender-preference-modal__tooltip" role="tooltip">
-                Mantém a experiência padrão sem compartilhar uma preferência sexual.
+                MantÃ©m a experiÃªncia padrÃ£o sem compartilhar uma preferÃªncia sexual.
               </span>
             </button>
           </div>
@@ -294,6 +233,40 @@
       }
     </app-custom-modal>
 
+    <app-custom-modal
+      title="Faça parte da equipe"
+      [isOpen]="showTeamOpeningsModal"
+      [size]="'md'"
+      (closeModal)="closeTeamOpeningsModal()"
+    >
+      <div class="team-openings" slot="body">
+        <p class="team-openings__description">
+          Escolha uma vaga aberta para iniciar sua inscrição.
+        </p>
+
+        <div class="team-openings__list">
+          @for (opening of teamOpenings; track opening.title) {
+            <article class="team-opening-card">
+              <div class="team-opening-card__content">
+                <div class="team-opening-card__description">
+                  <h3 class="team-opening-card__title">{{ opening.title }}</h3>
+                  <p class="team-opening-card__subtitle">{{ opening.description }}</p>
+                </div>
+                <app-custom-button-component
+                  class="team-opening-card__action"
+                  sizes="medium"
+                  text="Abrir"
+                  color="link"
+                  [state]="opening.formUrl ? 'normal' : 'disabled'"
+                  (buttonClick)="openExternalLink(opening.formUrl)"
+                ></app-custom-button-component>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </app-custom-modal>
+
     @if (accessRestrictionNotice) {
       <div class="access-restriction-notice" role="status" aria-live="polite">
         {{ accessRestrictionNotice }}
@@ -301,19 +274,19 @@
     }
 
     <app-custom-modal
-      title="Confirmação de acesso"
+      title="ConfirmaÃ§Ã£o de acesso"
       [isOpen]="showQueensAccessModal"
       [size]="'md'"
       (closeModal)="closeQueensAccessModal()"
     >
       <div class="queens-access-modal" slot="body">
         <p class="queens-access-modal__text">
-          O Queens of Deploy é um grupo destinado a mulheres, criado para fortalecer conexões,
-          apoio e troca de experiências em tecnologia.
+          O Queens of Deploy Ã© um grupo destinado a mulheres, criado para fortalecer conexÃµes,
+          apoio e troca de experiÃªncias em tecnologia.
         </p>
         <p class="queens-access-modal__text queens-access-modal__text--secondary">
-          Para continuar, confirme que você é do sexo feminino. Essa escolha ficará salva neste
-          dispositivo e ativa o tema rosa da experiência.
+          Para continuar, confirme que vocÃª Ã© do sexo feminino. Essa escolha ficarÃ¡ salva neste
+          dispositivo e ativa o tema rosa da experiÃªncia.
         </p>
         <app-custom-button-component
           class="queens-access-modal__action queens-access-modal__action--female"

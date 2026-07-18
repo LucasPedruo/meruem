@@ -1,14 +1,5 @@
 <section class="section-social-media">
   <app-custom-button-component
-    (buttonClick)="openExternalLink(socialLinks.github)"
-    [iconSrc]="'github.svg'"
-    iconAlt="Ir a página do Github"
-    sizes="small"
-    color="link"
-  >
-  </app-custom-button-component>
-
-  <app-custom-button-component
     (buttonClick)="openExternalLink(socialLinks.linkedin)"
     [iconSrc]="'linkedin.svg'"
     iconAlt="Ir a página do Linkedin"
@@ -18,9 +9,18 @@
   </app-custom-button-component>
 
   <app-custom-button-component
-    (buttonClick)="openExternalLink(socialLinks.discord)"
-    [iconSrc]="'discord.svg'"
-    iconAlt="Ir a página do Discord"
+    (buttonClick)="openExternalLink(socialLinks.instagram)"
+    [iconSrc]="'instagram.svg'"
+    iconAlt="Ir a pagina do Instagram"
+    sizes="small"
+    color="link"
+  >
+  </app-custom-button-component>
+
+  <app-custom-button-component
+    (buttonClick)="showConstructionToast()"
+    [iconSrc]="'globe.svg'"
+    iconAlt="Abrir site completo"
     sizes="small"
     color="link"
   >

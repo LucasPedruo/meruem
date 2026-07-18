@@ -421,6 +421,126 @@ a {
   justify-content: center;
 }
 
+.supporters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+  opacity: 0;
+  animation: subirFade 0.85s ease-out forwards;
+}
+
+.supporters__title {
+  margin: 0;
+  color: var(--text-color-third);
+  font-size: 11px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.supporters__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.supporters__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-color-secondary);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.supporters__item:hover,
+.supporters__item:focus-visible {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-color-primary);
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+.supporters__logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.team-openings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.team-openings__description {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.team-openings__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.team-opening-card {
+  padding: 14px;
+  border: 1px solid var(--medium-dark);
+  border-radius: 8px;
+  background: #1f1f1f;
+}
+
+.team-opening-card__content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.team-opening-card__description {
+  min-width: 0;
+  flex: 1;
+}
+
+.team-opening-card__title {
+  margin: 0;
+  color: var(--text-color-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.team-opening-card__subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--text-color-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.team-opening-card__action ::ng-deep .button {
+  min-width: 72px;
+  height: 40px;
+  min-height: 40px;
+  margin-top: 0;
+  justify-content: center;
+}
+
 @keyframes mapPing {
   0% {
     opacity: 0.85;
@@ -638,108 +758,6 @@ a {
   grid-column: 1 / -1;
 }
 
-.home .groups-showcase__grid > .groups-showcase__more-tile:last-child:nth-child(odd) {
-  aspect-ratio: 2 / 1;
-}
-
-.home .groups-showcase__more-tile {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  aspect-ratio: 1 / 1;
-  padding: 1rem;
-  border: 1px solid var(--medium-dark);
-  border-radius: 0.75rem;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 42%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
-  color: var(--text-color-primary);
-  text-align: center;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.home .groups-showcase__more-tile:hover,
-.home .groups-showcase__more-tile:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-.home .groups-showcase__more-tile:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.22);
-  outline-offset: 2px;
-}
-
-.home .groups-showcase__more-stack {
-  position: relative;
-  display: block;
-  width: 5.8rem;
-  height: 5.8rem;
-  margin: auto 0;
-}
-
-.home .groups-showcase__more-stack span {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.home .groups-showcase__more-stack span:nth-child(1) {
-  transform: translate(0.95rem, 0);
-  opacity: 0.35;
-}
-
-.home .groups-showcase__more-stack span:nth-child(2) {
-  transform: translate(0.48rem, 0.48rem);
-  opacity: 0.6;
-}
-
-.home .groups-showcase__more-count {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-color-primary);
-}
-
-.home .groups-showcase__more-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% + 0.4rem);
-  min-height: 40px;
-  margin-inline: -0.2rem;
-  padding: 0.75em 1.715em;
-  box-sizing: border-box;
-  border: 1px solid var(--medium-dark);
-  border-radius: 0.5rem;
-  background-color: var(--dark-gray);
-  color: #8b949e;
-  font-size: 12px;
-  line-height: 1.2;
-}
-
-.home .groups-showcase__more-tile--compact {
-  justify-content: center;
-  aspect-ratio: auto !important;
-  min-height: 0;
-  padding: 0.5rem;
-}
-
-.home .groups-showcase__more-tile--compact .groups-showcase__more-action {
-  width: 100%;
-  margin-inline: 0;
-}
-
 @media (max-width: 768px) {
   .home .groups-showcase__card {
     display: flex;
@@ -753,11 +771,6 @@ a {
     box-sizing: border-box;
   }
 
-  .home .groups-showcase__more-tile:not(.groups-showcase__more-tile--compact) {
-    height: 100%;
-    aspect-ratio: auto;
-    box-sizing: border-box;
-  }
 }
 
 body.theme-queens .header__img-frame,
@@ -765,6 +778,7 @@ body.theme-queens .group-section.home,
 body.theme-queens .home-menu,
 body.theme-queens .newsletter,
 body.theme-queens .team-card,
+body.theme-queens .team-opening-card,
 body.theme-queens .social-channel-card,
 body.theme-queens .vscode-theme,
 body.theme-queens .modal,
@@ -772,9 +786,7 @@ body.theme-queens .group-section.modal {
   border-color: rgba(255, 192, 203, 0.22);
 }
 
-body.theme-queens .home .groups-showcase__more-tile,
 body.theme-queens .button.link,
-body.theme-queens .home .groups-showcase__more-action,
 body.theme-queens .home-menu__item:hover,
 body.theme-queens .home-menu__item:focus-visible {
   background-color: rgba(255, 192, 203, 0.08);
@@ -790,6 +802,7 @@ body.theme-rainbow .group-section.home,
 body.theme-rainbow .home-menu,
 body.theme-rainbow .newsletter,
 body.theme-rainbow .team-card,
+body.theme-rainbow .team-opening-card,
 body.theme-rainbow .social-channel-card,
 body.theme-rainbow .vscode-theme,
 body.theme-rainbow .modal,
@@ -797,9 +810,7 @@ body.theme-rainbow .group-section.modal {
   border-color: rgba(125, 211, 252, 0.24);
 }
 
-body.theme-rainbow .home .groups-showcase__more-tile,
 body.theme-rainbow .button.link,
-body.theme-rainbow .home .groups-showcase__more-action,
 body.theme-rainbow .home-menu__item:hover,
 body.theme-rainbow .home-menu__item:focus-visible {
   background-color: rgba(125, 211, 252, 0.08);

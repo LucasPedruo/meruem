@@ -77,17 +77,20 @@
     >div {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.75rem;
         width: 100%;
         height: 100%;
+        text-align: center;
     }
 
     .group-section__logo {
-        width: 4.4rem;
-        height: 4.4rem;
-        border-radius: 0.8rem;
-        object-fit: cover;
+        width: 2.8rem;
+        height: 2.8rem;
+        border: 0;
+        border-radius: 0;
+        filter: grayscale(1) brightness(0) saturate(100%) invert(59%) sepia(11%) saturate(340%) hue-rotate(169deg) brightness(90%) contrast(88%);
+        object-fit: contain;
     }
 
     .group-section__description {
@@ -123,8 +126,7 @@
       linear-gradient(180deg, rgba(255, 224, 230, 0.08), rgba(255, 255, 255, 0.02));
 
     .group-section__logo {
-        border-color: rgba(255, 192, 203, 0.4);
-        box-shadow: 0 10px 24px rgba(255, 182, 193, 0.14);
+        box-shadow: none;
     }
 
     .group-section__description__title {
@@ -149,10 +151,7 @@
       linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(245, 158, 11, 0.12), rgba(34, 197, 94, 0.12), rgba(59, 130, 246, 0.14), rgba(168, 85, 247, 0.16));
 
     .group-section__logo {
-        border-color: rgba(255, 255, 255, 0.32);
-        box-shadow:
-            0 10px 24px rgba(34, 211, 238, 0.14),
-            0 0 0 1px rgba(255, 255, 255, 0.08);
+        box-shadow: none;
     }
 
     .group-section__description__title {

@@ -1,8 +1,9 @@
 .section-social-media {
   display: flex;
   align-items: center; 
+  justify-content: center;
   gap: 0.5em;
-  margin-inline-start: 0.25em; 
+  margin: 0.75rem 0 0;
   
   img {
     width: 1rem; 

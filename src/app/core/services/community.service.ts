@@ -161,11 +161,11 @@ export class CommunityService {
     return [
       {
         id: '1',
-        name: 'FullDev - Code Queens',
-        description: 'Grupo exclusivo para mulheres desenvolvedoras',
-        imageUrl: '/images/CodeQueens.png',
-        memberCount: 504,
-        inviteLink: 'https://chat.whatsapp.com/example1',
+        name: 'Comunidade no WhatsApp',
+        description: 'Grupo principal da comunidade',
+        imageUrl: '/images/Geral1.png',
+        memberCount: 1024,
+        inviteLink: 'https://chat.whatsapp.com/GtlHPlfmXlp27vPZVBej19',
         recentImages: [
           { url: '/images/Conversa1.png', timestamp: '2025-04-01T14:30:00Z' },
           { url: '/images/Conversa2.png', timestamp: '2025-04-01T13:45:00Z' },
@@ -174,11 +174,11 @@ export class CommunityService {
       },
       {
         id: '2',
-        name: 'FullDev - Tecnologia 1',
-        description: 'Fala, Dev! Seja muito Bem-vindo! 😆',
-        imageUrl: '/images/Geral1.png',
-        memberCount: 1024,
-        inviteLink: 'https://chat.whatsapp.com/example2',
+        name: 'Queens of Deploy',
+        description: 'Grupo exclusivo para mulheres desenvolvedoras',
+        imageUrl: '/images/CodeQueens.png',
+        memberCount: 504,
+        inviteLink: 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbcb',
         recentImages: [
           { url: '/images/Conversa1.png', timestamp: '2025-04-01T14:30:00Z' },
           { url: '/images/Conversa2.png', timestamp: '2025-04-01T13:45:00Z' },
@@ -187,37 +187,11 @@ export class CommunityService {
       },
       {
         id: '3',
-        name: 'FullDev - Front e UX/UI',
-        description: 'Grupo para discussão de Front-end e Design',
-        imageUrl: '/images/Front.png',
-        memberCount: 274,
-        inviteLink: 'https://chat.whatsapp.com/example3',
-        recentImages: [
-          { url: '/images/Conversa1.png', timestamp: '2025-04-01T14:30:00Z' },
-          { url: '/images/Conversa2.png', timestamp: '2025-04-01T13:45:00Z' },
-          { url: '/images/Conversa3.png', timestamp: '2025-04-01T12:20:00Z' },
-        ],
-      },
-      {
-        id: '4',
-        name: 'FullDev - Back-end',
-        description: 'Grupo para discussão de Backend e DevOps',
-        imageUrl: '/images/Back.png',
-        memberCount: 294,
-        inviteLink: 'https://chat.whatsapp.com/example4',
-        recentImages: [
-          { url: '/images/Conversa1.png', timestamp: '2025-04-01T14:30:00Z' },
-          { url: '/images/Conversa2.png', timestamp: '2025-04-01T13:45:00Z' },
-          { url: '/images/Conversa3.png', timestamp: '2025-04-01T12:20:00Z' },
-        ],
-      },
-      {
-        id: '5',
-        name: 'FullDev - Vagas e Freelas',
-        description: 'Oportunidades de trabalho e freelances',
-        imageUrl: '/images/Vaga.png',
-        memberCount: 1024,
-        inviteLink: 'https://chat.whatsapp.com/example5',
+        name: 'RainbowStack',
+        description: 'Grupo para pessoas LGBT da comunidade',
+        imageUrl: '/images/RainbowStack.png',
+        memberCount: 102,
+        inviteLink: 'https://chat.whatsapp.com/BtWA88gNq3KGmAxAobB8X3',
         recentImages: [
           { url: '/images/Conversa1.png', timestamp: '2025-04-01T14:30:00Z' },
           { url: '/images/Conversa2.png', timestamp: '2025-04-01T13:45:00Z' },
@@ -226,17 +200,16 @@ export class CommunityService {
       },
     ];
   }
-
   private getMockStatistics(): any {
     return {
       totalMembers: 5000,
-      totalGroups: 10,
+      totalGroups: 3,
       activeMembers: 3500,
       monthlyGrowth: 12.5,
       topGroups: [
-        { name: 'FullDev - Tecnologia 1', members: 1024 },
-        { name: 'FullDev - Vagas e Freelas', members: 1024 },
-        { name: 'FullDev - Code Queens', members: 504 },
+        { name: 'Comunidade no WhatsApp', members: 1024 },
+        { name: 'Queens of Deploy', members: 504 },
+        { name: 'RainbowStack', members: 102 },
       ],
     };
   }

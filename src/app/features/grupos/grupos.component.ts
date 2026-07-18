@@ -21,6 +21,7 @@ export class GruposComponent {
   @Input() showIcon = false;
   @Input() groupName: string = '';
   @Input() linkGroup: string = '';
+  @Input() externalLink: string = '';
   @Input() buttonState: 'loading' | 'normal' | 'disabled' = 'normal';
   @Output() queensAccessRequested = new EventEmitter<string>();
   @Output() blockedAccessRequested = new EventEmitter<string>();
@@ -45,6 +46,11 @@ export class GruposComponent {
   }
 
   private goToGroupLink() {
+    if (this.externalLink) {
+      window.open(this.externalLink, '_blank');
+      return;
+    }
+
     if (this.isQueensGroup() && !this.hasQueensConfirmation()) {
       this.queensAccessRequested.emit(this.linkGroup);
       return;

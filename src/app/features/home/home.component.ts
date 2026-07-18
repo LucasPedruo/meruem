@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
 import { CustomButtonComponent } from '../../shared/components/custom-button/custom-button';
@@ -10,6 +9,17 @@ import { GruposComponent } from '../grupos/grupos.component';
 import { _fixeGroups } from '../grupos/group.model';
 
 type GenderPreference = 'female' | 'male' | 'lgbt' | 'not_informed';
+type EventCard = {
+  name: string;
+  stack: string;
+  image: string;
+  buttonText: string;
+  link: string;
+  dateLabel: string;
+  featured: boolean;
+  state: 'normal' | 'loading';
+};
+type InstitutionalKey = 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' | 'projetos';
 
 @Component({
   selector: 'app-home-component',
@@ -24,21 +34,14 @@ type GenderPreference = 'female' | 'male' | 'lgbt' | 'not_informed';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  private readonly sanitizer = inject(DomSanitizer);
   private readonly queensStorageKey = 'queens-of-deploy-confirmed';
   private readonly genderStorageKey = 'fulldev-user-gender';
   private readonly homeGroups = [
     {
-      src: 'fulldev.png',
-      text: 'Tecnologia 1',
-      description: '1017 de 1024 Membros',
-      linkGroup: 'ChrXjnNn3Xh1gTikrYyjAs',
-    },
-    {
-      src: 'fulldev.png',
-      text: 'Tecnologia 2',
-      description: '339 de 1024 Membros',
-      linkGroup: 'H3uqzOSGodo9URWQbKQBgq',
+      src: 'whatsapp.svg',
+      text: 'Comunidade no WhatsApp',
+      description: 'Grupo principal da comunidade',
+      linkGroup: 'GtlHPlfmXlp27vPZVBej19',
     },
     {
       src: 'queens.jpg',
@@ -52,29 +55,23 @@ export class HomeComponent implements OnInit {
       description: '102 de 1024 Membros',
       linkGroup: 'BtWA88gNq3KGmAxAobB8X3',
     },
-    {
-      src: 'logo-fulldev-games.png',
-      text: 'Games',
-      description: '10 de 1024 Membros',
-      linkGroup: 'CfM0zq1T8Oo9b9yvs0HZRK',
-    },
   ] as const;
 
   readonly emptyInstitutionalItems: readonly string[] = [];
-  readonly headerLogoDefault = 'fulldev.png';
+  readonly headerLogoDefault = 'new-logo.png';
   readonly headerLogoQueens = 'queens.jpg';
   readonly headerLogoRainbow = 'RainbowStack.png';
   readonly headerLogoMascot = 'mascote.png';
   readonly headerFlipDurationMs = 200;
   readonly newsletterSubscribeUrl =
     'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
-  readonly newsletterEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    'https://fulldev.substack.com/embed',
-  );
+  readonly whatsappCommunityUrl = 'https://chat.whatsapp.com/GtlHPlfmXlp27vPZVBej19';
+  readonly discordCommunityUrl = 'https://discord.com/invite/2vMkX7kc8t';
   readonly vscodeThemeUrl =
     'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
   showModal: boolean = false;
   showInstitutionalModal = false;
+  showTeamOpeningsModal = false;
   showVscodeThemeModal = false;
   showQueensAccessModal = false;
   showGenderPreferenceModal = false;
@@ -87,19 +84,11 @@ export class HomeComponent implements OnInit {
   isHeaderMascotVisible = false;
   headerLightVariant: 'a' | 'b' = 'a';
   headerFlipDirection: 'forward' | 'backward' = 'forward';
-  activeInstitutionalKey: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros' = 'sobre';
+  activeInstitutionalKey: InstitutionalKey = 'sobre';
   appTitle = environment.appTitle;
   isProduction = environment.production;
   get featuredGroups() {
-    if (this.genderPreference === 'female') {
-      return this.homeGroups.filter((group) => group.text === 'Queens of Deploy');
-    }
-
-    if (this.genderPreference === 'lgbt') {
-      return this.homeGroups.filter((group) => group.text === 'RainbowStack');
-    }
-
-    return this.homeGroups.filter((group) => group.text === 'Tecnologia 1' || group.text === 'Tecnologia 2');
+    return this.homeGroups.filter((group) => group.text === 'Comunidade no WhatsApp');
   }
   modalGroups = () => {
     const featuredGroupNames = new Set<string>(this.featuredGroups.map((group) => group.text));
@@ -239,10 +228,16 @@ export class HomeComponent implements OnInit {
   ] as const;
   partnerCards = [
     {
-      name: 'Friends of Figma',
-      stack: 'Comunidade oficial do Figma no Rio de Janeiro.',
-      image: 'fofrio_logo.jpg',
-      linkedin: 'https://www.linkedin.com/company/fofrio',
+      name: 'Asaas',
+      stack: 'Plataforma financeira e operacional para empresas.',
+      image: 'logo-asaas.png',
+      linkedin: 'https://www.linkedin.com/company/asaasbrasil',
+    },
+    {
+      name: 'HostGator',
+      stack: 'Hospedagem de sites, dominios e solucoes para presenca online.',
+      image: 'hostgator.png',
+      linkedin: 'https://www.linkedin.com/company/hostgator-latam',
     },
     {
       name: 'PUC Minas',
@@ -263,6 +258,28 @@ export class HomeComponent implements OnInit {
       linkedin: 'https://www.linkedin.com/school/rocketseat/posts/?feedView=all',
     },
   ] as const;
+  teamOpenings = [
+    {
+      title: 'Moderacao da comunidade',
+      description: 'Apoio nas conversas, acolhimento de membros e organizacao dos canais.',
+      formUrl: '',
+    },
+    {
+      title: 'Eventos e parcerias',
+      description: 'Ajuda na organizacao de encontros, acoes com apoiadores e divulgacao.',
+      formUrl: '',
+    },
+    {
+      title: 'Conteudo e redes sociais',
+      description: 'Producao de posts, cobertura de iniciativas e comunicacao da comunidade.',
+      formUrl: '',
+    },
+    {
+      title: 'Projetos da comunidade',
+      description: 'Participacao em iniciativas tecnicas, repositorios e produtos em andamento.',
+      formUrl: '',
+    },
+  ] as const;
   socialChannels = [
     {
       name: 'LinkedIn',
@@ -279,46 +296,7 @@ export class HomeComponent implements OnInit {
       link: 'https://discord.com/invite/2vMkX7kc8t',
     },
   ] as const;
-  eventCards = [
-    {
-      name: 'Web Summit Rio',
-      stack: 'Evento internacional de tecnologia e inovação.',
-      image: 'web_summit_rio_logo.jpg',
-      buttonText: 'Participar',
-      link: '/websummit',
-      dateLabel: '15/05/2026',
-      featured: true,
-      state: 'normal' as const,
-    },
-    {
-      name: 'Aniversário de 9 anos da Rocketseat',
-      stack: 'Celebração da comunidade dev da Rocketseat.',
-      image: 'rocketseat_logo.jpg',
-      buttonText: 'Participar',
-      link: 'https://rseat.in/aniversario-rocketseat-devs-fulldev',
-      dateLabel: '11/05/2026',
-      featured: false,
-      state: 'normal' as const,
-    },
-    {
-      name: 'HandsOn Rio',
-      stack: 'Em fase de organização',
-      image: 'fofrio_logo.jpg',
-      buttonText: 'Aguarde',
-      link: '',
-      dateLabel: '',
-      featured: false,
-      state: 'normal' as const,
-    },
-    /*  {
-      name: 'FullDev Open Source',
-      stack: 'Em fase de organização',
-      image: 'fulldev.png',
-      buttonText: '',
-      link: '',
-      state: 'loading' as const,
-    }, */
-  ] as const;
+  eventCards: readonly EventCard[] = [];
   institutionalContent = {
     eventos: {
       title: 'Eventos',
@@ -339,6 +317,16 @@ export class HomeComponent implements OnInit {
         'Nosso objetivo é criar um ambiente colaborativo, acessível e ativo, onde dúvidas viram conversas, ideias viram projetos e conexões ajudam pessoas a crescerem profissionalmente.',
         'A comunidade promove eventos, hackathons, indicações de vagas, conteúdos técnicos, ações com parceiros e espaços de networking para aproximar talentos, empresas e iniciativas de tecnologia.',
         'Mais do que um grupo, a FullDev é um ponto de encontro para quem acredita que aprender em comunidade torna a jornada mais leve, prática e cheia de possibilidades.',
+      ],
+    },
+    projetos: {
+      title: 'Projetos em andamento',
+      description:
+        'Iniciativas que a comunidade esta estruturando para gerar experiencia pratica, portfolio e colaboracao entre membros.',
+      items: [
+        'Projetos colaborativos para pessoas que querem praticar desenvolvimento em equipe.',
+        'Organizacao de conteudos, desafios e materiais de apoio para a comunidade.',
+        'Acoes com apoiadores para conectar aprendizado, networking e oportunidades reais.',
       ],
     },
     redes: {
@@ -469,6 +457,14 @@ export class HomeComponent implements OnInit {
     this.showGenderPreferenceModal = false;
   }
 
+  openTeamOpeningsModal() {
+    this.showTeamOpeningsModal = true;
+  }
+
+  closeTeamOpeningsModal() {
+    this.showTeamOpeningsModal = false;
+  }
+
   selectGenderPreference(gender: GenderPreference) {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(this.genderStorageKey, gender);
@@ -523,7 +519,7 @@ export class HomeComponent implements OnInit {
     this.showGenderPreferenceModal = true;
   }
 
-  openInstitutionalModal(key: 'eventos' | 'sobre' | 'redes' | 'equipe' | 'parceiros') {
+  openInstitutionalModal(key: InstitutionalKey) {
     this.activeInstitutionalKey = key;
     this.showInstitutionalModal = true;
   }
@@ -607,6 +603,14 @@ export class HomeComponent implements OnInit {
     }
 
     window.open(url, '_blank');
+  }
+
+  handleSupporterLogoError(event: Event) {
+    const image = event.target;
+
+    if (image instanceof HTMLImageElement && image.src !== this.headerLogoDefault) {
+      image.src = this.headerLogoDefault;
+    }
   }
 
   private applyGenderTheme(gender: GenderPreference) {

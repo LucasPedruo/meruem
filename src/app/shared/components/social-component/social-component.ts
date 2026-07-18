@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { toast } from 'ngx-sonner';
 import { CustomButtonComponent } from '../custom-button/custom-button';
 
 @Component({
@@ -12,11 +13,18 @@ export class SocialComponent {
     github: 'https://github.com/FullDevOficial',
     youtube: 'https://www.youtube.com/@ComunidadeFulldev',
     linkedin: 'https://www.linkedin.com/company/comunidadefulldev/posts/?feedView=all',
-    instagram: 'https://www.instagram.com/comunidadefulldev/#',
+    instagram: 'https://instagram.com/fulldev.com.br',
     discord: 'https://discord.com/invite/2vMkX7kc8t',
   };
 
   openExternalLink(url: string): void {
-    window.open(url, '_blank', 'nooperner, noreferrer');
+    window.open(url, '_blank', 'noopener, noreferrer');
+  }
+
+  showConstructionToast(): void {
+    toast.info('Site em construção', {
+      description: 'Em breve a experiência completa estará disponível.',
+      duration: 3200,
+    });
   }
 }
