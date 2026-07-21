@@ -33,8 +33,9 @@ import { MaterialModule } from '../../material.module';
         [type]="type"
         [ngClass]="[color, sizes, customClass, state]"
         class="button"
-        [disabled]="isDisabled()"
+        [disabled]="isNativeDisabled()"
         [attr.aria-describedby]="ariaDescribedBy || null"
+        [attr.aria-disabled]="isDisabled() ? 'true' : null"
         (click)="onClick()"
       >
         @if (shouldShowIcon()) {
@@ -65,6 +66,7 @@ export class CustomButtonComponent {
   @Input() sizes: 'small' | 'medium' | 'large' = 'small';
   @Input() state: 'loading' | 'normal' | 'disabled' = 'normal';
   @Input() customClass = '';
+  @Input() allowDisabledClick = false;
 
   //Link
   @Input() routerLink?: string; /* Link interno */
@@ -72,6 +74,7 @@ export class CustomButtonComponent {
   @Input() target: '_self' | '_blank' = '_self';
 
   @Output() buttonClick = new EventEmitter<void>();
+  @Output() disabledClick = new EventEmitter<void>();
 
   // Computed methods for template logic
   isRouterLink(): boolean {
@@ -86,6 +89,10 @@ export class CustomButtonComponent {
     return this.state === 'disabled' || this.state === 'loading';
   }
 
+  isNativeDisabled(): boolean {
+    return this.state === 'loading' || (this.state === 'disabled' && !this.allowDisabledClick);
+  }
+
   shouldShowIcon(): boolean {
     return Boolean(this.iconSrc && this.state !== 'loading');
   }
@@ -96,6 +103,10 @@ export class CustomButtonComponent {
 
   onClick() {
     if (this.isDisabled()) {
+      if (this.state === 'disabled' && this.allowDisabledClick) {
+        this.disabledClick.emit();
+      }
+
       return;
     }
 

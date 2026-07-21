@@ -36,12 +36,6 @@
           </li> -->
 
           <li class="header__stats-list__item">
-            <img
-              class="header__stats-list__item-icon"
-              src="cupcake.svg"
-              alt=""
-              aria-hidden="true"
-            />
             <p class="header__stats-list__item-text">Desde 06/2024</p>
           </li>
         </ul>
@@ -89,7 +83,7 @@
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('projetos')">
-          <span>Projetos em andamento</span>
+          <span>Projetos</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button class="home-menu__item" type="button" (click)="openInstitutionalModal('sobre')">
@@ -98,6 +92,14 @@
         </button>
         <button class="home-menu__item" type="button" (click)="openTeamOpeningsModal()">
           <span>Faça parte da equipe</span>
+          <img src="link-external.svg" alt="" aria-hidden="true" />
+        </button>
+        <button
+          class="home-menu__item"
+          type="button"
+          (click)="openExternalLink(whatsappTeamContactUrl)"
+        >
+          <span>Entre em contato com a equipe</span>
           <img src="link-external.svg" alt="" aria-hidden="true" />
         </button>
         <button
@@ -164,40 +166,60 @@
         <h2 class="partner-content__title" id="partner-content-title">Conteúdos dos apoiadores</h2>
       </div>
 
-      <div
-        #partnerContentCarousel
-        class="partner-content__carousel"
-        aria-label="Conteúdos compartilhados pelos apoiadores"
-        (scroll)="syncPartnerContentIndex(partnerContentCarousel)"
-      >
-        @for (content of partnerContentCards; track content.title) {
-          <article class="partner-content-card">
-            <div class="partner-content-card__header">
-              <img
-                class="partner-content-card__logo"
-                [src]="content.image"
-                [alt]="'Logo de ' + content.partner"
-              />
-              <div class="partner-content-card__meta">
-                <span class="partner-content-card__partner">{{ content.partner }}</span>
-                <span class="partner-content-card__type">{{ content.type }}</span>
+      <div class="partner-content__viewport">
+        <button
+          class="partner-content__nav partner-content__nav--previous"
+          type="button"
+          aria-label="Mostrar conteúdo anterior"
+          (click)="showPartnerContent(activePartnerContentIndex - 1)"
+        >
+          <span aria-hidden="true">‹</span>
+        </button>
+
+        <div
+          #partnerContentCarousel
+          class="partner-content__carousel"
+          aria-label="Conteúdos compartilhados pelos apoiadores"
+          (scroll)="syncPartnerContentIndex(partnerContentCarousel)"
+        >
+          @for (content of partnerContentCards; track content.title) {
+            <article class="partner-content-card">
+              <div class="partner-content-card__header">
+                <img
+                  class="partner-content-card__logo"
+                  [src]="content.image"
+                  [alt]="'Logo de ' + content.partner"
+                />
+                <div class="partner-content-card__meta">
+                  <span class="partner-content-card__partner">{{ content.partner }}</span>
+                  <span class="partner-content-card__type">{{ content.type }}</span>
+                </div>
               </div>
-            </div>
 
-            <h3 class="partner-content-card__title">{{ content.title }}</h3>
-            <p class="partner-content-card__description">{{ content.description }}</p>
+              <h3 class="partner-content-card__title">{{ content.title }}</h3>
+              <p class="partner-content-card__description">{{ content.description }}</p>
 
-            <a
-              class="partner-content-card__action"
-              [href]="content.link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Abrir conteúdo</span>
-              <img src="link-external.svg" alt="" aria-hidden="true" />
-            </a>
-          </article>
-        }
+              <a
+                class="partner-content-card__action"
+                [href]="content.link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Abrir conteúdo</span>
+                <img src="link-external.svg" alt="" aria-hidden="true" />
+              </a>
+            </article>
+          }
+        </div>
+
+        <button
+          class="partner-content__nav partner-content__nav--next"
+          type="button"
+          aria-label="Mostrar próximo conteúdo"
+          (click)="showPartnerContent(activePartnerContentIndex + 1)"
+        >
+          <span aria-hidden="true">›</span>
+        </button>
       </div>
 
       <div class="partner-content__indicators" aria-label="Selecionar conteúdo dos apoiadores">
@@ -353,7 +375,9 @@
                   text="Abrir"
                   color="link"
                   [state]="opening.formUrl ? 'normal' : 'disabled'"
+                  [allowDisabledClick]="!opening.formUrl"
                   (buttonClick)="openExternalLink(opening.formUrl)"
+                  (disabledClick)="showDisabledOpeningToast()"
                 ></app-custom-button-component>
               </div>
             </article>
@@ -478,6 +502,48 @@
                 }
               </section>
             }
+          </div>
+        } @else if (activeInstitutionalKey === 'projetos') {
+          @if (activeInstitutionalContent().description) {
+            <p class="institutional-modal__description">
+              {{ activeInstitutionalContent().description }}
+            </p>
+          }
+
+          <ul class="institutional-modal__list">
+            @for (item of activeInstitutionalItems(); track item) {
+              <li class="institutional-modal__list-item">{{ item }}</li>
+            }
+          </ul>
+
+          <div class="team-sections">
+            <section class="team-sections__group">
+              <h3 class="team-sections__title">Extensões VS Code</h3>
+
+              @for (project of projectCards; track project.name) {
+                <article class="team-card">
+                  <div class="team-card__content">
+                    <img
+                      [src]="project.image"
+                      class="team-card__logo"
+                      [alt]="'Logo de ' + project.name"
+                    />
+                    <div class="team-card__description">
+                      <h4 class="team-card__description__title">{{ project.name }}</h4>
+                      <p class="team-card__description__subtitle">{{ project.stack }}</p>
+                    </div>
+                    <app-custom-button-component
+                      class="team-card__action"
+                      sizes="medium"
+                      text="Abrir"
+                      color="link"
+                      [showIcon]="true"
+                      (buttonClick)="openExternalLink(project.link)"
+                    ></app-custom-button-component>
+                  </div>
+                </article>
+              }
+            </section>
           </div>
         } @else if (activeInstitutionalKey === 'parceiros') {
           @if (activeInstitutionalContent().description) {

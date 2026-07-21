@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgxFastMarqueeModule } from 'ngx-fast-marquee';
+import { toast } from 'ngx-sonner';
 
 import { environment } from '../../../environments/environment';
 import { CustomButtonComponent } from '../../shared/components/custom-button/custom-button';
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly whatsappFemaleCommunityUrl = 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbc';
   readonly whatsappLgbtCommunityUrl =
     'https://chat.whatsapp.com/BtWA88gNq3KGmAxAobB8X3?s=cl&p=a&ilr=0&amv=3';
+  readonly whatsappTeamContactUrl = 'https://wa.me/fulldev';
   readonly discordCommunityUrl = 'https://discord.com/invite/2vMkX7kc8t';
   readonly vscodeThemeUrl =
     'https://marketplace.visualstudio.com/items?itemName=FullDev.beru-theme';
@@ -261,12 +263,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       image: 'web_summit_rio_logo.jpg',
       linkedin: 'https://www.linkedin.com/company/web-summit-rio/',
     },
-    {
-      name: 'Rocketseat',
-      stack: 'Escola de programação e comunidade dev.',
-      image: 'rocketseat_logo.jpg',
-      linkedin: 'https://www.linkedin.com/school/rocketseat/posts/?feedView=all',
-    },
   ] as const;
   partnerContentCards = [
     {
@@ -286,15 +282,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         'Hospedagem de sites\nVálido para os planos P, M e Turbo, nos ciclos a partir do semestral\n80% OFF - HOST80COMUNIDADE\n\nServidor VPS\nVálido para os planos NVMe 2, 4, 8 e 12, nos ciclos a partir do anual\n45% OFF - VPS45COMUNIDADE',
       image: 'hostgator.png',
       link: 'https://www.hostgator.com.br/',
-    },
-    {
-      partner: 'Rocketseat',
-      title: 'Decole sua carreira em programação e Inteligência artificial',
-      type: 'Assinatura',
-      description:
-        'A plataforma completa para começar do zero ou se especializar, estudar no seu ritmo e criar projetos práticos que te preparam de verdade para o mercado.',
-      image: 'rocketseat_logo.jpg',
-      link: 'https://www.rocketseat.com.br/assinatura',
     },
     {
       partner: 'PUC Minas',
@@ -326,6 +313,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Projetos da comunidade',
       description: 'Participacao em iniciativas tecnicas, repositorios e produtos em andamento.',
       formUrl: '',
+    },
+  ] as const;
+  projectCards = [
+    {
+      name: 'Beru Theme',
+      stack: 'Extensao VS Code da FullDev | 309 installs',
+      image: 'new-logo.png',
+      link: this.vscodeThemeUrl,
     },
   ] as const;
   socialChannels = [
@@ -368,7 +363,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     projetos: {
-      title: 'Projetos em andamento',
+      title: 'Projetos',
       description:
         'Iniciativas que a comunidade esta estruturando para gerar experiencia pratica, portfolio e colaboracao entre membros.',
       items: [
@@ -666,6 +661,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     window.open(url, '_blank');
+  }
+
+  showDisabledOpeningToast() {
+    toast.info('Inscricoes desativadas', {
+      description: 'Esses botoes ainda estao desativados.',
+      duration: 3200,
+    });
   }
 
   showPartnerContent(index: number, resetAutoplay = true) {
