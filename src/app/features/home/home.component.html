@@ -46,7 +46,7 @@
     <section class="groups-showcase" aria-labelledby="groups-showcase-title">
       <nav class="home-menu" aria-label="Menu institucional">
         <!--  -->
-        @if (genderPreference === 'female') {
+        @if (genderPreference === 'female' || genderPreference === 'not_informed') {
           <button
             class="home-menu__item"
             type="button"
@@ -56,7 +56,7 @@
             <img src="link-external.svg" alt="" aria-hidden="true" />
           </button>
         }
-        @if (genderPreference === 'lgbt') {
+        @if (genderPreference === 'lgbt' || genderPreference === 'not_informed') {
           <button
             class="home-menu__item"
             type="button"

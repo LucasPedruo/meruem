@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly newsletterSubscribeUrl =
     'https://substack.com/@fulldev?utm_campaign=profile&utm_medium=profile-page';
   readonly whatsappCommunityUrl = 'https://chat.whatsapp.com/GtlHPlfmXlp27vPZVBej19';
-  readonly whatsappFemaleCommunityUrl = 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbc';
+  readonly whatsappFemaleCommunityUrl = 'https://chat.whatsapp.com/KOKFfsXGD1PBVWvAXXNbcb';
   readonly whatsappLgbtCommunityUrl =
     'https://chat.whatsapp.com/BtWA88gNq3KGmAxAobB8X3?s=cl&p=a&ilr=0&amv=3';
   readonly whatsappTeamContactUrl = 'https://wa.me/fulldev';
@@ -470,8 +470,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   groupButtonState(groupName: string): 'normal' | 'disabled' {
     const shouldBlockGroup = groupName === 'Queens of Deploy' || groupName === 'RainbowStack';
-    const shouldBlockByPreference =
-      this.genderPreference === 'male' || this.genderPreference === 'not_informed';
+    const shouldBlockByPreference = this.genderPreference === 'male';
 
     return shouldBlockGroup && shouldBlockByPreference ? 'disabled' : 'normal';
   }
